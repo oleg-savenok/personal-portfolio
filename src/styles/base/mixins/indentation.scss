@@ -1,0 +1,25 @@
+// Indentation mixin
+
+@mixin indentation($value) {
+	@include device('small-mobile') {
+		#{$value}: $pad--s-mob;
+	}
+	@include device('mobile') {
+		#{$value}: $pad--mob;
+	}
+	@include device('tablet') {
+		#{$value}: $pad--tab;
+	}
+	@include device('laptop') {
+		#{$value}: $pad--lap;
+	}
+	@include device('desktop') {
+		#{$value}: $pad--des;
+	}
+	@include device('large-desktop') {
+		#{$value}: $pad--l-des;
+	}
+	@include device('full-hd') {
+		#{$value}: $pad--f-hd;
+	}
+}

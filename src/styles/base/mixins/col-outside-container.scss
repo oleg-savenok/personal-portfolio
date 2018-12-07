@@ -1,0 +1,14 @@
+// Mixin for set width or height if the column located outside the container
+
+@mixin col-outside-container($value, $percent) {
+	@include responsive(
+		$value,
+		calc((100% - 2 * #{$pad--s-mob}) * (#{$percent}/100) + #{$pad--s-mob} ),
+		calc((100% - 2 * #{$pad--mob}) * (#{$percent}/100) + #{$pad--mob} ),
+		calc((100% - 2 * #{$pad--tab}) * (#{$percent}/100) + #{$pad--tab} ),
+		calc((100% - 2 * #{$pad--lap}) * (#{$percent}/100) + #{$pad--lap} ),
+		calc((100% - 2 * #{$pad--des}) * (#{$percent}/100) + #{$pad--des} ),
+		calc((100% - 2 * #{$pad--l-des}) * (#{$percent}/100) + #{$pad--l-des} ),
+		calc((100% - 2 * #{$pad--f-hd}) * (#{$percent}/100) + #{$pad--f-hd} )
+	);
+}

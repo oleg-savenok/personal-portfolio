@@ -1,0 +1,20 @@
+// Dark Theme
+
+@import "./variables";
+
+html, body {
+	color: $white;
+	background-color: $black;
+}
+
+.preloader {
+	background-color: $black;
+}
+
+.cursor__icon {
+	color: $black;
+}
+
+.header, footer {
+	color: $white;
+}

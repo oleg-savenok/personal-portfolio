@@ -1,0 +1,22 @@
+// Preloader styles
+
+.preloader {
+	position: fixed;
+	pointer-events: none;
+	z-index: 90000;
+	width: 100%;
+	height: 100%;
+	
+	&__greeting {
+		position: absolute;
+		@include align(l,c);
+		@include col-outside-container(left, 16.66);
+		height: .96rem*3;
+		padding: 0;
+		margin: 0;
+		
+		font-size: .66rem;
+		line-height: .96rem;
+		font-weight: 300;
+	}
+}

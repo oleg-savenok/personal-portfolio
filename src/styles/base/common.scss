@@ -1,0 +1,34 @@
+// Common file for base styles
+
+
+// Normalize.css
+@import "./normalize";
+
+// Variables
+@import "./variables";
+
+// Mixins
+@import "./mixins/media";
+@import "./mixins/responsive";
+@import "./mixins/indentation";
+@import "./mixins/col-outside-container";
+@import "./mixins/align";
+
+// Fonts
+@import "./fonts";
+
+// Icons
+@import "./icons";
+
+// Remove cursor
+* {
+	cursor: none;
+}
+
+// Normalize links
+a {
+	color: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	text-decoration: none;
+}

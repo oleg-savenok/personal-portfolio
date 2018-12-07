@@ -1,0 +1,9 @@
+node_modules
+public/*.rar
+public/*.zip
+public/*.html
+public/scripts
+public/styles/*.css
+package-lock.json
+.vscode
+.idea

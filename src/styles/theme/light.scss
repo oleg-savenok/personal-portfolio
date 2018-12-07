@@ -1,0 +1,20 @@
+// Light Theme
+
+@import "./variables";
+
+html, body {
+	color: $black;
+	background-color: $white;
+}
+
+.preloader {
+	background-color: $white;
+}
+
+.cursor__icon {
+	color: $white;
+}
+
+.header, footer {
+	color: $white;
+}
