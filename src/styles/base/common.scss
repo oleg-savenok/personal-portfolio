@@ -1,34 +1,33 @@
 // Common file for base styles
 
-
 // Normalize.css
-@import "./normalize";
+@import './normalize';
 
 // Variables
-@import "./variables";
+@import './variables';
 
 // Mixins
-@import "./mixins/media";
-@import "./mixins/responsive";
-@import "./mixins/indentation";
-@import "./mixins/col-outside-container";
-@import "./mixins/align";
+@import './mixins/media';
+@import './mixins/responsive';
+@import './mixins/indentation';
+@import './mixins/col-outside-container';
+@import './mixins/align';
 
 // Fonts
-@import "./fonts";
+@import './fonts';
 
 // Icons
-@import "./icons";
+@import './icons';
 
 // Remove cursor
 * {
-	cursor: none;
+    cursor: none;
 }
 
 // Normalize links
 a {
-	color: inherit;
-	font-size: inherit;
-	font-weight: inherit;
-	text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    text-decoration: none;
 }

@@ -41,14 +41,15 @@
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^1.12.1",
     "gulp-uglify": "^3.0.1",
-    "node-sass": "^4.7.2"
+    "node-sass": "^4.7.2",
+    "prettier": "^1.15.3"
   },
   "dependencies": {
     "fullpage.js": "^2.9.7",
     "jquery": "^3.3.1",
     "pixi.js": "^4.8.3",
     "slick-carousel": "^1.8.1",
-    "swiper": "^4.4.1",
+    "swiper": "^4.4.2",
     "tilt.js": "^1.2.1",
     "typed.js": "^2.0.9"
   }

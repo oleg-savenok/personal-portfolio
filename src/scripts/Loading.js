@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import {TweenLite, TimelineLite} from 'gsap';
+import { TweenLite, TimelineLite } from 'gsap';
 
 export default class Loading {
     constructor() {
@@ -17,7 +17,9 @@ export default class Loading {
     }
 
     init() {
-        TweenLite.set([this.header, this.footer, this.greetingText], { opacity: 0 });
+        TweenLite.set([this.header, this.footer, this.greetingText], {
+            opacity: 0,
+        });
         TweenLite.set(this.header, { y: '-120px' });
         TweenLite.set(this.footer, { y: '120px' });
         TweenLite.set(this.helloBG, { height: 0 });
@@ -28,32 +30,47 @@ export default class Loading {
 
         endTimeline
             .set(this.preloader, {
-                backgroundColor: 'none'
+                backgroundColor: 'none',
             })
             .set(this.greeting, {
-                opacity: 0
+                opacity: 0,
             })
             .set(this.greetingText, {
-                opacity: 1
+                opacity: 1,
             })
-            .to(this.cursorSpiner, .2, {
+            .to(this.cursorSpiner, 0.2, {
                 opacity: 0,
                 animationPlayState: 'pause',
             })
-            .to(this.header, 1, {
-                y: 0,
-                opacity: 1,
-                ease: Power3.easeOut
-            }, 0.3)
-            .to(this.footer, 1, {
-                y: 0,
-                opacity: 1,
-                ease: Power3.easeOut
-            }, 0.3)
-            .to(this.helloBG, 1, {
-                height: this.helloBGOriginalHeight,
-                ease: Power3.easeOut
-            }, 1);
+            .to(
+                this.header,
+                1,
+                {
+                    y: 0,
+                    opacity: 1,
+                    ease: Power3.easeOut,
+                },
+                0.3
+            )
+            .to(
+                this.footer,
+                1,
+                {
+                    y: 0,
+                    opacity: 1,
+                    ease: Power3.easeOut,
+                },
+                0.3
+            )
+            .to(
+                this.helloBG,
+                1,
+                {
+                    height: this.helloBGOriginalHeight,
+                    ease: Power3.easeOut,
+                },
+                1
+            );
 
         // Enable fullpage scrolling
         this.$.fn.fullpage.setAllowScrolling(true);

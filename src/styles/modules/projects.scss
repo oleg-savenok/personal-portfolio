@@ -1,52 +1,95 @@
 // Projects styles
 
+.swiper-container {
+}
+.swiper-container-no-flexbox .swiper-slide {
+    float: left;
+}
+
 .projects {
-	&__slider {
-		width: 100%;
-		height: 100%;
-		
-		&__item {
-			position: absolute;
-			@include align(c,c);
-			overflow: hidden;
-			width: 66.66%;
-			height: 60%;
-			
-			&__bg {
-				position: relative;
-				width: 100%;
-				height: 100%;
-				
-				canvas {
-					position: absolute;
-					@include align(c,c);
-				}
-			}
-			
-			&__title {
-				position: absolute;
-				@include align(c,c);
-				text-align: center;
-				font-size: .83rem;
-				font-weight: 600;
-			}
-		}
-	}
-	
-	&__controls {
-		&__prev,
-		&__next {
-			position: absolute;
-			@include col-outside-container(height, 60);
-			@include col-outside-container(width, 16.66);
-		}
-		
-		&__prev {
-			@include align(l,c);
-		}
-		
-		&__next {
-			@include align(r,c);
-		}
-	}
+    height: 100vh;
+    width: 100%;
+
+    .swiper-slide {
+        width: auto;
+    }
+
+    &__container {
+        position: absolute;
+        @include align(c, c);
+        height: 80%;
+        width: 100%;
+        margin: 0 auto;
+        list-style: none;
+        padding: 0;
+        /* Fix of Webkit flickering */
+        z-index: 1;
+    }
+
+    &__slider {
+        height: 100%;
+        width: 100%;
+        //
+        position: relative;
+        z-index: 1;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-transition-property: -webkit-transform;
+        transition-property: -webkit-transform;
+        -o-transition-property: transform;
+        transition-property: transform;
+        transition-property: transform, -webkit-transform;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        -webkit-transform: translate3d(0px, 0, 0);
+        transform: translate3d(0px, 0, 0);
+
+        &__item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            float: left;
+            height: 100%;
+            font-size: 0.83rem;
+            font-weight: 600;
+            user-select: none;
+
+            a {
+                white-space: nowrap;
+                user-select: none;
+            }
+        }
+    }
+
+    &__cover {
+        position: absolute;
+        @include align(c, c);
+        overflow: hidden;
+        height: 50%;
+        width: 50%;
+
+        canvas {
+            position: absolute;
+            @include align(c, c);
+        }
+    }
+
+    &__controls {
+        &__prev,
+        &__next {
+            position: absolute;
+            @include col-outside-container(height, 60);
+            @include col-outside-container(width, 16.66);
+        }
+
+        &__prev {
+            @include align(l, c);
+        }
+
+        &__next {
+            @include align(r, c);
+        }
+    }
 }

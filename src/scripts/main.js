@@ -3,22 +3,28 @@ import $ from 'jquery';
 import Loading from './Loading';
 import InitCursor from './InitCursor';
 import InitStickyLinks from './InitStickyLinks';
-import InitFullPage from './InitFullPage';
-import InitProjectsSlider from "./InitProjectsSlider";
+import InitProjectsSlider from './InitProjectsSlider';
 import InitTyped from './InitTyped';
-import InitTilt from './InitTilt'
 import displacement from './displacement';
 
-$(document).ready(function () {
+$(document).ready(function() {
     displacement();
-    const loading = new Loading();
-    loading.init();
+    //const loading = new Loading();
+    //loading.init();
     InitCursor();
     InitStickyLinks();
-    InitFullPage();
+    //InitFullPage();
     InitProjectsSlider();
-    setTimeout(function () {
-        InitTyped(loading);
-    }, 100);
-    //InitTilt();
+    // setTimeout(function () {
+    //     InitTyped(loading);
+    // }, 100);
+
+    const style = [
+        'background: #fff',
+        'color: #000',
+        'padding: 10px 20px',
+        'line-height: 35px',
+        'border: 2px solid #000',
+    ].join(';');
+    console.log('%c Coded with ♥️ by Oleg Savenok', style);
 });

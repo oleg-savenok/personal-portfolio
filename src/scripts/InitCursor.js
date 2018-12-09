@@ -1,68 +1,80 @@
-import {TweenMax} from 'gsap';
+import { TweenMax, TimelineMax } from 'gsap';
 import $ from 'jquery';
 
 export default function InitCursor() {
-
-    const cursor = document.getElementById("cursor");
-    const position = {x: 0, y: 0};
+    const $document = $(document);
+    const cursor = $('#cursor');
+    const cursorIcon = $('.cursor__icon');
+    const cursorDrugIcon = $('.cursor__icon--drag');
+    const linksNormal = $('a.cursor-medium');
+    const position = { x: 0, y: 0 };
     let scrollTop;
+    let iconName;
 
+    // Set translate center to cursor
     TweenMax.set(cursor, {
         xPercent: -50,
         yPercent: -50,
     });
 
-    function setMousePosition(e) {
+    function getMousePosition(e) {
         scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         position.x = e.pageX;
         position.y = e.pageY - scrollTop;
-
-        TweenMax.set(cursor, {
-            opacity: 1,
-        });
     }
 
-    const mouseMoveEvent = new Event('mousemove');
+    function setIconCursor(e) {
+        iconName = e.target.dataset.icon;
+        cursorIcon.html(iconName);
 
-    document.addEventListener("mousemove", function (e) {
-        setMousePosition(e);
+        TweenMax.to(cursor, 0.2, {
+            height: '.8rem',
+            width: '.8rem',
+            opacity: '1',
+        });
+
+        TweenMax.to(cursorDrugIcon, 0.2, { opacity: 0 });
+        TweenMax.to(cursorIcon, 0.2, { opacity: 1 }, 0.2);
+    }
+
+    function setDefaultCursor() {
+        TweenMax.to(cursor, 0.2, {
+            height: '.2rem',
+            width: '.2rem',
+            opacity: 0.25,
+        });
+
+        TweenMax.to(cursorIcon, 0.1, { opacity: 0 });
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        getMousePosition(e);
     });
 
-    document.dispatchEvent(mouseMoveEvent);
-
-    TweenMax.ticker.addEventListener("tick", function () {
-        TweenMax.to(cursor, .1, {
+    TweenMax.ticker.addEventListener('tick', () => {
+        TweenMax.to(cursor, 0.1, {
             x: position.x,
             y: position.y,
         });
     });
 
-    const linksNormal = $('a.cursor-medium');
+    linksNormal
+        .on('mouseenter', () => {
+            TweenMax.to(cursor, 0.2, {
+                scale: 3,
+            });
+        })
+        .on('mouseleave', () => {
+            TweenMax.to(cursor, 0.2, {
+                scale: 1,
+            });
+        });
 
-    linksNormal.hover(function (e) {
-        TweenMax.to(cursor, .2, {
-            scale: 3
-        });
-    }, function () {
-        TweenMax.to(cursor, .2, {
-            scale: 1
-        });
+    $document.on('mouseenter', '[data-icon]', (e) => {
+        setIconCursor(e);
     });
 
-    const linkIcon = $('[class^="cursor-icon"]');
-    const cursorIcon = $('.cursor__icon');
-    let iconArrayClass,iconName;
-
-    linkIcon.hover(function (e) {
-        iconArrayClass = e.target.classList[0].split('-');
-        iconName = iconArrayClass[iconArrayClass.length - 1];
-        cursorIcon.html(iconName);
-
-        TweenMax.to(cursor, .2, { height: '.8rem', width: '.8rem', mixBlendMode: 'normal' });
-        TweenMax.to(cursorIcon, .2, { opacity: 1 });
-    }, function () {
-        TweenMax.to(cursor, .2, { height: '.2rem', width: '.2rem', mixBlendMode: 'difference' });
-        TweenMax.to(cursorIcon, .2, { opacity: 0 });
+    $document.on('mouseleave', '[data-icon]', () => {
+        setDefaultCursor();
     });
-
-};
+}

@@ -1,20 +1,34 @@
 // Light Theme
 
-@import "./variables";
+@import './variables';
 
-html, body {
-	color: $black;
-	background-color: $white;
+html,
+body {
+    color: $black;
+    background-color: $white;
 }
 
 .preloader {
-	background-color: $white;
+    background-color: $white;
 }
 
-.cursor__icon {
-	color: $white;
+.cursor {
+    background-color: $black;
+    mix-blend-mode: normal;
+    opacity: 0.25;
+
+    &__icon,
+    &__icon--drag {
+        color: $white;
+    }
+
+    &__spiner {
+        border-bottom-color: #fff;
+    }
 }
 
-.header, footer {
-	color: $white;
+.header,
+.footer {
+    color: $black;
+    mix-blend-mode: normal;
 }
