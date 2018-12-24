@@ -16,9 +16,6 @@
 // Fonts
 @import './fonts';
 
-// Icons
-@import './icons';
-
 // Remove cursor
 * {
     cursor: none;
@@ -30,4 +27,5 @@ a {
     font-size: inherit;
     font-weight: inherit;
     text-decoration: none;
+	user-select: none;
 }
