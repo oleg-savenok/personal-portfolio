@@ -1,13 +1,19 @@
 import { TweenMax, TimelineMax } from 'gsap';
 import $ from 'jquery';
 
+import cursorOptions from './cursorOptions';
+
 export default function cursor() {
     const $document = $(document);
-    const cursor = $('#cursor');
-    const cursorIcon = $('.cursor__icon');
-    const position = { x: 0, y: 0 };
-    let scrollTop;
-    let iconName;
+
+    let {
+        cursor,
+        cursorIcon,
+        iconName,
+        position,
+        scrollTop,
+        size: { basic: sizeBasic, icon: sizeIcon },
+    } = cursorOptions;
 
     // Set translate center to cursor
     TweenMax.set([cursor, cursorIcon], {
@@ -29,14 +35,14 @@ export default function cursor() {
             });
         } else {
             TweenMax.set(cursorIcon, {
-                rotation: 0
+                rotation: 0,
             });
         }
         cursorIcon.html(iconName);
 
         TweenMax.to(cursor, 0.2, {
-            height: '.8rem',
-            width: '.8rem',
+            height: sizeIcon,
+            width: sizeIcon,
             opacity: '1',
         });
 
@@ -45,8 +51,8 @@ export default function cursor() {
 
     function setDefaultCursor() {
         TweenMax.to(cursor, 0.2, {
-            height: '.2rem',
-            width: '.2rem',
+            height: sizeBasic,
+            width: sizeBasic,
             opacity: 0.25,
         });
 
