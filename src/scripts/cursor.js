@@ -4,7 +4,7 @@ import $ from 'jquery';
 import cursorOptions from './cursorOptions';
 
 export default function cursor() {
-    const $document = $(document);
+    const projects = $('#projects');
 
     let {
         cursor,
@@ -13,6 +13,7 @@ export default function cursor() {
         position,
         scrollTop,
         size: { basic: sizeBasic, icon: sizeIcon },
+        opacity: { basicMode: opacityBasicMode, iconMode: opacityIconMode },
     } = cursorOptions;
 
     // Set translate center to cursor
@@ -43,7 +44,7 @@ export default function cursor() {
         TweenMax.to(cursor, 0.2, {
             height: sizeIcon,
             width: sizeIcon,
-            opacity: '1',
+            opacity: opacityIconMode,
         });
 
         TweenMax.to(cursorIcon, 0.2, { opacity: 1 }, 0.2);
@@ -53,7 +54,7 @@ export default function cursor() {
         TweenMax.to(cursor, 0.2, {
             height: sizeBasic,
             width: sizeBasic,
-            opacity: 0.25,
+            opacity: opacityBasicMode,
         });
 
         TweenMax.to(cursorIcon, 0.1, { opacity: 0 });
@@ -72,15 +73,11 @@ export default function cursor() {
         });
     });
 
-    $document.on('mouseover', '#projectsSlider', (e) => {
+    projects.on('mouseover', '#projectsSlider', (e) => {
         setIconCursor(e);
     });
 
-    $document.on('mouseout', '#projectsSlider', (e) => {
+    projects.on('mouseout', '#projectsSlider', (e) => {
         setDefaultCursor(e);
     });
-
-    // $document.on('mouseover', '.projects__slider__item', (e) => {
-    //     setDefaultCursor(e);
-    // });
 }
