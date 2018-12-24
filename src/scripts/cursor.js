@@ -1,18 +1,16 @@
 import { TweenMax, TimelineMax } from 'gsap';
 import $ from 'jquery';
 
-export default function InitCursor() {
+export default function cursor() {
     const $document = $(document);
     const cursor = $('#cursor');
     const cursorIcon = $('.cursor__icon');
-    const cursorDrugIcon = $('.cursor__icon--drag');
-    const linksNormal = $('a.cursor-medium');
     const position = { x: 0, y: 0 };
     let scrollTop;
     let iconName;
 
     // Set translate center to cursor
-    TweenMax.set(cursor, {
+    TweenMax.set([cursor, cursorIcon], {
         xPercent: -50,
         yPercent: -50,
     });
@@ -24,7 +22,16 @@ export default function InitCursor() {
     }
 
     function setIconCursor(e) {
-        iconName = e.target.dataset.icon;
+        iconName = e.target.dataset.icon || e.currentTarget.dataset.icon;
+        if (iconName === 'unfold_more') {
+            TweenMax.set(cursorIcon, {
+                rotation: 90,
+            });
+        } else {
+            TweenMax.set(cursorIcon, {
+                rotation: 0
+            });
+        }
         cursorIcon.html(iconName);
 
         TweenMax.to(cursor, 0.2, {
@@ -33,7 +40,6 @@ export default function InitCursor() {
             opacity: '1',
         });
 
-        TweenMax.to(cursorDrugIcon, 0.2, { opacity: 0 });
         TweenMax.to(cursorIcon, 0.2, { opacity: 1 }, 0.2);
     }
 
@@ -47,6 +53,8 @@ export default function InitCursor() {
         TweenMax.to(cursorIcon, 0.1, { opacity: 0 });
     }
 
+    setDefaultCursor();
+
     document.addEventListener('mousemove', (e) => {
         getMousePosition(e);
     });
@@ -58,23 +66,15 @@ export default function InitCursor() {
         });
     });
 
-    linksNormal
-        .on('mouseenter', () => {
-            TweenMax.to(cursor, 0.2, {
-                scale: 3,
-            });
-        })
-        .on('mouseleave', () => {
-            TweenMax.to(cursor, 0.2, {
-                scale: 1,
-            });
-        });
-
-    $document.on('mouseenter', '[data-icon]', (e) => {
+    $document.on('mouseover', '#projectsSlider', (e) => {
         setIconCursor(e);
     });
 
-    $document.on('mouseleave', '[data-icon]', () => {
-        setDefaultCursor();
+    $document.on('mouseout', '#projectsSlider', (e) => {
+        setDefaultCursor(e);
     });
+
+    // $document.on('mouseover', '.projects__slider__item', (e) => {
+    //     setDefaultCursor(e);
+    // });
 }
