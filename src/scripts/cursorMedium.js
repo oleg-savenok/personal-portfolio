@@ -1,19 +1,25 @@
 import { TweenMax } from 'gsap';
-import $ from 'jquery';
+
+import cursorOptions from './cursorOptions';
 
 export default function cursorMedium() {
-    const cursor = $('#cursor');
-    const cursorMedium = $('.cursor--medium');
+    let {
+        cursor,
+        eventTargets: { medium: cursorEventMedium },
+        size: { basic: sizeBasic, medium: sizeMedium },
+    } = cursorOptions;
 
-    cursorMedium
+    cursorEventMedium
         .on('mouseenter', () => {
             TweenMax.to(cursor, 0.2, {
-                scale: 3,
+                height: sizeMedium,
+                width: sizeMedium,
             });
         })
         .on('mouseleave', () => {
             TweenMax.to(cursor, 0.2, {
-                scale: 1,
+                height: sizeBasic,
+                width: sizeBasic,
             });
         });
 }

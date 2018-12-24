@@ -1,18 +1,20 @@
 import $ from 'jquery';
 import { TweenMax } from 'gsap';
 
-export default function InitStickyLinks() {
-    const cursorCharacters = $('.cursor--characters');
+import cursorOptions from './cursorOptions';
 
-    cursorCharacters.each(function() {
+export default function InitStickyLinks() {
+    let {
+        eventTargets: { characters: cursorEventCharacters },
+    } = cursorOptions;
+
+    cursorEventCharacters.each(function() {
         let text = $(this).text();
         for (var i = 0; i < text.length; i++) {
             if (i === 0) {
                 $(this).html('');
             }
-            $(this).append(
-                '<span class="letter">' + text.charAt(i) + '</span>'
-            );
+            $(this).append('<span class="letter">' + text.charAt(i) + '</span>');
         }
     });
 
@@ -31,7 +33,7 @@ export default function InitStickyLinks() {
         );
     }
 
-    cursorCharacters.mouseenter(function(e) {
+    cursorEventCharacters.mouseenter(function(e) {
         let letters = Array.from(e.target.children);
         animateLetters(letters);
     });
