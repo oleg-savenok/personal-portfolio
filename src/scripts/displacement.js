@@ -1,14 +1,13 @@
 import * as PIXI from 'pixi.js';
 
 export default function displacement() {
-
-    let cover = document.getElementById("helloBG");
-    let imageSrc = cover.getAttribute("data-img");
+    let cover = document.getElementById('cover');
+    let imageSrc = cover.getAttribute('data-img');
 
     let width = cover.offsetWidth + 50;
     let height = cover.offsetHeight + 50;
-    
-    let playground = document.getElementById("helloBG");
+
+    let playground = cover;
 
     let canvas;
 
@@ -17,15 +16,14 @@ export default function displacement() {
     let count = 0;
     let raf;
 
-
-    let renderer = PIXI.autoDetectRenderer(width, height, {transparent:true});
+    let renderer = PIXI.autoDetectRenderer(width, height, {
+        transparent: true,
+    });
     //renderer.autoResize = true;
     let tp, preview;
-    let displacementSprite,
-        displacementFilter,
-        stage;
+    let displacementSprite, displacementFilter, stage;
 
-    function setScene(){
+    function setScene() {
         playground.appendChild(renderer.view);
 
         stage = new PIXI.Container();
@@ -37,14 +35,16 @@ export default function displacement() {
         preview.height = height;
         preview.width = width;
 
-        displacementSprite = PIXI.Sprite.fromImage('../assets/images/gradient_large.png');
-        displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+        displacementSprite = PIXI.Sprite.fromImage('../assets/images/2.jpg');
+        displacementSprite.texture.baseTexture.wrapMode =
+            PIXI.WRAP_MODES.REPEAT;
 
-        displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+        displacementFilter = new PIXI.filters.DisplacementFilter(
+            displacementSprite
+        );
 
         displacementSprite.scale.y = 0.6;
         displacementSprite.scale.x = 0.6;
-
 
         stage.addChild(displacementSprite);
 
@@ -56,10 +56,10 @@ export default function displacement() {
     function animate() {
         raf = requestAnimationFrame(animate);
 
-        displacementSprite.x = count*10;
-        displacementSprite.y = count*10;
+        displacementSprite.x = count * 10;
+        displacementSprite.y = count * 10;
 
-        count += 0.5;
+        count += 0.2;
 
         stage.filters = [displacementFilter];
 

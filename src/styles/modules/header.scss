@@ -1,47 +1,47 @@
 // Styles for header
 
 .header {
-	position: fixed;
-	z-index: 50000;
-	@include indentation(left);
-	@include indentation(right);
-	@include indentation(top);
-	mix-blend-mode: difference;
-	
-	&__logo {
-		float: left;
-		margin: 0;
-		padding: 0;
-		font-size: .42rem;
-		line-height: .33rem;
-		font-weight: 600;
-	}
-	
-	&__nav {
-		float: right;
-		
-		&__list {
-			margin: 0;
-			padding: 0;
-			
-			&__item,
-			&__item-lang {
-				float: left;
-				padding-left: .5rem;
-				margin-top: -.1rem;
-				list-style: none;
-				font-size: .28rem;
-				line-height: .5rem;
-				font-weight: 300;
-				
-				a {
-					display: block;
-				}
-			}
-			
-			&__item-lang {
-				padding-left: 1rem;
-			}
-		}
-	}
+    position: fixed;
+    z-index: 50000;
+    @include indentation(left);
+    @include indentation(right);
+    @include indentation(top);
+    mix-blend-mode: difference;
+
+    &__logo {
+        float: left;
+        margin: 0;
+        padding: 0;
+        font-size: 0.42rem;
+        line-height: 0.33rem;
+        font-weight: 700;
+    }
+
+    &__nav {
+        float: right;
+
+        &__list {
+            margin: 0;
+            padding: 0;
+
+            &__item,
+            &__item-lang {
+                float: left;
+                padding-left: 0.5rem;
+                margin-top: -0.1rem;
+                list-style: none;
+                font-size: 0.28rem;
+                line-height: 0.5rem;
+                font-weight: 600;
+
+                a {
+                    display: block;
+                }
+            }
+
+            &__item-lang {
+                padding-left: 1rem;
+            }
+        }
+    }
 }

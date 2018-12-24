@@ -1,20 +1,31 @@
 // Dark Theme
 
-@import "./variables";
+@import './variables';
 
-html, body {
-	color: $white;
-	background-color: $black;
+html,
+body {
+    color: $white;
+    background-color: $black;
 }
 
 .preloader {
-	background-color: $black;
+    background-color: $black;
 }
 
-.cursor__icon {
-	color: $black;
+.cursor {
+    background-color: $white;
+
+    &__icon,
+    &__icon--drag {
+        color: $black;
+    }
+
+    &__spiner {
+        border-bottom-color: #fff;
+    }
 }
 
-.header, footer {
-	color: $white;
+.header,
+footer {
+    color: $white;
 }

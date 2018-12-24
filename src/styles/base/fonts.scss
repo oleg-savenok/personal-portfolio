@@ -1,15 +1,31 @@
 // Fonts setting
 
 html {
-	font-family: "Gilroy", sans-serif;
-	font-weight: 500;
-	@include responsive(font-size, 34px, 42px, 46px, 56px, 48px, 56px, 72px);
+    font-family: 'Wavehaus', sans-serif;
+    font-weight: 500;
+    @include responsive(font-size, 34px, 42px, 46px, 56px, 48px, 56px, 72px);
 }
 
-h1 {font-size: 1rem}
-h2 {font-size: .83rem}
-h3 {font-size: .66rem}
-h4 {font-size: .42rem}
-h5 {font-size: .33rem}
-h6 {font-size: .25rem}
-p, a, li {font-size: .33rem}
+h1 {
+    font-size: 1rem;
+}
+h2 {
+    font-size: 0.83rem;
+}
+h3 {
+    font-size: 0.66rem;
+}
+h4 {
+    font-size: 0.42rem;
+}
+h5 {
+    font-size: 0.33rem;
+}
+h6 {
+    font-size: 0.25rem;
+}
+p,
+a,
+li {
+    font-size: 0.33rem;
+}

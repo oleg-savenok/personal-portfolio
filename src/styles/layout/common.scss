@@ -1,41 +1,53 @@
 .container {
-	position: relative;
-	width: 100%;
-	
-	@include indentation(margin-left);
-	@include indentation(margin-right);
-	@include responsive(
-		width,
-		calc(100% - 2 * #{$pad--s-mob}),
-		calc(100% - 2 * #{$pad--mob}),
-		calc(100% - 2 * #{$pad--tab}),
-		calc(100% - 2 * #{$pad--lap}),
-		calc(100% - 2 * #{$pad--des}),
-		calc(100% - 2 * #{$pad--l-des}),
-		calc(100% - 2 * #{$pad--f-hd})
-	);
+    position: relative;
+    width: 100%;
+
+    @include indentation(margin-left);
+    @include indentation(margin-right);
+    @include responsive(
+        width,
+        calc(100% - 2 * #{$pad--s-mob}),
+        calc(100% - 2 * #{$pad--mob}),
+        calc(100% - 2 * #{$pad--tab}),
+        calc(100% - 2 * #{$pad--lap}),
+        calc(100% - 2 * #{$pad--des}),
+        calc(100% - 2 * #{$pad--l-des}),
+        calc(100% - 2 * #{$pad--f-hd})
+    );
 }
 
 .container-full {
-	@extend .container;
-	
-	float: left;
-	@include indentation(margin);
-	@include responsive(
-		height,
-		calc(100% - 2 * #{$pad--s-mob}),
-		calc(100% - 2 * #{$pad--mob}),
-		calc(100% - 2 * #{$pad--tab}),
-		calc(100% - 2 * #{$pad--lap}),
-		calc(100% - 2 * #{$pad--des}),
-		calc(100% - 2 * #{$pad--l-des}),
-		calc(100% - 2 * #{$pad--f-hd})
-	);
+    @extend .container;
+
+    float: left;
+    @include indentation(margin);
+    @include responsive(
+        height,
+        calc(100% - 2 * #{$pad--s-mob}),
+        calc(100% - 2 * #{$pad--mob}),
+        calc(100% - 2 * #{$pad--tab}),
+        calc(100% - 2 * #{$pad--lap}),
+        calc(100% - 2 * #{$pad--des}),
+        calc(100% - 2 * #{$pad--l-des}),
+        calc(100% - 2 * #{$pad--f-hd})
+    );
 }
 
-.col-1 {width: 16.66%}
-.col-2 {width: 33.33%}
-.col-3 {width: 50%}
-.col-4 {width: 66.66%}
-.col-5 {width: 83.33%}
-.col-6 {width: 100%}
+.col-1 {
+    width: 16.66%;
+}
+.col-2 {
+    width: 33.33%;
+}
+.col-3 {
+    width: 50%;
+}
+.col-4 {
+    width: 66.66%;
+}
+.col-5 {
+    width: 83.33%;
+}
+.col-6 {
+    width: 100%;
+}
