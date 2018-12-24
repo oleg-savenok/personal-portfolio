@@ -5,7 +5,12 @@ import cursorOptions from './cursorOptions';
 export default function cursorSticky() {
     let {
         eventTargets: { sticky: cursorEventSticky },
-        sticky: { degree, positionDifference, targetParam },
+        sticky: {
+            degree,
+            positionDifference,
+            targetParam,
+            speed: { start: startSpeed, end: endSpeed },
+        },
         scrollTop,
     } = cursorOptions;
 
@@ -18,7 +23,7 @@ export default function cursorSticky() {
             y: e.pageY - targetParam.top,
         };
 
-        TweenMax.to(e.target, 3, {
+        TweenMax.to(e.target, startSpeed, {
             x: ((positionDifference.x - targetParam.width / 2) / targetParam.width) * degree,
             y: ((positionDifference.y - targetParam.height / 2 - scrollTop) / targetParam.height) * degree,
             ease: Power2.easeOut,
@@ -26,7 +31,7 @@ export default function cursorSticky() {
     });
 
     cursorEventSticky.mouseleave(function(e) {
-        TweenMax.to(e.target, 0.5, {
+        TweenMax.to(e.target, endSpeed, {
             x: 0,
             y: 0,
             ease: Power2.easeOut,

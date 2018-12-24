@@ -8,13 +8,14 @@ export default function InitStickyLinks() {
         eventTargets: { characters: cursorEventCharacters },
     } = cursorOptions;
 
+    // Split of word into characters
     cursorEventCharacters.each(function() {
         let text = $(this).text();
-        for (var i = 0; i < text.length; i++) {
+        for (let i = 0; i < text.length; i++) {
             if (i === 0) {
                 $(this).html('');
             }
-            $(this).append('<span class="letter">' + text.charAt(i) + '</span>');
+            $(this).append(`<span class="character">${text.charAt(i)}</span>`);
         }
     });
 
