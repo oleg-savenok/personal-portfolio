@@ -53,8 +53,9 @@
             float: left;
             height: 100%;
             font-size: 0.83rem;
-            font-weight: 600;
+            font-weight: 700;
             user-select: none;
+	        //padding-left: 80px;
 
             a {
                 white-space: nowrap;
@@ -67,8 +68,8 @@
         position: absolute;
         @include align(c, c);
         overflow: hidden;
-        height: 50%;
-        width: 50%;
+        height: 66%;
+        width: 66%;
 
         canvas {
             position: absolute;
