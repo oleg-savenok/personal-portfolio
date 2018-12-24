@@ -6,7 +6,7 @@ const cursorOptions = {
     eventTargets: {
         medium: $('.cursor--medium'),
         characters: $('.cursor--characters'),
-        sticky: $('cursor--sticky'),
+        sticky: $('.cursor--sticky'),
     },
     iconName: '',
     position: { x: 0, y: 0 },
