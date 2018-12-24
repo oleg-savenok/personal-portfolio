@@ -4,7 +4,11 @@ export default function visibilityTab() {
     document.addEventListener(
         'visibilitychange',
         () => {
-            console.log('working!');
+            if (document.hidden === true) {
+                document.title = '😧 Hey, I Miss You!';
+            } else {
+                document.title = defaultTitle;
+            }
         },
         false
     );
