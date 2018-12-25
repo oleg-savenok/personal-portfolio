@@ -9,7 +9,13 @@ import setCursorDefault from './setCursorDefault';
 export default function cursor() {
     const projects = $('#projects');
 
-    let { cursor, cursorIcon, position, scrollTop } = cursorOptions;
+    let {
+        cursor,
+        cursorIcon,
+        position,
+        scrollTop,
+        opacity: { basicMode: opacityBasicMode },
+    } = cursorOptions;
 
     // Set translate center to cursor
     TweenMax.set([cursor, cursorIcon], {
@@ -44,5 +50,15 @@ export default function cursor() {
 
     projects.on('mouseout', '#projectsSlider', (e) => {
         setCursorDefault(e);
+    });
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    $(document).mouseenter(() => {
+        TweenMax.to(cursor, 0.1, { opacity: opacityBasicMode, delay: 0.1 });
+    });
+
+    $(document).mouseleave(() => {
+        TweenMax.to(cursor, 0.1, { opacity: 0 });
     });
 }
