@@ -18,7 +18,7 @@ $(document).ready(function() {
     const pageName = $('body').attr('id');
 
     // Initial call
-    firstLoading();
+    firstLoading(true);
     cursor();
     cursorMedium();
     cursorSticky();
