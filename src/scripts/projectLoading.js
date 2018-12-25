@@ -1,7 +1,9 @@
 import $ from 'jquery';
 import { TweenLite } from 'gsap';
 
-export default function progressLoad() {
+export default function projectLoading() {
+    const projectLoadingProgress = $('#projectLoadingProgress');
+
     function getRandomNumber(min, max) {
         return Math.random() * (max - min) + min;
     }
@@ -10,7 +12,7 @@ export default function progressLoad() {
 
     $('.projects__slider__item a').click(function(e) {
         while (progress < 60) {
-            TweenLite.to('#progress', 0.5, {
+            TweenLite.to(projectLoadingProgress, 0.5, {
                 width: `${progress}%`,
                 delay: progress / 25,
             });
@@ -19,7 +21,7 @@ export default function progressLoad() {
 
             progress += getRandomNumber(1, 5);
             if (progress > 60) {
-                TweenLite.to('#progress', 0.5, {
+                TweenLite.to(projectLoadingProgress, 0.5, {
                     width: '100%',
                     ease: Power1.easeInOut,
                     delay: progress / 25,

@@ -7,7 +7,7 @@ import cursorSticky from './cursor/cursorSticky';
 import cursorCharacters from './cursor/cursorCharacters';
 import preventDrag from './preventDrag';
 import projectsSlider from './projectsSlider';
-import progressLoad from './progressLoad';
+import projectLoading from './projectLoading';
 import visibilityTab from './visibilityTab';
 import consoleMessage from './consoleMessage';
 
@@ -24,7 +24,7 @@ $(document).ready(function() {
     cursorCharacters();
     preventDrag();
     visibilityTab();
-    progressLoad();
+    projectLoading();
 
     if (pageName === 'home-page') {
         projectsSlider();
