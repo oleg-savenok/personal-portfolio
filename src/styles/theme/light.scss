@@ -8,13 +8,16 @@ body {
     background-color: $white;
 }
 
-.preloader {
+#app {
     background-color: $white;
+}
+
+.preloader {
+    background-color: $black;
 }
 
 .cursor {
     background-color: $black;
-    mix-blend-mode: normal;
     opacity: 0.25;
 
     &__icon,
@@ -30,5 +33,5 @@ body {
 .header,
 .footer {
     color: $black;
-    mix-blend-mode: normal;
+    //mix-blend-mode: difference;
 }

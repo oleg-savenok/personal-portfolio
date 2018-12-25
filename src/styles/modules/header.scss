@@ -6,7 +6,6 @@
     @include indentation(left);
     @include indentation(right);
     @include indentation(top);
-    mix-blend-mode: difference;
 
     &__logo {
         float: left;

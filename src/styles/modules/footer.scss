@@ -6,7 +6,6 @@
     @include indentation(left);
     @include indentation(right);
     @include indentation(bottom);
-    mix-blend-mode: difference;
 
     &__event-button {
         overflow: hidden;
