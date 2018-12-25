@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+        <title>Oleg Savenok — Creative Developer & UI Designer</title>
+
+        <link rel="shortcut icon" href="./favicon.png" type="image/png" />
+    </head>
+    <body id="home-page" style="overflow-x: hidden">
+        <!-- Preloader -->
+
+        <!--<div id="preloader" class="preloader">-->
+        <!--<div id="greeting" class="preloader__greeting">-->
+        <!--<span></span>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!-- Header ------------------------------------------------------------------------------------------------------->
+
+        <header id="header" class="header">
+            <h1 class="header__logo"><a class="cursor--medium" href="/">o.sa.</a></h1>
+
+            <nav class="header__nav">
+                <ul class="header__nav__list">
+                    <li class="header__nav__list__item">
+                        <a class="cursor--sticky cursor--characters cursor--medium" data-ajax-link="true" href="/about"
+                            >about</a
+                        >
+                    </li>
+
+                    <li class="header__nav__list__item">
+                        <a
+                            class="cursor--sticky cursor--characters cursor--medium"
+                            data-ajax-link="true"
+                            href="/contact"
+                            >contact</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Page ---------------------------------------------------------------------------------------------------------->
+
+        <div id="page" class="page" style="overflow: hidden">
+            <!-- Projects slider -->
+
+            <div id="projects" class="projects">
+                <div class="container-full">
+                    <div id="projectsSlider" class="projects__container" data-icon="unfold_more">
+                        <div class="projects__slider">
+                            <div class="projects__slider__item">
+                                <a href="#" data-icon="search">Alfa Bank Concept</a>
+                            </div>
+
+                            <div class="projects__slider__item"><a href="#" data-icon="search">Recital</a></div>
+
+                            <div class="projects__slider__item">
+                                <a href="#" data-icon="search">Design & Acoustics</a>
+                            </div>
+
+                            <div class="projects__slider__item"><a href="#" data-icon="search">Module</a></div>
+                        </div>
+                    </div>
+
+                    <div class="projects__cover" id="cover" data-img="./assets/images/alfa-bank.jpg"></div>
+                </div>
+            </div>
+
+            <div class="projects__controls">
+                <div id="projectsControlsPrev" class="cursor-icon-arrow_back projects__controls__prev"></div>
+                <div id="projectsControlsNext" class="cursor-icon-arrow_forward projects__controls__next"></div>
+            </div>
+        </div>
+
+        <!-- Footer ------------------------------------------------------------------------------------------------------->
+
+        <footer id="footer" class="footer">
+            <div id="footerEventButton" class="footer__event-button">
+                <a href="#" class="cursor--medium">drag or scroll to discover</a> <a href="#">loading</a>
+            </div>
+            <div class="footer__progress-load">
+                <div class="footer__progress-load__percent"></div>
+            </div>
+        </footer>
+
+        <!-- Cursor ------------------------------------------------------------------------------------------------------->
+
+        <div id="cursor" class="cursor">
+            <div class="cursor__spiner"></div>
+            <i id="cursorIcon" class="cursor__icon"></i> <i class="cursor__icon--drag">unfold_more</i>
+        </div>
+
+        <!-- Scripts ------------------------------------------------------------------------------------------------------->
+
+        <link href="./assets/fonts/stylesheet.css" rel="stylesheet" media="none" onload="media='all'" />
+
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+            media="none"
+            onload="media='all'"
+        />
+    </body>
+</html>
