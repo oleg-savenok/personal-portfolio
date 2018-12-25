@@ -1,6 +1,7 @@
 import $ from 'jquery';
 
 // Modules
+import firstLoading from './loading/firstLoading';
 import cursor from './cursor/cursor';
 import cursorMedium from './cursor/cursorMedium';
 import cursorSticky from './cursor/cursorSticky';
@@ -17,6 +18,7 @@ $(document).ready(function() {
     const pageName = $('body').attr('id');
 
     // Initial call
+    firstLoading();
     cursor();
     cursorMedium();
     cursorSticky();
