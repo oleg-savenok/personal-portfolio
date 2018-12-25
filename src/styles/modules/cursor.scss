@@ -37,7 +37,6 @@ $cursor-size: 0.2rem;
     width: $cursor-size;
     height: $cursor-size;
     border-radius: 100px;
-    mix-blend-mode: difference;
     opacity: 0;
 
     &__icon,

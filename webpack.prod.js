@@ -1,23 +1,24 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-const CompressionPlugin = require('compression-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-//const DedupePlugin = require('dedupe-plugin');
+const Compression = require('compression-webpack-plugin');
+const UglifyJS = require('uglifyjs-webpack-plugin');
 
 module.exports = merge(common, {
     mode: 'production',
-    optimization: {
-        minimizer: [
-            //new DedupePlugin(),
-            new UglifyJsPlugin({
-                uglifyOptions: {
-                    compress: {
-                        inline: false
-                    }
-                }
-            }),
-            new CompressionPlugin()
-        ],
-    }
+    plugins: [
+        new UglifyJS({
+            uglifyOptions: {
+                output: {
+                    comments: false, // remove comments
+                },
+            },
+        }),
+        new Compression({
+            algorithm: 'gzip',
+            test: /\.js$|\.css$|\.html$/,
+            threshold: 10240,
+            minRatio: 0.8,
+        }),
+    ],
 });
