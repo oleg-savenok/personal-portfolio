@@ -29,21 +29,14 @@
     &__slider {
         height: 100%;
         width: 100%;
-        //
         position: relative;
         z-index: 1;
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        -webkit-transition-property: -webkit-transform;
-        transition-property: -webkit-transform;
-        -o-transition-property: transform;
-        transition-property: transform;
         transition-property: transform, -webkit-transform;
-        -webkit-box-sizing: content-box;
         box-sizing: content-box;
-        -webkit-transform: translate3d(0px, 0, 0);
         transform: translate3d(0px, 0, 0);
 
         &__item {
@@ -55,7 +48,6 @@
             font-size: 0.83rem;
             font-weight: 700;
             user-select: none;
-	        //padding-left: 80px;
 
             a {
                 white-space: nowrap;

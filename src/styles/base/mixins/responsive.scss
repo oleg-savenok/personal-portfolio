@@ -1,15 +1,6 @@
 // Responsive mixin
 
-@mixin responsive(
-    $value,
-    $small-mobile,
-    $mobile,
-    $tablet,
-    $laptop,
-    $desktop,
-    $large-desktop,
-    $full-hd
-) {
+@mixin responsive($value, $small-mobile, $mobile, $tablet, $laptop, $desktop, $large-desktop, $full-hd) {
     @include device('small-mobile') {
         #{$value}: $small-mobile;
     }

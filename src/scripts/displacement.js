@@ -36,12 +36,9 @@ export default function displacement() {
         preview.width = width;
 
         displacementSprite = PIXI.Sprite.fromImage('../assets/images/2.jpg');
-        displacementSprite.texture.baseTexture.wrapMode =
-            PIXI.WRAP_MODES.REPEAT;
+        displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
 
-        displacementFilter = new PIXI.filters.DisplacementFilter(
-            displacementSprite
-        );
+        displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
 
         displacementSprite.scale.y = 0.6;
         displacementSprite.scale.x = 0.6;
