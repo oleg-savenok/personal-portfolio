@@ -1,4 +1,5 @@
 import { TweenMax } from 'gsap';
+import CustomEase from '../easing/CustomEase';
 
 import cursorOptions from './cursorOptions';
 
@@ -34,7 +35,10 @@ export default function cursorSticky() {
         TweenMax.to(e.target, endSpeed, {
             x: 0,
             y: 0,
-            ease: Power2.easeOut,
+            ease: CustomEase.create(
+                'custom',
+                'M0,0 C0.128,0.572 0.118,1.156 0.3,1.156 0.464,1.156 0.464,0.7 0.6,0.7 0.748,0.7 0.698,1 1,1'
+            ),
         });
     });
 }
