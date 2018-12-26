@@ -21,12 +21,12 @@ const cursorOptions = {
         iconMode: 1,
     },
     sticky: {
-        degree: window.innerWidth / 28, // degree of stickiness
+        degree: window.innerWidth / 25, // degree of stickiness
         targetParam: null,
         positionDifference: null,
         speed: {
             start: 3,
-            end: 0.5,
+            end: 0.6,
         },
     },
 };
