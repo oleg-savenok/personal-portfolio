@@ -49,7 +49,7 @@ export default function cursor() {
     });
 
     projects.on('mouseout', '#projectsSlider', (e) => {
-        setCursorDefault(e);
+        setCursorDefault();
     });
 
     // -----------------------------------------------------------------------------------------------------------------
