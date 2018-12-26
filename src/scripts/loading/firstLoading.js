@@ -1,7 +1,9 @@
 import $ from 'jquery';
 import { TweenLite, TimelineLite } from 'gsap';
 
-export default function firstLoading(mode) {
+import cursorOptions from '../cursor/cursorOptions';
+
+export default function firstLoading(enable) {
     const header = $('#header');
     const footer = $('#footer');
     const projects = $('#projects');
@@ -10,7 +12,14 @@ export default function firstLoading(mode) {
     const headerTop = header.css('top');
     const footerBottom = footer.css('bottom');
 
-    if (mode) {
+    let { cursor } = cursorOptions;
+
+    TweenLite.set(cursor, {
+        opacity: 0,
+        delay: 0.1,
+    });
+
+    if (enable) {
         TweenLite.set(header, {
             top: -15,
         });
