@@ -29,3 +29,9 @@ a {
     text-decoration: none;
     user-select: none;
 }
+
+// Set default page view
+#page {
+    width: 100%;
+    min-height: 100vh;
+}
