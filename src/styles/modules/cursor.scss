@@ -37,7 +37,7 @@ $cursor-size: 0.2rem;
     width: $cursor-size;
     height: $cursor-size;
     border-radius: 100px;
-    opacity: 0;
+    opacity: 0.25;
 
     &__icon,
     &__icon--drag {
@@ -78,4 +78,10 @@ $cursor-size: 0.2rem;
             transform: translate(-50%, -50%) rotate(1turn);
         }
     }
+}
+
+// States
+
+.cursor.is-hidden {
+    opacity: 0 !important;
 }
