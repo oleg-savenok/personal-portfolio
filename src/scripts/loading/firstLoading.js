@@ -12,13 +12,6 @@ export default function firstLoading(enable) {
     const headerTop = header.css('top');
     const footerBottom = footer.css('bottom');
 
-    let { cursor } = cursorOptions;
-
-    TweenLite.set(cursor, {
-        opacity: 0,
-        delay: 0.1,
-    });
-
     if (enable) {
         TweenLite.set(header, {
             top: -15,

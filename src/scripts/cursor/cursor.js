@@ -54,11 +54,17 @@ export default function cursor() {
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    $(document).mouseenter(() => {
-        TweenMax.to(cursor, 0.1, { opacity: opacityBasicMode, delay: 0.1 });
+    $(document).mouseenter((e) => {
+        cursor.css('transition', 'opacity .1s');
+        setTimeout(() => {
+            cursor.removeClass('is-hidden');
+        }, 100);
+        setTimeout(() => {
+            cursor.css('transition', 'none');
+        }, 200);
     });
 
     $(document).mouseleave(() => {
-        TweenMax.to(cursor, 0.1, { opacity: 0 });
+        cursor.addClass('is-hidden');
     });
 }
