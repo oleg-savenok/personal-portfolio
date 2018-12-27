@@ -1,11 +1,13 @@
-import router from './ajaxRouter/router';
+import router from './router/router';
 
-export default function defineRouter() {
-    const defineRouter = {
+export default function routerDefine() {
+    // Define routers for all pages
+    const routers = {
         home: {
             name: 'home',
             link: '/',
             file: 'index.html',
+            callback: ['projectsSlider'],
         },
         about: {
             name: 'about',
@@ -15,5 +17,6 @@ export default function defineRouter() {
         },
     };
 
-    router(defineRouter);
+    // Init call router
+    router(routers);
 }
