@@ -33,5 +33,8 @@ body {
 .header,
 .footer {
     color: $black;
-    //mix-blend-mode: difference;
+}
+
+.project-loading__percent {
+    background-color: $black;
 }

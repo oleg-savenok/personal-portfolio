@@ -8,7 +8,7 @@
         />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-        <title>Oleg Savenok • Creative Developer & UI Designer</title>
+        <title>About • Oleg Savenok</title>
 
         <link rel="shortcut icon" href="./favicon.png" type="image/png" />
 
@@ -44,7 +44,7 @@
         <meta name="twitter:url" content="" />
         <meta name="twitter:image" content="" />
     </head>
-    <body id="home" style="overflow-x: hidden">
+    <body id="contact" style="overflow-x: hidden">
         <!-- Preloader -->
 
         <div id="preloader" class="preloader"></div>
@@ -52,21 +52,18 @@
         <!-- Header ------------------------------------------------------------------------------------------------------->
 
         <header id="header" class="header" style="opacity: 0;">
-            <h1 class="header__logo"><a class="cursor--medium" data-router-link="home" href="/">o.sa.</a></h1>
+            <h1 class="header__logo"><a class="cursor--medium" data-ajax-link href="/">o.sa.</a></h1>
 
             <nav class="header__nav">
                 <ul class="header__nav__list">
                     <li class="header__nav__list__item">
-                        <a class="cursor--sticky cursor--characters cursor--medium" data-router-link="about" href="/about"
+                        <a class="cursor--sticky cursor--characters cursor--medium" data-ajax-link href="/about"
                             >about</a
                         >
                     </li>
 
                     <li class="header__nav__list__item">
-                        <a
-                            class="cursor--sticky cursor--characters cursor--medium"
-                            data-router-link="contact"
-                            href="/contact"
+                        <a class="cursor--sticky cursor--characters cursor--medium" data-ajax-link href="/contact"
                             >contact</a
                         >
                     </li>
@@ -76,36 +73,7 @@
 
         <!-- Page ---------------------------------------------------------------------------------------------------------->
 
-        <div id="page" class="page" style="overflow: hidden;">
-            <!-- Projects slider -->
-
-            <div id="projects" class="projects">
-                <div class="container-full">
-                    <div id="projectsSlider" class="projects__container" data-icon="unfold_more">
-                        <div class="projects__slider">
-                            <div class="projects__slider__item">
-                                <a href="#" data-icon="search">Alfa Bank Concept</a>
-                            </div>
-
-                            <div class="projects__slider__item"><a href="#" data-icon="search">Recital</a></div>
-
-                            <div class="projects__slider__item">
-                                <a href="#" data-icon="search">Design & Acoustics</a>
-                            </div>
-
-                            <div class="projects__slider__item"><a href="#" data-icon="search">Module</a></div>
-                        </div>
-                    </div>
-
-                    <div class="projects__cover" id="cover" data-img="./assets/images/alfa-bank.jpg"></div>
-                </div>
-            </div>
-
-            <div class="projects__controls">
-                <div id="projectsControlsPrev" class="cursor-icon-arrow_back projects__controls__prev"></div>
-                <div id="projectsControlsNext" class="cursor-icon-arrow_forward projects__controls__next"></div>
-            </div>
-        </div>
+        <div id="page" class="page" style="overflow: hidden;"><h2>About Me</h2></div>
 
         <!-- Footer ------------------------------------------------------------------------------------------------------->
 
@@ -134,5 +102,7 @@
             media="none"
             onload="media='all'"
         />
+
+        <script src="index.js"></script>
     </body>
 </html>

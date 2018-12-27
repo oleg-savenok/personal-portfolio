@@ -11,6 +11,8 @@ import projectsSlider from './projectsSlider';
 import projectLoading from './projectLoading';
 import visibilityTab from './visibilityTab';
 import consoleMessage from './consoleMessage';
+// Router
+import routerDefine from './routerDefine';
 
 // Styles
 import '../styles/main.scss';
@@ -19,7 +21,7 @@ $(document).ready(function() {
     const pageName = $('body').attr('id');
 
     // Initial call
-    firstLoading(true);
+    firstLoading(false);
     cursor();
     cursorMedium();
     cursorSticky();
@@ -28,7 +30,10 @@ $(document).ready(function() {
     visibilityTab();
     projectLoading();
 
-    if (pageName === 'home-page') {
+    // Initial router
+    routerDefine();
+
+    if (pageName === 'home') {
         projectsSlider();
     }
 
