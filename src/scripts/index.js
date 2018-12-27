@@ -12,7 +12,7 @@ import projectLoading from './projectLoading';
 import visibilityTab from './visibilityTab';
 import consoleMessage from './consoleMessage';
 // Router
-import defineRouter from './defineRouter';
+import routerDefine from './routerDefine';
 
 // Styles
 import '../styles/main.scss';
@@ -30,7 +30,8 @@ $(document).ready(function() {
     visibilityTab();
     projectLoading();
 
-    defineRouter();
+    // Initial router
+    routerDefine();
 
     if (pageName === 'home') {
         projectsSlider();
