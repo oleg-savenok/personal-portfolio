@@ -11,14 +11,13 @@ const cursorOptions = {
     iconName: '',
     position: { x: 0, y: 0 },
     scrollTop: 0,
+    duration: {
+        tick: 0.1,
+    },
     size: {
         basic: '0.2rem',
         medium: '0.6rem',
         icon: '0.8rem',
-    },
-    opacity: {
-        basicMode: 0.25,
-        iconMode: 1,
     },
     sticky: {
         degree: (window.innerWidth + window.innerHeight) / 2 / 20, // degree of stickiness

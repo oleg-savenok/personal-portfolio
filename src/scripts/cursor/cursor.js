@@ -14,8 +14,17 @@ export default function cursor() {
         cursorIcon,
         position,
         scrollTop,
-        opacity: { basicMode: opacityBasicMode },
+        duration: { tick: tickDuration },
     } = cursorOptions;
+
+    let tickTweenDuration = 0;
+
+    function tickTween(duration) {
+        TweenMax.to(cursor, duration, {
+            x: position.x,
+            y: position.y,
+        });
+    }
 
     // Set translate center to cursor
     TweenMax.set([cursor, cursorIcon], {
@@ -30,7 +39,7 @@ export default function cursor() {
         position.y = e.pageY - scrollTop;
     }
 
-    setCursorDefault();
+    setCursorDefault('init');
 
     document.addEventListener('mousemove', (e) => {
         getMousePosition(e);
@@ -38,10 +47,7 @@ export default function cursor() {
 
     // Set the position of the magic cursor when changing the position of the real cursor
     TweenMax.ticker.addEventListener('tick', () => {
-        TweenMax.to(cursor, 0.1, {
-            x: position.x,
-            y: position.y,
-        });
+        tickTween(tickTweenDuration);
     });
 
     projects.on('mouseover', '#projectsSlider', (e) => {
@@ -54,17 +60,15 @@ export default function cursor() {
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    $(document).mouseenter((e) => {
-        cursor.css('transition', 'opacity .1s');
+    $(document).mouseenter(() => {
+        TweenMax.set(cursor, { opacity: 1 });
         setTimeout(() => {
-            cursor.removeClass('is-hidden');
+            tickTweenDuration = tickDuration;
         }, 100);
-        setTimeout(() => {
-            cursor.css('transition', 'none');
-        }, 200);
     });
 
     $(document).mouseleave(() => {
-        cursor.addClass('is-hidden');
+        TweenMax.set(cursor, { opacity: 0 });
+        tickTweenDuration = 0;
     });
 }
