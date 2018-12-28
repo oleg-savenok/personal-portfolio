@@ -23,6 +23,10 @@ export default function cursor() {
         TweenMax.to(cursor, duration, {
             x: position.x,
             y: position.y,
+        }).eventCallback('onComplete', () => {
+            if (tickTweenDuration === 0) {
+                tickTweenDuration = tickDuration;
+            }
         });
     }
 
@@ -54,21 +58,21 @@ export default function cursor() {
         setCursorIcon(e);
     });
 
-    projects.on('mouseout', '#projectsSlider', (e) => {
+    projects.on('mouseout', '#projectsSlider', () => {
         setCursorDefault();
     });
 
     // -----------------------------------------------------------------------------------------------------------------
 
     $(document).mouseenter(() => {
-        TweenMax.set(cursor, { opacity: 1 });
+        TweenMax.set(cursor, { alpha: 1 });
         setTimeout(() => {
             tickTweenDuration = tickDuration;
         }, 100);
     });
 
     $(document).mouseleave(() => {
-        TweenMax.set(cursor, { opacity: 0 });
+        TweenMax.set(cursor, { alpha: 0 });
         tickTweenDuration = 0;
     });
 }

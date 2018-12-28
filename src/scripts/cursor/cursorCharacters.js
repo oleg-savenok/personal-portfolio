@@ -20,7 +20,7 @@ export default function InitStickyLinks() {
     });
 
     function animateLetters(targets) {
-        TweenMax.set(targets, { opacity: 0 });
+        TweenMax.set(targets, { alpha: 0 });
         TweenMax.staggerTo(
             targets,
             1.5,
@@ -28,7 +28,7 @@ export default function InitStickyLinks() {
                 ease: Elastic.easeOut.config(1, 0.4),
                 startAt: { y: '40%' },
                 y: '0%',
-                opacity: 1,
+                alpha: 1,
             },
             0.03
         );

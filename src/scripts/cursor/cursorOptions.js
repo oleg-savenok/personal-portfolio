@@ -12,7 +12,7 @@ const cursorOptions = {
     position: { x: 0, y: 0 },
     scrollTop: 0,
     duration: {
-        tick: 0.1,
+        tick: 0.2,
     },
     size: {
         basic: '0.2rem',
