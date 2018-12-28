@@ -7,7 +7,6 @@ export default function cursorIcon(e) {
         cursorIcon,
         iconName,
         size: { icon: sizeIcon },
-        opacity: { iconMode: opacityIconMode },
     } = cursorOptions;
 
     iconName = e.target.dataset.icon || e.currentTarget.dataset.icon;
@@ -24,11 +23,16 @@ export default function cursorIcon(e) {
 
     cursorIcon.html(iconName);
 
+    TweenMax.set(cursor, {
+        mixBlendMode: 'normal',
+        backgroundColor: '#101010',
+    });
+
     TweenMax.to(cursor, 0.2, {
         height: sizeIcon,
         width: sizeIcon,
-        opacity: opacityIconMode,
+        alpha: 1,
     });
 
-    TweenMax.to(cursorIcon, 0.2, { opacity: 1 }, 0.2);
+    TweenMax.to(cursorIcon, 0.2, { alpha: 1 }, 0.2);
 }
