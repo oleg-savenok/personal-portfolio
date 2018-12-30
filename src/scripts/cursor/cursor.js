@@ -1,4 +1,4 @@
-import { TweenMax, TimelineMax } from 'gsap';
+import { TweenLite } from 'gsap';
 import $ from 'jquery';
 
 import cursorOptions from './cursorOptions';
@@ -6,73 +6,94 @@ import cursorOptions from './cursorOptions';
 import setCursorIcon from './setCursorIcon';
 import setCursorDefault from './setCursorDefault';
 
-export default function cursor() {
-    const projects = $('#projects');
+export default class Cursor {
+    constructor({ cursor, cursorIcon, scrollTop, position, duration: { tick: tickDuration } } = cursorOptions) {
+        this.projects = $('#projects');
+        this.cursor = cursor;
+        this.cursorIcon = cursorIcon;
+        this.scrollTop = scrollTop;
+        this.position = position;
+        this.tickDuration = tickDuration;
+        this.tickTweenDuration = 0;
+        this.cursorHide = true;
+    }
 
-    let {
-        cursor,
-        cursorIcon,
-        position,
-        scrollTop,
-        duration: { tick: tickDuration },
-    } = cursorOptions;
-
-    let tickTweenDuration = 0;
-
-    function tickTween(duration) {
-        TweenMax.to(cursor, duration, {
-            x: position.x,
-            y: position.y,
-        }).eventCallback('onComplete', () => {
-            if (tickTweenDuration === 0) {
-                tickTweenDuration = tickDuration;
-            }
+    // Cursor move animation
+    cursorAnimation(duration) {
+        TweenLite.to(this.cursor, duration, {
+            x: this.position.x,
+            y: this.position.y,
         });
     }
 
-    // Set translate center to cursor
-    TweenMax.set([cursor, cursorIcon], {
-        xPercent: -50,
-        yPercent: -50,
-    });
+    showCursor() {
+        TweenLite.to(this.cursor, 0.1, {
+            alpha: 1,
+            onComplete: () => {
+                this.tickTweenDuration = this.tickDuration;
+            },
+        });
 
-    // Get position of real cursor
-    function getMousePosition(e) {
-        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        position.x = e.pageX;
-        position.y = e.pageY - scrollTop;
+        this.cursorHide = false;
     }
 
-    setCursorDefault('init');
+    hideCursor() {
+        TweenLite.set(this.cursor, { alpha: 0 });
 
-    document.addEventListener('mousemove', (e) => {
-        getMousePosition(e);
-    });
+        this.tickTweenDuration = 0;
+        this.cursorHide = true;
+    }
 
-    // Set the position of the magic cursor when changing the position of the real cursor
-    TweenMax.ticker.addEventListener('tick', () => {
-        tickTween(tickTweenDuration);
-    });
+    // Get position of real cursor
+    getMousePosition(e) {
+        this.position.x = e.pageX;
+        this.position.y = e.pageY - this.scrollTop;
+    }
 
-    projects.on('mouseover', '#projectsSlider', (e) => {
-        setCursorIcon(e);
-    });
+    addProjectsListeners() {
+        this.projects.on('mouseover', '#projectsSlider', (e) => {
+            setCursorIcon(e);
+        });
 
-    projects.on('mouseout', '#projectsSlider', () => {
-        setCursorDefault();
-    });
+        this.projects.on('mouseout', '#projectsSlider', () => {
+            setCursorDefault();
+        });
+    }
+
+    removeProjectsListeners() {
+        this.projects.off('mouseover', '#projectsSlider');
+        this.projects.off('mouseout', '#projectsSlider');
+    }
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    $(document).mouseenter(() => {
-        TweenMax.set(cursor, { alpha: 1 });
-        setTimeout(() => {
-            tickTweenDuration = tickDuration;
-        }, 100);
-    });
+    init() {
+        // Set translate center to cursor
+        TweenLite.set([this.cursor, this.cursorIcon], {
+            xPercent: -50,
+            yPercent: -50,
+        });
 
-    $(document).mouseleave(() => {
-        TweenMax.set(cursor, { alpha: 0 });
-        tickTweenDuration = 0;
-    });
+        TweenLite.ticker.addEventListener('tick', () => {
+            this.cursorAnimation(this.tickTweenDuration);
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            this.getMousePosition(e);
+
+            if (this.cursorHide) {
+                this.showCursor();
+            }
+        });
+
+        document.addEventListener('mouseenter', () => {
+            this.showCursor();
+        });
+
+        document.addEventListener('mouseleave', () => {
+            this.hideCursor();
+        });
+
+        setCursorDefault();
+    }
 }
