@@ -14,8 +14,11 @@ import consoleMessage from './consoleMessage';
 // Router
 import routerDefine from './routerDefine';
 
-// Styles
+// Main styles
 import '../styles/main.scss';
+
+// Theme
+import '../styles/theme/dark.scss';
 
 $(document).ready(function() {
     const pageName = $('body').attr('id');
