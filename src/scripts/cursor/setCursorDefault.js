@@ -2,7 +2,7 @@ import { TweenMax } from 'gsap';
 
 import cursorOptions from './cursorOptions';
 
-export default function setCursorDefault(init) {
+export default function setCursorDefault() {
     let {
         cursorIcon,
         size: { basic: sizeBasic },
@@ -19,10 +19,4 @@ export default function setCursorDefault(init) {
     });
 
     TweenMax.to(cursorIcon, 0.1, { alpha: 0 });
-
-    if (init) {
-        TweenMax.set(cursor, { alpha: 0 });
-    } else {
-        TweenMax.to(cursor, 0.2, { alpha: 1 });
-    }
 }

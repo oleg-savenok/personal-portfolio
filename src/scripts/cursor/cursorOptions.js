@@ -10,7 +10,7 @@ const cursorOptions = {
     },
     iconName: '',
     position: { x: 0, y: 0 },
-    scrollTop: 0,
+    scrollTop: window.pageYOffset || document.documentElement.scrollTop,
     duration: {
         tick: 0.2,
     },

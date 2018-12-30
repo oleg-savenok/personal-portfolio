@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 // Modules
 import firstLoading from './loading/firstLoading';
-import cursor from './cursor/cursor';
+import Cursor from './cursor/cursor';
 import cursorMedium from './cursor/cursorMedium';
 import cursorSticky from './cursor/cursorSticky';
 import cursorCharacters from './cursor/cursorCharacters';
@@ -22,7 +22,10 @@ $(document).ready(function() {
 
     // Initial call
     firstLoading(false);
-    cursor();
+
+    const cursor = new Cursor();
+    cursor.init();
+
     cursorMedium();
     cursorSticky();
     cursorCharacters();
@@ -35,6 +38,7 @@ $(document).ready(function() {
 
     if (pageName === 'home') {
         projectsSlider();
+        cursor.addProjectsListeners();
     }
 
     consoleMessage();
