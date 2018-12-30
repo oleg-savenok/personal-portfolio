@@ -25,7 +25,7 @@ export default function cursorIcon(e) {
 
     TweenMax.set(cursor, {
         mixBlendMode: 'normal',
-        backgroundColor: '#101010',
+        //backgroundColor: '#101010',
     });
 
     TweenMax.to(cursor, 0.2, {

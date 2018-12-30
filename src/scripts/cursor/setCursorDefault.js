@@ -10,7 +10,7 @@ export default function setCursorDefault() {
 
     TweenMax.set(cursor, {
         mixBlendMode: 'difference',
-        backgroundColor: '#fff',
+        //backgroundColor: '#fff',
     });
 
     TweenMax.to(cursor, 0.2, {
