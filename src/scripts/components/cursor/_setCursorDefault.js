@@ -1,12 +1,12 @@
 import { TweenMax } from 'gsap';
 
-import cursorOptions from './cursorOptions';
+import options from './options';
 
 export default function setCursorDefault() {
     let {
         cursorIcon,
         size: { basic: sizeBasic },
-    } = cursorOptions;
+    } = options;
 
     TweenMax.set(cursor, {
         mixBlendMode: 'difference',

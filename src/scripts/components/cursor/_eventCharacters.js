@@ -1,12 +1,12 @@
 import $ from 'jquery';
 import { TweenMax } from 'gsap';
 
-import cursorOptions from './cursorOptions';
+import options from './options';
 
-export default function cursorCharacters() {
+export default function eventCharacters() {
     let {
         eventTargets: { characters: cursorEventCharacters },
-    } = cursorOptions;
+    } = options;
 
     // Split of word into characters
     cursorEventCharacters.each(function() {

@@ -1,13 +1,13 @@
 import { TweenMax } from 'gsap';
 
-import cursorOptions from './cursorOptions';
+import options from './options';
 
-export default function cursorMedium() {
+export default function eventMedium() {
     let {
         cursor,
         eventTargets: { medium: cursorEventMedium },
         size: { basic: sizeBasic, medium: sizeMedium },
-    } = cursorOptions;
+    } = options;
 
     cursorEventMedium
         .on('mouseenter', () => {

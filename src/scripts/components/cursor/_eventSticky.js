@@ -1,9 +1,9 @@
 import { TweenMax } from 'gsap';
 import CustomEase from '../../easing/CustomEase';
 
-import cursorOptions from './cursorOptions';
+import options from './options';
 
-export default function cursorSticky() {
+export default function eventSticky() {
     let {
         eventTargets: { sticky: cursorEventSticky },
         sticky: {
@@ -13,7 +13,7 @@ export default function cursorSticky() {
             speed: { start: startSpeed, end: endSpeed },
         },
         scrollTop,
-    } = cursorOptions;
+    } = options;
 
     cursorEventSticky.mousemove(function(e) {
         targetParam = this.getBoundingClientRect();

@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-const cursorOptions = {
+const options = {
     cursor: $('#cursor'),
     cursorIcon: $('#cursorIcon'),
     eventTargets: {
@@ -30,4 +30,4 @@ const cursorOptions = {
     },
 };
 
-export default cursorOptions;
+export default options;

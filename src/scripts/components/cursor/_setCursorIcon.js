@@ -1,13 +1,13 @@
 import { TweenMax } from 'gsap';
 
-import cursorOptions from './cursorOptions';
+import options from './options';
 
 export default function cursorIcon(e) {
     let {
         cursorIcon,
         iconName,
         size: { icon: sizeIcon },
-    } = cursorOptions;
+    } = options;
 
     iconName = e.target.dataset.icon || e.currentTarget.dataset.icon;
 

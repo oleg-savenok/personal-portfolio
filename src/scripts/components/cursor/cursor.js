@@ -1,18 +1,22 @@
+// External libraries
 import { TweenLite } from 'gsap';
 import $ from 'jquery';
 
-import cursorOptions from './cursorOptions';
+// Options
+import options from './options';
 
-import setCursorIcon from './setCursorIcon';
-import setCursorDefault from './setCursorDefault';
+// Mode modules
+import setCursorIcon from './_setCursorIcon';
+import setCursorDefault from './_setCursorDefault';
 
-//
-import cursorMedium from './cursorMedium';
-import cursorCharacters from './cursorCharacters';
-import cursorSticky from './cursorSticky';
+// Events modules
+import eventMedium from './_eventMedium';
+import eventCharacters from './_eventCharacters';
+import eventSticky from './_eventSticky';
 
 export default class Cursor {
-    constructor({ cursor, cursorIcon, scrollTop, position, duration: { tick: tickDuration } } = cursorOptions) {
+    constructor({ cursor, cursorIcon, scrollTop, position, duration: { tick: tickDuration } } = options) {
+        // Options
         this.projects = $('#projects');
         this.cursor = cursor;
         this.cursorIcon = cursorIcon;
@@ -22,13 +26,13 @@ export default class Cursor {
         this.tickTweenDuration = 0;
         this.cursorHide = true;
 
-        this.cursorMedium = cursorMedium;
-        this.cursorCharacters = cursorCharacters;
-        this.cursorSticky = cursorSticky;
+        // Events
+        this.eventMedium = eventMedium;
+        this.eventCharacters = eventCharacters;
+        this.eventSticky = eventSticky;
     }
 
-    // Cursor move animation
-    cursorAnimation(duration) {
+    moveAnimation(duration) {
         TweenLite.to(this.cursor, duration, {
             x: this.position.x,
             y: this.position.y,
@@ -53,8 +57,7 @@ export default class Cursor {
         this.cursorHide = true;
     }
 
-    // Get position of real cursor
-    getMousePosition(e) {
+    getRealMousePosition(e) {
         this.position.x = e.pageX;
         this.position.y = e.pageY - this.scrollTop;
     }
@@ -84,29 +87,32 @@ export default class Cursor {
         });
 
         TweenLite.ticker.addEventListener('tick', () => {
-            this.cursorAnimation(this.tickTweenDuration);
+            this.moveAnimation(this.tickTweenDuration);
         });
 
+        // If cursor moving - change position and show if hidden
         document.addEventListener('mousemove', (e) => {
-            this.getMousePosition(e);
+            this.getRealMousePosition(e);
 
             if (this.cursorHide) {
                 this.showCursor();
             }
         });
 
+        // If cursor enter document - show
         document.addEventListener('mouseenter', () => {
             this.showCursor();
         });
 
+        // If cursor leave document - hide
         document.addEventListener('mouseleave', () => {
             this.hideCursor();
         });
 
         setCursorDefault();
 
-        this.cursorMedium();
-        this.cursorCharacters();
-        this.cursorSticky();
+        this.eventMedium();
+        this.eventCharacters();
+        this.eventSticky();
     }
 }

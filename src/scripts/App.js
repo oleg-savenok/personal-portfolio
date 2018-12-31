@@ -11,6 +11,7 @@ export default function App(options) {
     // Set theme
     $('body').addClass(`theme--${options.theme}`);
 
+    // Init magic cursor
     const cursor = new Cursor();
     cursor.initialize();
 }
