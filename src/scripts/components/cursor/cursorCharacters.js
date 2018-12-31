@@ -3,7 +3,7 @@ import { TweenMax } from 'gsap';
 
 import cursorOptions from './cursorOptions';
 
-export default function InitStickyLinks() {
+export default function cursorCharacters() {
     let {
         eventTargets: { characters: cursorEventCharacters },
     } = cursorOptions;

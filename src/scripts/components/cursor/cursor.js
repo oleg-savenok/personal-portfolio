@@ -6,6 +6,11 @@ import cursorOptions from './cursorOptions';
 import setCursorIcon from './setCursorIcon';
 import setCursorDefault from './setCursorDefault';
 
+//
+import cursorMedium from './cursorMedium';
+import cursorCharacters from './cursorCharacters';
+import cursorSticky from './cursorSticky';
+
 export default class Cursor {
     constructor({ cursor, cursorIcon, scrollTop, position, duration: { tick: tickDuration } } = cursorOptions) {
         this.projects = $('#projects');
@@ -16,6 +21,10 @@ export default class Cursor {
         this.tickDuration = tickDuration;
         this.tickTweenDuration = 0;
         this.cursorHide = true;
+
+        this.cursorMedium = cursorMedium;
+        this.cursorCharacters = cursorCharacters;
+        this.cursorSticky = cursorSticky;
     }
 
     // Cursor move animation
@@ -95,5 +104,9 @@ export default class Cursor {
         });
 
         setCursorDefault();
+
+        this.cursorMedium();
+        this.cursorCharacters();
+        this.cursorSticky();
     }
 }
