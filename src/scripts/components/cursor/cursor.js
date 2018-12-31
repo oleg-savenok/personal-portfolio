@@ -67,7 +67,7 @@ export default class Cursor {
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    init() {
+    initialize() {
         // Set translate center to cursor
         TweenLite.set([this.cursor, this.cursorIcon], {
             xPercent: -50,

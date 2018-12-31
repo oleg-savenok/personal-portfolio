@@ -1,5 +1,5 @@
 import { TweenMax } from 'gsap';
-import CustomEase from '../easing/CustomEase';
+import CustomEase from '../../easing/CustomEase';
 
 import cursorOptions from './cursorOptions';
 
