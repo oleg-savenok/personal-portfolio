@@ -10,7 +10,7 @@ import setCursorIcon from './_setCursorIcon';
 import setCursorDefault from './_setCursorDefault';
 
 // Events modules
-import eventMedium from './_eventMedium';
+import EventHover from './_eventHover';
 import EventCharacters from './_eventCharacters';
 import eventSticky from './_eventSticky';
 
@@ -21,7 +21,7 @@ export default class Cursor {
         scrollTop,
         position,
         duration: { tick: tickDuration },
-        eventTargets: { characters: eventCharactersTarget },
+        eventTargets: { characters: eventCharactersTarget, hover: eventHoverTarget },
     } = options) {
         // Options
         this.projects = $('#projects');
@@ -34,10 +34,11 @@ export default class Cursor {
         this.cursorHide = true;
 
         // Events targets
-        this.targetEventCharacters = eventCharactersTarget;
+        this.eventCharactersTarget = eventCharactersTarget;
+        this.eventHoverTarget = eventHoverTarget;
 
         // Events
-        this.eventMedium = eventMedium;
+        this.EventHover = EventHover;
         this.EventCharacters = EventCharacters;
         this.eventSticky = eventSticky;
     }
@@ -93,7 +94,8 @@ export default class Cursor {
         setCursorDefault();
 
         // Create cursor events examples
-        const eventCharacters = new this.EventCharacters(this.targetEventCharacters);
+        const eventCharacters = new this.EventCharacters(this.eventCharactersTarget);
+        const eventHover = new this.EventHover();
 
         // Set translate center to cursor
         TweenLite.set([this.cursor, this.cursorIcon], {
@@ -127,11 +129,19 @@ export default class Cursor {
         // Initialize cursor event Characters and set listener for event
         eventCharacters.initialize();
 
-        this.targetEventCharacters.mouseenter(function(e) {
+        this.eventCharactersTarget.mouseenter(function(e) {
             eventCharacters.animateLetters(e);
         });
 
-        this.eventMedium();
+        // Set listeners for cursor hover event
+        this.eventHoverTarget
+            .on('mouseenter', () => {
+                eventHover.hover();
+            })
+            .on('mouseleave', () => {
+                eventHover.unhover();
+            });
+
         this.eventSticky();
     }
 }

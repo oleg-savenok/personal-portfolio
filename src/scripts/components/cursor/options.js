@@ -4,7 +4,7 @@ const options = {
     cursor: $('#cursor'),
     cursorIcon: $('#cursorIcon'),
     eventTargets: {
-        medium: $('.cursor--medium'),
+        hover: $('.cursor--hover'),
         characters: $('.cursor--characters'),
         sticky: $('.cursor--sticky'),
     },
@@ -16,7 +16,7 @@ const options = {
     },
     size: {
         basic: '0.2rem',
-        medium: '0.6rem',
+        hover: '0.6rem',
         icon: '0.8rem',
     },
     sticky: {
