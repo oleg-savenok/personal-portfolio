@@ -1,28 +1,18 @@
 import $ from 'jquery';
 import { TweenMax } from 'gsap';
 
-import options from './options';
+export default class EventCharacters {
+    constructor(targets) {
+        this.targets = targets;
+        this.letters = '';
+    }
 
-export default function eventCharacters() {
-    let {
-        eventTargets: { characters: cursorEventCharacters },
-    } = options;
+    animateLetters(e) {
+        this.letters = Array.from(e.target.children);
 
-    // Split of word into characters
-    cursorEventCharacters.each(function() {
-        let text = $(this).text();
-        for (let i = 0; i < text.length; i++) {
-            if (i === 0) {
-                $(this).html('');
-            }
-            $(this).append(`<span class="character">${text.charAt(i)}</span>`);
-        }
-    });
-
-    function animateLetters(targets) {
-        TweenMax.set(targets, { alpha: 0 });
+        TweenMax.set(this.letters, { alpha: 0 });
         TweenMax.staggerTo(
-            targets,
+            this.letters,
             1.5,
             {
                 ease: Elastic.easeOut.config(1, 0.4),
@@ -34,8 +24,16 @@ export default function eventCharacters() {
         );
     }
 
-    cursorEventCharacters.mouseenter(function(e) {
-        let letters = Array.from(e.target.children);
-        animateLetters(letters);
-    });
+    // Split of word into characters
+    initialize() {
+        this.targets.each(function() {
+            let text = $(this).text();
+            for (let i = 0; i < text.length; i++) {
+                if (i === 0) {
+                    $(this).html('');
+                }
+                $(this).append(`<span class="character">${text.charAt(i)}</span>`);
+            }
+        });
+    }
 }

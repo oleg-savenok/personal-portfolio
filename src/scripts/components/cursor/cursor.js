@@ -11,11 +11,18 @@ import setCursorDefault from './_setCursorDefault';
 
 // Events modules
 import eventMedium from './_eventMedium';
-import eventCharacters from './_eventCharacters';
+import EventCharacters from './_eventCharacters';
 import eventSticky from './_eventSticky';
 
 export default class Cursor {
-    constructor({ cursor, cursorIcon, scrollTop, position, duration: { tick: tickDuration } } = options) {
+    constructor({
+        cursor,
+        cursorIcon,
+        scrollTop,
+        position,
+        duration: { tick: tickDuration },
+        eventTargets: { characters: eventCharactersTarget },
+    } = options) {
         // Options
         this.projects = $('#projects');
         this.cursor = cursor;
@@ -26,9 +33,12 @@ export default class Cursor {
         this.tickTweenDuration = 0;
         this.cursorHide = true;
 
+        // Events targets
+        this.targetEventCharacters = eventCharactersTarget;
+
         // Events
         this.eventMedium = eventMedium;
-        this.eventCharacters = eventCharacters;
+        this.EventCharacters = EventCharacters;
         this.eventSticky = eventSticky;
     }
 
@@ -80,6 +90,11 @@ export default class Cursor {
     // -----------------------------------------------------------------------------------------------------------------
 
     initialize() {
+        setCursorDefault();
+
+        // Create cursor events examples
+        const eventCharacters = new this.EventCharacters(this.targetEventCharacters);
+
         // Set translate center to cursor
         TweenLite.set([this.cursor, this.cursorIcon], {
             xPercent: -50,
@@ -109,10 +124,14 @@ export default class Cursor {
             this.hideCursor();
         });
 
-        setCursorDefault();
+        // Initialize cursor event Characters and set listener for event
+        eventCharacters.initialize();
+
+        this.targetEventCharacters.mouseenter(function(e) {
+            eventCharacters.animateLetters(e);
+        });
 
         this.eventMedium();
-        this.eventCharacters();
         this.eventSticky();
     }
 }
