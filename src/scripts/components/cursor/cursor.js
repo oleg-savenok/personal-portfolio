@@ -12,7 +12,7 @@ import setCursorDefault from './_setCursorDefault';
 // Events modules
 import EventHover from './_eventHover';
 import EventCharacters from './_eventCharacters';
-import eventSticky from './_eventSticky';
+import EventSticky from './_eventSticky';
 
 export default class Cursor {
     constructor({
@@ -21,7 +21,7 @@ export default class Cursor {
         scrollTop,
         position,
         duration: { tick: tickDuration },
-        eventTargets: { characters: eventCharactersTarget, hover: eventHoverTarget },
+        eventTargets: { characters: eventCharactersTarget, hover: eventHoverTarget, sticky: eventStickyTarget },
     } = options) {
         // Options
         this.projects = $('#projects');
@@ -36,11 +36,12 @@ export default class Cursor {
         // Events targets
         this.eventCharactersTarget = eventCharactersTarget;
         this.eventHoverTarget = eventHoverTarget;
+        this.eventStickyTarget = eventStickyTarget;
 
         // Events
         this.EventHover = EventHover;
         this.EventCharacters = EventCharacters;
-        this.eventSticky = eventSticky;
+        this.EventSticky = EventSticky;
     }
 
     moveAnimation(duration) {
@@ -96,6 +97,7 @@ export default class Cursor {
         // Create cursor events examples
         const eventCharacters = new this.EventCharacters(this.eventCharactersTarget);
         const eventHover = new this.EventHover();
+        const eventSticky = new this.EventSticky();
 
         // Set translate center to cursor
         TweenLite.set([this.cursor, this.cursorIcon], {
@@ -103,14 +105,16 @@ export default class Cursor {
             yPercent: -50,
         });
 
+        // Set ticker listener for change magic cursor
         TweenLite.ticker.addEventListener('tick', () => {
             this.moveAnimation(this.tickTweenDuration);
         });
 
-        // If cursor moving - change position and show if hidden
+        // If real cursor moving - change position magic cursor
         document.addEventListener('mousemove', (e) => {
             this.getRealMousePosition(e);
 
+            // Show magic cursor if hidden
             if (this.cursorHide) {
                 this.showCursor();
             }
@@ -126,14 +130,12 @@ export default class Cursor {
             this.hideCursor();
         });
 
-        // Initialize cursor event Characters and set listener for event
-        eventCharacters.initialize();
-
-        this.eventCharactersTarget.mouseenter(function(e) {
+        // Set listener for characters event
+        this.eventCharactersTarget.mouseenter((e) => {
             eventCharacters.animateLetters(e);
         });
 
-        // Set listeners for cursor hover event
+        // Set listeners for hover event
         this.eventHoverTarget
             .on('mouseenter', () => {
                 eventHover.hover();
@@ -142,6 +144,13 @@ export default class Cursor {
                 eventHover.unhover();
             });
 
-        this.eventSticky();
+        // Set listeners for sticky event
+        this.eventStickyTarget
+            .mousemove((e) => {
+                eventSticky.move(e);
+            })
+            .mouseleave((e) => {
+                eventSticky.return(e);
+            });
     }
 }
