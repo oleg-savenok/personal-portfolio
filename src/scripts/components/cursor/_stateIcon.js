@@ -3,38 +3,47 @@ import { TweenMax } from 'gsap';
 import options from './options';
 
 export default class StateIcon {
-    constructor({ cursorIcon, iconName, size: { icon: sizeIcon } } = options) {
+    constructor({ cursor, cursorIcon, iconName, size: { icon: sizeIcon } } = options) {
+        this.cursor = cursor;
         this.cursorIcon = cursorIcon;
         this.iconName = iconName;
         this.sizeIcon = sizeIcon;
     }
 
-    apply(e) {
+    setIcon(e) {
         this.iconName = e.target.dataset.icon || e.currentTarget.dataset.icon;
-
-        if (this.iconName === 'unfold_more') {
-            TweenMax.set(this.cursorIcon, {
-                rotation: 90,
-            });
-        } else {
-            TweenMax.set(this.cursorIcon, {
-                rotation: 0,
-            });
-        }
-
         this.cursorIcon.html(this.iconName);
 
-        TweenMax.set(cursor, {
+        if (this.iconName === 'unfold_more') {
+            TweenMax.set(this.cursorIcon, { rotation: 90 });
+        } else {
+            TweenMax.set(this.cursorIcon, { rotation: 0 });
+        }
+
+        TweenMax.to(this.cursorIcon, 0.2, {
+            alpha: 1,
+            delay: 0.2,
+        });
+    }
+
+    setColor() {
+        TweenMax.to(this.cursor, {
             mixBlendMode: 'normal',
             //backgroundColor: '#101010',
         });
+    }
 
-        TweenMax.to(cursor, 0.2, {
+    setSize() {
+        TweenMax.to(this.cursor, 0.2, {
             height: this.sizeIcon,
             width: this.sizeIcon,
             alpha: 1,
         });
+    }
 
-        TweenMax.to(this.cursorIcon, 0.2, { alpha: 1 }, 0.2);
+    apply(e) {
+        this.setIcon(e);
+        this.setColor();
+        this.setSize();
     }
 }

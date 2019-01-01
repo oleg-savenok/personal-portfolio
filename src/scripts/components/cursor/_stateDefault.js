@@ -17,13 +17,13 @@ export default class StateDefault {
     }
 
     setColor() {
-        TweenMax.set(cursor, {
+        TweenMax.set(this.cursor, {
             mixBlendMode: 'difference',
         });
     }
 
     setSize() {
-        TweenMax.to(cursor, 0.2, {
+        TweenMax.to(this.cursor, 0.2, {
             height: this.sizeBasic,
             width: this.sizeBasic,
         });
