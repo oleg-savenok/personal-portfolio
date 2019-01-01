@@ -7,7 +7,7 @@ import options from './options';
 
 // Mode modules
 import setCursorIcon from './_setCursorIcon';
-import setCursorDefault from './_setCursorDefault';
+import SetCursorDefault from './_setCursorDefault';
 
 // Events modules
 import EventHover from './_eventHover';
@@ -38,10 +38,13 @@ export default class Cursor {
         this.eventHoverTarget = eventHoverTarget;
         this.eventStickyTarget = eventStickyTarget;
 
+        // States
+        this.setCursorDefault = new SetCursorDefault();
+
         // Events
-        this.EventHover = EventHover;
-        this.EventCharacters = EventCharacters;
-        this.EventSticky = EventSticky;
+        this.eventCharacters = new EventCharacters(this.eventCharactersTarget);
+        this.eventSticky = new EventSticky();
+        this.eventHover = new EventHover();
     }
 
     moveAnimation(duration) {
@@ -80,7 +83,7 @@ export default class Cursor {
         });
 
         this.projects.on('mouseout', '#projectsSlider', () => {
-            setCursorDefault();
+            this.setCursorDefault.apply();
         });
     }
 
@@ -91,19 +94,12 @@ export default class Cursor {
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    initialize() {
-        setCursorDefault();
+    init() {
+        // Init default cursor
+        this.setCursorDefault.init();
 
-        // Create cursor events examples
-        const eventCharacters = new this.EventCharacters(this.eventCharactersTarget);
-        const eventHover = new this.EventHover();
-        const eventSticky = new this.EventSticky();
-
-        // Set translate center to cursor
-        TweenLite.set([this.cursor, this.cursorIcon], {
-            xPercent: -50,
-            yPercent: -50,
-        });
+        // Init splitting links to single characters
+        this.eventCharacters.init();
 
         // Set ticker listener for change magic cursor
         TweenLite.ticker.addEventListener('tick', () => {
@@ -132,25 +128,28 @@ export default class Cursor {
 
         // Set listener for characters event
         this.eventCharactersTarget.mouseenter((e) => {
-            eventCharacters.animateLetters(e);
+            this.eventCharacters.animateLetters(e);
         });
 
         // Set listeners for hover event
         this.eventHoverTarget
             .on('mouseenter', () => {
-                eventHover.hover();
+                this.eventHover.hover();
             })
             .on('mouseleave', () => {
-                eventHover.unhover();
+                this.eventHover.unhover();
             });
 
         // Set listeners for sticky event
         this.eventStickyTarget
             .mousemove((e) => {
-                eventSticky.move(e);
+                this.eventSticky.move(e);
             })
             .mouseleave((e) => {
-                eventSticky.return(e);
+                this.eventSticky.return(e);
             });
+
+        //
+        this.addProjectsListeners();
     }
 }

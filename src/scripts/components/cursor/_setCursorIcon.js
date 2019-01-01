@@ -2,7 +2,7 @@ import { TweenMax } from 'gsap';
 
 import options from './options';
 
-export default function cursorIcon(e) {
+export default function setCursorIcon(e) {
     let {
         cursorIcon,
         iconName,
