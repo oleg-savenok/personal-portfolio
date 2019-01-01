@@ -9,8 +9,8 @@ import options from './options';
 import Movement from './_movement';
 
 // State modules
-import setCursorIcon from './_setCursorIcon';
-import SetCursorDefault from './_setCursorDefault';
+import StateDefault from './_stateDefault';
+import StateIcon from './_stateIcon';
 
 // Events modules
 import EventHover from './_eventHover';
@@ -33,7 +33,8 @@ export default class Cursor {
         this.movement = new Movement();
 
         // States
-        this.setCursorDefault = new SetCursorDefault();
+        this.stateDefault = new StateDefault();
+        this.stateIcon = new StateIcon();
 
         // Events
         this.eventCharacters = new EventCharacters(this.eventCharactersTarget);
@@ -43,11 +44,11 @@ export default class Cursor {
 
     addProjectsListeners() {
         this.projects.on('mouseover', '#projectsSlider', (e) => {
-            setCursorIcon(e);
+            this.stateIcon.apply(e);
         });
 
         this.projects.on('mouseout', '#projectsSlider', () => {
-            this.setCursorDefault.apply();
+            this.stateDefault.apply();
         });
     }
 
@@ -60,7 +61,7 @@ export default class Cursor {
         /* Init -----------------------------------------*/
 
         // default cursor
-        this.setCursorDefault.init();
+        this.stateDefault.init();
 
         // movement
         this.movement.init();
@@ -71,7 +72,7 @@ export default class Cursor {
         /* Set Listeners --------------------------------*/
 
         // for characters event
-        this.eventCharactersTarget.mouseenter((e) => {
+        this.eventCharactersTarget.on('mouseenter', (e) => {
             this.eventCharacters.animateLetters(e);
         });
 
@@ -86,14 +87,13 @@ export default class Cursor {
 
         // for sticky event
         this.eventStickyTarget
-            .mousemove((e) => {
+            .on('mousemove', (e) => {
                 this.eventSticky.move(e);
             })
-            .mouseleave((e) => {
+            .on('mouseleave', (e) => {
                 this.eventSticky.return(e);
             });
 
-        // for projects
-        //this.addProjectsListeners();
+        this.addProjectsListeners();
     }
 }
