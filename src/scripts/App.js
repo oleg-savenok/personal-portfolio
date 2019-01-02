@@ -4,6 +4,7 @@ import $ from 'jquery';
 // Components
 import Cursor from './components/cursor/cursor';
 import visibilityTab from './components/visibilityTab/visibilityTab';
+import consoleMessage from './components/consoleMessage/consoleMessage';
 
 // -----------------------------------------------
 import Preloader from './components/preloader/preloader';
@@ -27,4 +28,7 @@ export default function App(options) {
 
     // Init visibility tab module
     visibilityTab();
+
+    // Add copyright console message
+    consoleMessage();
 }
