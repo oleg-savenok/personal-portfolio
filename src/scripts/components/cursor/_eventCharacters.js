@@ -25,7 +25,7 @@ export default class EventCharacters {
     }
 
     // Split of word into characters
-    initialize() {
+    init() {
         this.targets.each(function() {
             let text = $(this).text();
             for (let i = 0; i < text.length; i++) {
