@@ -3,6 +3,7 @@ import $ from 'jquery';
 
 // Components
 import Cursor from './components/cursor/cursor';
+import visibilityTab from './components/visibilityTab/visibilityTab';
 
 // -----------------------------------------------
 import Preloader from './components/preloader/preloader';
@@ -23,4 +24,7 @@ export default function App(options) {
 
     // -----------------
     new Preloader().firstLoading(true);
+
+    // Init visibility tab module
+    visibilityTab();
 }
