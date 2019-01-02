@@ -6,6 +6,10 @@ body.theme--light {
     color: $black;
     background-color: $white;
 
+    ::selection {
+        background-color: rgba($black, 0.1);
+    }
+
     #page {
         background-color: $white;
     }
