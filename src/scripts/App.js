@@ -4,6 +4,7 @@ import $ from 'jquery';
 // Components
 import Cursor from './components/cursor/cursor';
 import visibilityTab from './components/visibilityTab/visibilityTab';
+import preventDrag from './components/preventDrag/preventDrag';
 import consoleMessage from './components/consoleMessage/consoleMessage';
 
 // -----------------------------------------------
@@ -13,7 +14,7 @@ import Preloader from './components/preloader/preloader';
 import '../styles/main.scss';
 
 export default function App(options) {
-    // Set theme
+    // Set color theme
     $('body').addClass(`theme--${options.theme}`);
 
     // Init magic cursor if the device is not touch
@@ -28,6 +29,9 @@ export default function App(options) {
 
     // Init visibility tab module
     visibilityTab();
+
+    // Prevent links draggable
+    preventDrag();
 
     // Add copyright console message
     consoleMessage();
