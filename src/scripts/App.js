@@ -15,8 +15,11 @@ export default function App(options) {
     $('body').addClass(`theme--${options.theme}`);
 
     // Init magic cursor
-    const cursor = new Cursor();
-    cursor.init();
+    const touch = 'ontouchstart' in document.documentElement;
+
+    if (!touch) {
+        new Cursor().init();
+    }
 
     // -----------------
     firstLoading(true);
