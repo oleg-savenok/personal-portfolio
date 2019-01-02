@@ -5,7 +5,7 @@ import $ from 'jquery';
 import Cursor from './components/cursor/cursor';
 
 // -----------------------------------------------
-import firstLoading from './loading/firstLoading';
+import Preloader from './components/preloader/preloader';
 
 // Styles
 import '../styles/main.scss';
@@ -22,5 +22,5 @@ export default function App(options) {
     }
 
     // -----------------
-    firstLoading(true);
+    new Preloader().firstLoading(true);
 }
