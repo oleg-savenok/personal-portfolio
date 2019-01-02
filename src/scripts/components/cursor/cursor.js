@@ -1,5 +1,4 @@
 // External libraries
-import { TweenLite } from 'gsap';
 import $ from 'jquery';
 
 // Options

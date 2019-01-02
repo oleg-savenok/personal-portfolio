@@ -1,6 +1,6 @@
 // External libraries
 import { TweenMax } from 'gsap';
-import CustomEase from '../../easing/CustomEase';
+import CustomEase from '../../assets/CustomEase';
 
 // Options
 import options from './options';

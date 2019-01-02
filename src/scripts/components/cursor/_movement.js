@@ -1,5 +1,5 @@
 // External libraries
-import { TweenLite } from 'gsap';
+import { TweenMax } from 'gsap';
 
 // Options
 import options from './options';
@@ -20,14 +20,14 @@ export default class Movement {
     }
 
     moveAnimation(duration) {
-        TweenLite.to(this.cursor, duration, {
+        TweenMax.to(this.cursor, duration, {
             x: this.position.x,
             y: this.position.y,
         });
     }
 
     showCursor() {
-        TweenLite.to(this.cursor, 0.1, {
+        TweenMax.to(this.cursor, 0.1, {
             alpha: 1,
             onComplete: () => {
                 this.tickTweenDuration = this.tickDuration;
@@ -38,7 +38,7 @@ export default class Movement {
     }
 
     hideCursor() {
-        TweenLite.set(this.cursor, { alpha: 0 });
+        TweenMax.set(this.cursor, { alpha: 0 });
 
         this.tickTweenDuration = 0;
         this.cursorHide = true;
@@ -46,7 +46,7 @@ export default class Movement {
 
     init() {
         // Set ticker listener for change position of magic cursor
-        TweenLite.ticker.addEventListener('tick', () => {
+        TweenMax.ticker.addEventListener('tick', () => {
             this.moveAnimation(this.tickTweenDuration);
         });
 
