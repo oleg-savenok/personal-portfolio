@@ -44,11 +44,11 @@ export default class Cursor {
 
     addProjectsListeners() {
         this.projects.on('mouseover', '#projectsSlider', (e) => {
-            this.stateIcon.apply(e);
+            this.stateIcon.start(e);
         });
 
         this.projects.on('mouseout', '#projectsSlider', () => {
-            this.stateDefault.apply();
+            this.stateDefault.start();
         });
     }
 
@@ -93,7 +93,5 @@ export default class Cursor {
             .on('mouseleave', (e) => {
                 this.eventSticky.return(e);
             });
-
-        this.addProjectsListeners();
     }
 }

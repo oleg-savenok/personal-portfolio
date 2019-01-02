@@ -1,5 +1,6 @@
 import { TweenMax } from 'gsap';
 
+import appOptions from '../../options';
 import options from './options';
 
 export default class StateDefault {
@@ -16,9 +17,10 @@ export default class StateDefault {
         });
     }
 
-    setColor() {
+    setMix() {
         TweenMax.set(this.cursor, {
             mixBlendMode: 'difference',
+            backgroundColor: '#fff',
         });
     }
 
@@ -35,14 +37,14 @@ export default class StateDefault {
         });
     }
 
-    apply() {
-        this.setColor();
+    start() {
+        this.setMix();
         this.setSize();
         this.disableIcon();
     }
 
     init() {
         this.setCenter();
-        this.apply();
+        this.start();
     }
 }

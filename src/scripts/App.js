@@ -4,6 +4,9 @@ import $ from 'jquery';
 // Components
 import Cursor from './components/cursor/cursor';
 
+// -----------------------------------------------
+import firstLoading from './loading/firstLoading';
+
 // Styles
 import '../styles/main.scss';
 
@@ -13,5 +16,8 @@ export default function App(options) {
 
     // Init magic cursor
     const cursor = new Cursor();
-    cursor.initialize();
+    cursor.init();
+
+    // -----------------
+    firstLoading(true);
 }

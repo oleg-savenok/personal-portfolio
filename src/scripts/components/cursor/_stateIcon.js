@@ -22,12 +22,11 @@ export default class StateIcon {
 
         TweenMax.to(this.cursorIcon, 0.2, {
             alpha: 1,
-            delay: 0.2,
         });
     }
 
-    setColor() {
-        TweenMax.to(this.cursor, {
+    setMix() {
+        TweenMax.set(this.cursor, {
             mixBlendMode: 'normal',
             //backgroundColor: '#101010',
         });
@@ -41,9 +40,9 @@ export default class StateIcon {
         });
     }
 
-    apply(e) {
+    start(e) {
         this.setIcon(e);
-        this.setColor();
+        this.setMix();
         this.setSize();
     }
 }
