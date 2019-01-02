@@ -14,9 +14,12 @@ export default function App(options) {
     // Set theme
     $('body').addClass(`theme--${options.theme}`);
 
-    // Init magic cursor
-    const cursor = new Cursor();
-    cursor.init();
+    // Init magic cursor if the device is not touch
+    const touch = 'ontouchstart' in document.documentElement;
+
+    if (!touch) {
+        new Cursor().init();
+    }
 
     // -----------------
     firstLoading(true);

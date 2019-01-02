@@ -1,4 +1,7 @@
+// Components
 import App from './App';
+
+// Options
 import options from './options';
 
 // Initial App with options
