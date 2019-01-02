@@ -5,7 +5,7 @@ import App from './App';
 import options from './options';
 
 // Initial App with options
-App(options);
+new App(options).render();
 
 // Webpack Hot Module Replacement
 if (module.hot) {

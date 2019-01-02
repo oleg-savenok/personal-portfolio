@@ -3,41 +3,74 @@ import $ from 'jquery';
 
 // Components
 import Cursor from './components/cursor/cursor';
+import Preloader from './components/preloader/preloader';
 
-import projectLoading from './components/projectsLoading/projectLoading';
 import consoleMessage from './components/consoleMessage/consoleMessage';
 import visibilityTab from './components/visibilityTab/visibilityTab';
 import preventDrag from './components/preventDrag/preventDrag';
 
-/* -------------------------------------------- temporary */
-import Preloader from './components/preloader/preloader';
+// Pages
+import Home from './pages/home/home';
 
 // Styles
 import '../styles/main.scss';
 
-export default function App(options) {
-    // Set color theme
-    $('body').addClass(`theme--${options.theme}`);
+export default class App {
+    constructor(options) {
+        this.options = options;
+        this.touch = 'ontouchstart' in document.documentElement;
 
-    // Init magic cursor if the device is not touch
-    const touch = 'ontouchstart' in document.documentElement;
+        this.cursor = new Cursor();
+        this.preloader = new Preloader();
 
-    if (!touch) {
-        new Cursor().init();
+        this.visibilityTab = visibilityTab;
+        this.preventDrag = preventDrag;
+        this.consoleMessage = consoleMessage;
+
+        this.pageName = '';
     }
 
-    /* ------------------ temporary */
-    new Preloader().firstLoading(true);
+    setTheme() {
+        $('body').addClass(`theme--${this.options.theme}`);
+    }
 
-    // Init visibility tab module
-    visibilityTab();
+    initCursor() {
+        if (!this.touch) {
+            this.cursor.init();
+        }
+    }
 
-    // Prevent links draggable
-    preventDrag();
+    initPage() {
+        this.pageName = $('body').attr('data-page-name');
 
-    // Add projects loading line
-    projectLoading();
+        switch (this.pageName) {
+            case 'home': {
+                new Home().init();
+                break;
+            }
+        }
+    }
 
-    // Add copyright console message
-    consoleMessage();
+    render() {
+        // Set color theme
+        this.setTheme();
+
+        // Init preloader for first page loading animation
+        this.preloader.firstLoading(true);
+
+        // Init magic cursor if the device is not touch
+        this.initCursor();
+
+        // Init change page title when changing tabs
+        this.visibilityTab();
+
+        // Prevent dragging links
+        this.preventDrag();
+
+        // Output copyright message in console
+        this.consoleMessage();
+
+        // Init page
+        this.initPage();
+    }
 }
