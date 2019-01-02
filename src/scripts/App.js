@@ -3,11 +3,13 @@ import $ from 'jquery';
 
 // Components
 import Cursor from './components/cursor/cursor';
+
+import projectLoading from './components/projectsLoading/projectLoading';
+import consoleMessage from './components/consoleMessage/consoleMessage';
 import visibilityTab from './components/visibilityTab/visibilityTab';
 import preventDrag from './components/preventDrag/preventDrag';
-import consoleMessage from './components/consoleMessage/consoleMessage';
 
-// -----------------------------------------------
+/* -------------------------------------------- temporary */
 import Preloader from './components/preloader/preloader';
 
 // Styles
@@ -24,7 +26,7 @@ export default function App(options) {
         new Cursor().init();
     }
 
-    // -----------------
+    /* ------------------ temporary */
     new Preloader().firstLoading(true);
 
     // Init visibility tab module
@@ -32,6 +34,9 @@ export default function App(options) {
 
     // Prevent links draggable
     preventDrag();
+
+    // Add projects loading line
+    projectLoading();
 
     // Add copyright console message
     consoleMessage();
