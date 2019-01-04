@@ -4,26 +4,31 @@
 
 I used SMACSS Architecture and custom BEM naming rules in this project.
 
-#### Block
-
+### Block
+#### html
 ```html
 <div class="block"></div>
 ```
- 
-```css
-.block {...}
+#### scss 
+```scss
+.block {
+    ...
+}
 ```
 
-#### Element
+### Element
 
+#### html
 ```html
 <div class="block">
     <div class="block__element"></div>
 </div>
 ```
- 
+#### scss
 ```scss
 .block {
-    &__element {...}
+    &__element {
+        ...
+    }
 }
 ```
