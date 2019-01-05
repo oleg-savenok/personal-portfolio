@@ -41,7 +41,7 @@ export default class App {
         this.visibilityTab = visibilityTab;
         this.preventDrag = preventDrag;
 
-        this.pageName = '';
+        this.pageName = $('body').attr('data-page-name');
     }
 
     setTheme() {
@@ -52,11 +52,6 @@ export default class App {
         if (!this.touch) {
             this.cursor.init();
         }
-    }
-
-    initPage() {
-        this.pageName = $('body').attr('data-page-name');
-        this[this.pageName].init();
     }
 
     render() {
@@ -79,7 +74,7 @@ export default class App {
         this.consoleMessage();
 
         // Init page
-        this.initPage();
+        this[this.pageName].init();
 
         // Init router
         this.router.init();
