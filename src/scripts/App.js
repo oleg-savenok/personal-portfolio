@@ -1,6 +1,14 @@
 // Libraries
 import $ from 'jquery';
 
+// Router
+import Router from './router/router';
+
+// Pages
+import Home from './pages/home/home';
+import About from './pages/about/about';
+import Contact from './pages/contact/contact';
+
 // Components
 import Cursor from './components/cursor/cursor';
 import Preloader from './components/preloader/preloader';
@@ -8,9 +16,6 @@ import Preloader from './components/preloader/preloader';
 import consoleMessage from './components/consoleMessage/consoleMessage';
 import visibilityTab from './components/visibilityTab/visibilityTab';
 import preventDrag from './components/preventDrag/preventDrag';
-
-// Pages
-import Home from './pages/home/home';
 
 // Styles
 import '../styles/main.scss';
@@ -20,12 +25,21 @@ export default class App {
         this.options = options;
         this.touch = 'ontouchstart' in document.documentElement;
 
+        // Router
+        this.router = new Router();
+
+        // Pages
+        this.home = new Home();
+        this.about = new About();
+        this.contact = new Contact();
+
+        // Components
         this.cursor = new Cursor();
         this.preloader = new Preloader();
 
+        this.consoleMessage = consoleMessage;
         this.visibilityTab = visibilityTab;
         this.preventDrag = preventDrag;
-        this.consoleMessage = consoleMessage;
 
         this.pageName = '';
     }
@@ -42,13 +56,7 @@ export default class App {
 
     initPage() {
         this.pageName = $('body').attr('data-page-name');
-
-        switch (this.pageName) {
-            case 'home': {
-                new Home().init();
-                break;
-            }
-        }
+        this[this.pageName].init();
     }
 
     render() {
@@ -72,5 +80,8 @@ export default class App {
 
         // Init page
         this.initPage();
+
+        // Init router
+        this.router.init();
     }
 }

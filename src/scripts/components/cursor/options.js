@@ -12,7 +12,7 @@ const options = {
     position: { x: 0, y: 0 },
     scrollTop: window.pageYOffset || document.documentElement.scrollTop,
     duration: {
-        tick: 0.2,
+        tick: 0.15,
     },
     size: {
         basic: '0.2rem',
