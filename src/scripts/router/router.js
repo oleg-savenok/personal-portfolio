@@ -1,6 +1,7 @@
+// Libraries
 import $ from 'jquery';
 
-//
+// Components
 import Link from './link';
 
 export default class Router {
@@ -11,7 +12,7 @@ export default class Router {
         this.link = new Link();
     }
 
-    setDefaultHistory() {
+    pushDefaultState() {
         const historyURL = this.pageName !== 'index' ? this.pageName : '';
 
         history.pushState(
@@ -23,8 +24,13 @@ export default class Router {
         );
     }
 
-    initLinks() {
-        // Set event listener for router links
+    initPopEvent() {
+        window.onpopstate = (e) => {
+            this.link.popEvent(e.state.link);
+        };
+    }
+
+    initLinksEvent() {
         this.linksTarget.click((e) => {
             e.preventDefault();
 
@@ -33,14 +39,8 @@ export default class Router {
     }
 
     init() {
-        this.setDefaultHistory();
-
-        window.onpopstate = (e) => {
-            this.link.popEvent(e.state.link);
-        };
-
-        this.initLinks();
-
-        console.log('It`s router!');
+        this.pushDefaultState();
+        this.initPopEvent();
+        this.initLinksEvent();
     }
 }
