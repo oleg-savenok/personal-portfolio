@@ -5,7 +5,7 @@ import $ from 'jquery';
 import Router from './router/router';
 
 // Pages
-import Home from './pages/home/home';
+import Index from './pages/index/index';
 import About from './pages/about/about';
 import Contact from './pages/contact/contact';
 
@@ -29,7 +29,7 @@ export default class App {
         this.router = new Router();
 
         // Pages
-        this.home = new Home();
+        this.home = new Index();
         this.about = new About();
         this.contact = new Contact();
 

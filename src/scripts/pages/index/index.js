@@ -1,4 +1,4 @@
-export default class Home {
+export default class Index {
     constructor() {}
 
     init() {
