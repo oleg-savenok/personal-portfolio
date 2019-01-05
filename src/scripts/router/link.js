@@ -40,7 +40,9 @@ export default class Link {
     }
 
     linkEvent(link) {
-        this.loadPage(link);
-        this.pushHistory(link);
+        if (this.body.attr('data-page-name') !== link) {
+            this.loadPage(link);
+            this.pushHistory(link);
+        }
     }
 }
