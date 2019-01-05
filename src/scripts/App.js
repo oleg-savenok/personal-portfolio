@@ -29,7 +29,7 @@ export default class App {
         this.router = new Router();
 
         // Pages
-        this.home = new Index();
+        this.index = new Index();
         this.about = new About();
         this.contact = new Contact();
 

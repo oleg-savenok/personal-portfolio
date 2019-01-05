@@ -19,14 +19,28 @@ export default class Link {
 
                 // Set page name for body
                 this.body.attr('data-page-name', link);
-
-                // Push History if it`s not a back event
-                // if (!back) {
-                //     history.pushState(data, '', link);
-                // }
             },
         });
+    }
 
-        console.log(`It's router link: ${link}`);
+    pushHistory(link) {
+        const historyURL = link !== 'index' ? link : '/';
+
+        history.pushState(
+            {
+                link: link,
+            },
+            '',
+            historyURL
+        );
+    }
+
+    popEvent(link) {
+        this.loadPage(link);
+    }
+
+    linkEvent(link) {
+        this.loadPage(link);
+        this.pushHistory(link);
     }
 }
