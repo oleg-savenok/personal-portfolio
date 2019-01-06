@@ -5,7 +5,7 @@ import $ from 'jquery';
 import Router from './router/router';
 
 // Pages
-import Index from './pages/index';
+import Index from './pages/home/home';
 import About from './pages/about';
 import Contact from './pages/contact';
 
