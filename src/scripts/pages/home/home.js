@@ -1,15 +1,34 @@
 import $ from 'jquery';
 import { TweenMax } from 'gsap';
 
-import Swiper from 'swiper/dist/js/swiper.js';
+import { Swiper } from 'swiper/dist/js/swiper.esm.js';
 import 'swiper/dist/css/swiper.css';
 import swiperOptions from './swiperOptions';
 
 export default class Home {
     constructor() {
-        this.swiperOptions = swiperOptions;
-
         this.swiper = null;
+        this.swiperOptions = swiperOptions;
+        this.swiperSelector = $('#projectsSlider');
+        this.swiperItemLink = '.projects__slider__item a';
+    }
+
+    addHoverListeners() {
+        this.swiperSelector.on('mouseenter', this.swiperItemLink, (e) => {
+            TweenMax.to(this.swiperItemLink, 0.5, {
+                alpha: 0.5,
+            });
+
+            TweenMax.to(e.target, 0.5, {
+                alpha: 1,
+            });
+        });
+
+        this.swiperSelector.on('mouseleave', this.swiperItemLink, () => {
+            TweenMax.to(this.swiperItemLink, 0.5, {
+                alpha: 1,
+            });
+        });
     }
 
     addSwiperListeners() {
@@ -26,19 +45,28 @@ export default class Home {
         });
     }
 
+    clearListeners() {
+        this.swiperSelector.off('mouseenter');
+        this.swiperSelector.off('mouseleave');
+    }
+
     initSwiper() {
+        this.swiperSelector = $('#projectsSlider');
+
         setTimeout(() => {
-            this.swiper = new Swiper(document.getElementById('projectsSlider'), this.swiperOptions);
+            this.swiper = new Swiper(this.swiperSelector, this.swiperOptions);
+
             this.addSwiperListeners();
+            this.addHoverListeners();
         }, 100);
     }
 
     remove() {
-        console.log('Home page removing!!!');
+        this.swiper = null;
+        this.clearListeners();
     }
 
     render() {
-        console.log('Home page working!!!');
         this.initSwiper();
     }
 }
