@@ -5,15 +5,15 @@ import $ from 'jquery';
 import Link from './link';
 
 export default class Router {
-    constructor() {
+    constructor(pages) {
         this.linksTarget = $('[data-router-link]');
         this.pageName = $('body').attr('data-page-name');
 
-        this.link = new Link();
+        this.link = new Link(pages);
     }
 
     pushDefaultState() {
-        const historyURL = this.pageName !== 'index' ? this.pageName : '';
+        const historyURL = this.pageName !== 'index' ? this.pageName : '/';
 
         history.pushState(
             {

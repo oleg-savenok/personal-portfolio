@@ -5,9 +5,9 @@ import $ from 'jquery';
 import Router from './router/router';
 
 // Pages
-import Index from './pages/index/index';
-import About from './pages/about/about';
-import Contact from './pages/contact/contact';
+import Index from './pages/index';
+import About from './pages/about';
+import Contact from './pages/contact';
 
 // Components
 import Cursor from './components/cursor/cursor';
@@ -25,13 +25,15 @@ export default class App {
         this.options = options;
         this.touch = 'ontouchstart' in document.documentElement;
 
-        // Router
-        this.router = new Router();
-
         // Pages
-        this.index = new Index();
-        this.about = new About();
-        this.contact = new Contact();
+        this.pages = {
+            index: new Index(),
+            about: new About(),
+            contact: new Contact(),
+        };
+
+        // Router
+        this.router = new Router(this.pages);
 
         // Components
         this.cursor = new Cursor();
@@ -74,7 +76,7 @@ export default class App {
         this.consoleMessage();
 
         // Init page
-        this[this.pageName].init();
+        this.pages[this.pageName].render();
 
         // Init router
         this.router.init();

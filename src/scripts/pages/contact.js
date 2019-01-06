@@ -1,7 +1,11 @@
 export default class Contact {
     constructor() {}
 
-    init() {
+    remove() {
+        console.log('Contact page removing!!!');
+    }
+
+    render() {
         console.log('Contact page working!!!');
     }
 }

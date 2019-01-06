@@ -1,7 +1,11 @@
 export default class Index {
     constructor() {}
 
-    init() {
+    remove() {
+        console.log('Home page removing!!!');
+    }
+
+    render() {
         console.log('Home page working!!!');
     }
 }

@@ -1,7 +1,11 @@
 export default class About {
     constructor() {}
 
-    init() {
+    remove() {
+        console.log('About page removing!!!');
+    }
+
+    render() {
         console.log('About page working!!!');
     }
 }
