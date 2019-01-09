@@ -44,16 +44,13 @@
         <meta name="twitter:url" content="" />
         <meta name="twitter:image" content="" />
     </head>
-    <body id="home" style="overflow-x: hidden; background-color: #050505;">
-        <!-- Preloader ------------------------------------------------------------------------------------------------>
-
-        <div id="preloader" class="preloader"></div>
+    <body data-page-name="index" style="overflow-x: hidden; background-color: #050505;">
 
         <!-- Header --------------------------------------------------------------------------------------------------->
 
         <header id="header" class="header" style="opacity: 0;">
             <h1 class="header__logo">
-                <a class="cursor--hover cursor--characters cursor--sticky" data-router-link="home" href="/">o.sa.</a>
+                <a class="cursor--hover cursor--characters cursor--sticky" data-router-link="index" href="/">o.sa.</a>
             </h1>
 
             <nav class="header__nav">
@@ -77,7 +74,8 @@
 
         <!-- Page ----------------------------------------------------------------------------------------------------->
 
-        <div id="page" class="page" style="overflow: hidden; display: none;">
+        <div id="page" class="page" style="overflow: hidden; text-align: center;">
+
             <!-- Projects slider -->
 
             <div id="projects" class="projects">
@@ -106,6 +104,7 @@
                 <div id="projectsControlsPrev" class="cursor-icon-arrow_back projects__controls__prev"></div>
                 <div id="projectsControlsNext" class="cursor-icon-arrow_forward projects__controls__next"></div>
             </div>
+
         </div>
 
         <!-- Footer --------------------------------------------------------------------------------------------------->
@@ -117,6 +116,10 @@
         </footer>
 
         <div class="project-loading"><div id="projectLoadingProgress" class="project-loading__percent"></div></div>
+
+        <!-- Preloader ------------------------------------------------------------------------------------------------>
+
+        <div id="preloader" class="preloader"></div>
 
         <!-- Cursor --------------------------------------------------------------------------------------------------->
 
