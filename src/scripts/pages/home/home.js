@@ -2,6 +2,7 @@ import $ from 'jquery';
 import { TweenMax } from 'gsap';
 
 import EventIcon from '../../components/cursor/_eventIcon';
+import EventDrag from '../../components/cursor/_eventDrag';
 import StateDefault from '../../components/cursor/_stateDefault';
 
 import { Swiper } from 'swiper/dist/js/swiper.esm.js';
@@ -12,6 +13,7 @@ export default class Home {
     constructor() {
         // Cursor
         this.eventIcon = new EventIcon();
+        this.eventDrag = new EventDrag();
         this.stateDefault = new StateDefault();
 
         // Swiper
@@ -45,15 +47,18 @@ export default class Home {
 
     addSwiperListeners() {
         this.swiper.on('touchMove', () => {
-            console.log('touchMove');
+            TweenMax.to($(this.swiperItemLink), 0.5, {
+                opacity: 1,
+            });
+            this.eventDrag.drag();
         });
 
         this.swiper.on('touchStart', () => {
-            console.log('touchStart');
+            this.eventDrag.drag();
         });
 
         this.swiper.on('touchEnd', (e) => {
-            console.log('touchEnd');
+            this.eventDrag.undrag();
         });
     }
 

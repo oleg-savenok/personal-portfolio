@@ -18,7 +18,7 @@ const options = {
         basic: '0.2rem',
         hover: '0.6rem',
         icon: '0.8rem',
-        drag: '0.5',
+        drag: '0.4rem',
     },
     sticky: {
         degree: (window.innerWidth + window.innerHeight) / 2 / 20, // degree of stickiness
