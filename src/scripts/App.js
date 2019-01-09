@@ -25,6 +25,12 @@ export default class App {
         this.options = options;
         this.touch = 'ontouchstart' in document.documentElement;
 
+        // Preloader
+        this.preloader = new Preloader();
+
+        // Cursor
+        this.cursor = new Cursor();
+
         // Pages
         this.pages = {
             index: new Index(),
@@ -36,13 +42,11 @@ export default class App {
         this.router = new Router(this.pages);
 
         // Components
-        this.cursor = new Cursor();
-        this.preloader = new Preloader();
-
         this.consoleMessage = consoleMessage;
         this.visibilityTab = visibilityTab;
         this.preventDrag = preventDrag;
 
+        // Options
         this.pageName = $('body').attr('data-page-name');
     }
 

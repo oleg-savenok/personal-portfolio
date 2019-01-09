@@ -9,7 +9,7 @@ import Movement from './_movement';
 
 // State modules
 import StateDefault from './_stateDefault';
-import StateIcon from './_stateIcon';
+import StateIcon from './_eventIcon';
 
 // Events modules
 import EventHover from './_eventHover';
@@ -20,9 +20,6 @@ export default class Cursor {
     constructor({
         eventTargets: { characters: eventCharactersTarget, hover: eventHoverTarget, sticky: eventStickyTarget },
     } = options) {
-        // Options
-        this.projects = $('#projects');
-
         // Events targets
         this.eventCharactersTarget = eventCharactersTarget;
         this.eventHoverTarget = eventHoverTarget;
@@ -39,21 +36,6 @@ export default class Cursor {
         this.eventCharacters = new EventCharacters(this.eventCharactersTarget);
         this.eventSticky = new EventSticky();
         this.eventHover = new EventHover();
-    }
-
-    addProjectsListeners() {
-        this.projects.on('mouseover', '#projectsSlider', (e) => {
-            this.stateIcon.start(e);
-        });
-
-        this.projects.on('mouseout', '#projectsSlider', () => {
-            this.stateDefault.start();
-        });
-    }
-
-    removeProjectsListeners() {
-        this.projects.off('mouseover', '#projectsSlider');
-        this.projects.off('mouseout', '#projectsSlider');
     }
 
     init() {

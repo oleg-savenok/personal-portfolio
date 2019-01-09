@@ -2,7 +2,7 @@ import { TweenMax } from 'gsap';
 
 import options from './options';
 
-export default class StateIcon {
+export default class EventIcon {
     constructor({ cursor, cursorIcon, iconName, size: { icon: sizeIcon } } = options) {
         this.cursor = cursor;
         this.cursorIcon = cursorIcon;
