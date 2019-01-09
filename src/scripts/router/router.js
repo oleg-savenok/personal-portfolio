@@ -1,22 +1,46 @@
-import setDefaultValues from './defaultValues';
-import setDefaultState from './defaultState';
-import routeLoading from './loader';
-
-import routerLink from './link';
+// Libraries
 import $ from 'jquery';
 
-export default function router(data) {
-    // Set correct values and state
-    setDefaultValues(data);
-    setDefaultState(data);
+// Components
+import Link from './link';
 
-    // Set event listener for history navigation (back, forward)
-    window.onpopstate = function(e) {
-        routeLoading(e.state, true);
-    };
+export default class Router {
+    constructor(pages) {
+        this.linksTarget = $('[data-router-link]');
+        this.pageName = $('body').attr('data-page-name');
 
-    // Set event listener for router links
-    $('[data-router-link]').click((e) => {
-        routerLink(e, data);
-    });
+        this.link = new Link(pages);
+    }
+
+    pushDefaultState() {
+        const historyURL = this.pageName !== 'index' ? this.pageName : '/';
+
+        history.pushState(
+            {
+                link: this.pageName,
+            },
+            '',
+            historyURL
+        );
+    }
+
+    initPopEvent() {
+        window.onpopstate = (e) => {
+            this.link.popEvent(e.state.link);
+        };
+    }
+
+    initLinksEvent() {
+        this.linksTarget.click((e) => {
+            e.preventDefault();
+
+            this.link.linkEvent(e.target.dataset.routerLink);
+        });
+    }
+
+    init() {
+        this.pushDefaultState();
+        this.initPopEvent();
+        this.initLinksEvent();
+    }
 }

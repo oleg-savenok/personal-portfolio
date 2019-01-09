@@ -1,15 +1,58 @@
-import routeLoading from './loader';
+import $ from 'jquery';
 
-export default function routerLink(event, data) {
-    // Prevent default behavior for link
-    event.preventDefault();
+export default class Link {
+    constructor(pages) {
+        this.pages = pages;
+        this.body = $('body');
+        this.page = $('#page');
+    }
 
-    // Get state for current link
-    const pageName = event.target.dataset.routerLink;
-    const state = data[pageName];
+    removePage(page) {
+        this.pages[page].remove();
+    }
 
-    // Load page if you are not on it
-    if (!(history.state.name === pageName)) {
-        routeLoading(state);
+    loadPage(link) {
+        $.ajax({
+            url: `${link}.html`,
+            success: (response) => {
+                // Loading page
+                this.page.html(
+                    $(response)
+                        .filter('#page')
+                        .html()
+                );
+
+                // Set page name for body
+                this.body.attr('data-page-name', link);
+
+                // Init loaded page
+                this.pages[link].render();
+            },
+        });
+    }
+
+    pushHistory(link) {
+        const historyURL = link !== 'index' ? link : '/';
+
+        history.pushState(
+            {
+                link: link,
+            },
+            '',
+            historyURL
+        );
+    }
+
+    popEvent(link) {
+        this.removePage(this.body.attr('data-page-name'));
+        this.loadPage(link);
+    }
+
+    linkEvent(link) {
+        if (this.body.attr('data-page-name') !== link) {
+            this.removePage(this.body.attr('data-page-name'));
+            this.loadPage(link);
+            this.pushHistory(link);
+        }
     }
 }

@@ -17,7 +17,7 @@
         <meta name="robots" content="" />
         <meta name="author" content="Oleg Savenok" />
         <meta name="designer" content="Oleg Savenok" />
-        <meta name="theme-color" content="#101010" />
+        <meta name="theme-color" content="#050505" />
 
         <!-- Facebook-->
         <meta property="og:title" content="Oleg Savenok - Creative developer & UI Designer from Kiev, Ukraine." />
@@ -44,39 +44,38 @@
         <meta name="twitter:url" content="" />
         <meta name="twitter:image" content="" />
     </head>
-    <body id="home" style="overflow-x: hidden">
-        <!-- Preloader -->
+    <body data-page-name="index" style="overflow-x: hidden; background-color: #050505;">
 
-        <div id="preloader" class="preloader"></div>
-
-        <!-- Header ------------------------------------------------------------------------------------------------------->
+        <!-- Header --------------------------------------------------------------------------------------------------->
 
         <header id="header" class="header" style="opacity: 0;">
-            <h1 class="header__logo"><a class="cursor--medium cursor--characters cursor--sticky" data-router-link="home" href="/">o.sa.</a></h1>
+            <h1 class="header__logo">
+                <a class="cursor--hover cursor--characters cursor--sticky" data-router-link="index" href="/">o.sa.</a>
+            </h1>
 
             <nav class="header__nav">
                 <ul class="header__nav__list">
                     <li class="header__nav__list__item">
-                        <a class="cursor--sticky cursor--characters cursor--medium" data-router-link="about" href="/about"
-                            >about</a
-                        >
+                        <a
+                            class="cursor--sticky cursor--characters cursor--hover"
+                            data-router-link="about"
+                            href="/about">about</a>
                     </li>
 
                     <li class="header__nav__list__item">
                         <a
-                            class="cursor--sticky cursor--characters cursor--medium"
+                            class="cursor--sticky cursor--characters cursor--hover"
                             data-router-link="contact"
-                            href="/contact"
-                            >contact</a
-                        >
+                            href="/contact">contact</a>
                     </li>
                 </ul>
             </nav>
         </header>
 
-        <!-- Page ---------------------------------------------------------------------------------------------------------->
+        <!-- Page ----------------------------------------------------------------------------------------------------->
 
-        <div id="page" class="page" style="overflow: hidden;">
+        <div id="page" class="page" style="overflow: hidden; text-align: center;">
+
             <!-- Projects slider -->
 
             <div id="projects" class="projects">
@@ -105,26 +104,31 @@
                 <div id="projectsControlsPrev" class="cursor-icon-arrow_back projects__controls__prev"></div>
                 <div id="projectsControlsNext" class="cursor-icon-arrow_forward projects__controls__next"></div>
             </div>
+
         </div>
 
-        <!-- Footer ------------------------------------------------------------------------------------------------------->
+        <!-- Footer --------------------------------------------------------------------------------------------------->
 
         <footer id="footer" class="footer" style="opacity: 0;">
             <div id="footerEventButton" class="footer__event-button">
-                <p class="footer__event-button__item cursor--medium">drag or scroll to discover</p>
+                <p class="footer__event-button__item cursor--hover">drag or scroll to discover</p>
             </div>
         </footer>
 
         <div class="project-loading"><div id="projectLoadingProgress" class="project-loading__percent"></div></div>
 
-        <!-- Cursor ------------------------------------------------------------------------------------------------------->
+        <!-- Preloader ------------------------------------------------------------------------------------------------>
+
+        <div id="preloader" class="preloader"></div>
+
+        <!-- Cursor --------------------------------------------------------------------------------------------------->
 
         <div id="cursor" class="cursor" style="opacity: 0;">
             <div class="cursor__spiner"></div>
             <i id="cursorIcon" class="cursor__icon"></i> <i class="cursor__icon--drag">unfold_more</i>
         </div>
 
-        <!-- Scripts ------------------------------------------------------------------------------------------------------->
+        <!-- Scripts -------------------------------------------------------------------------------------------------->
 
         <link href="./assets/fonts/stylesheet.css" rel="stylesheet" media="none" onload="media='all'" />
 

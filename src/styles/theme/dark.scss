@@ -2,38 +2,41 @@
 
 @import './variables';
 
-html,
-body {
+body.theme--dark {
     color: $white;
     background-color: $black;
-}
 
-#app {
-    background-color: $black;
-}
-
-.preloader {
-    background-color: $white;
-}
-
-.cursor {
-    background-color: $white;
-
-    &__icon,
-    &__icon--drag {
-        color: $black;
+    ::selection {
+        background-color: rgba($white, 0.1);
     }
 
-    &__spiner {
-        border-bottom-color: #fff;
+    #page {
+        background-color: $black;
     }
-}
 
-.header,
-footer {
-    color: $white;
-}
+    .preloader {
+        background-color: $white;
+    }
 
-.project-loading__percent {
-    background-color: $white;
+    .cursor {
+        background-color: $white;
+
+        &__icon,
+        &__icon--drag {
+            color: $black;
+        }
+
+        &__spiner {
+            border-bottom-color: #fff;
+        }
+    }
+
+    .header,
+    footer {
+        color: $white;
+    }
+
+    .project-loading__percent {
+        background-color: $white;
+    }
 }

@@ -1,10 +1,10 @@
 import $ from 'jquery';
 
-const cursorOptions = {
+const options = {
     cursor: $('#cursor'),
     cursorIcon: $('#cursorIcon'),
     eventTargets: {
-        medium: $('.cursor--medium'),
+        hover: $('.cursor--hover'),
         characters: $('.cursor--characters'),
         sticky: $('.cursor--sticky'),
     },
@@ -12,12 +12,13 @@ const cursorOptions = {
     position: { x: 0, y: 0 },
     scrollTop: window.pageYOffset || document.documentElement.scrollTop,
     duration: {
-        tick: 0.2,
+        tick: 0.15,
     },
     size: {
         basic: '0.2rem',
-        medium: '0.6rem',
+        hover: '0.6rem',
         icon: '0.8rem',
+        drag: '0.4rem',
     },
     sticky: {
         degree: (window.innerWidth + window.innerHeight) / 2 / 20, // degree of stickiness
@@ -30,4 +31,4 @@ const cursorOptions = {
     },
 };
 
-export default cursorOptions;
+export default options;
