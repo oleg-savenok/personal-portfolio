@@ -5,7 +5,7 @@ import EventIcon from '../../components/cursor/_eventIcon';
 import EventDrag from '../../components/cursor/_eventDrag';
 import StateDefault from '../../components/cursor/_stateDefault';
 
-import { Swiper } from 'swiper/dist/js/swiper.esm.js';
+import Swiper from 'swiper/dist/js/swiper';
 import 'swiper/dist/css/swiper.css';
 import swiperOptions from './swiperOptions';
 
