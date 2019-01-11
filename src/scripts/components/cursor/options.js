@@ -8,11 +8,12 @@ const options = {
         characters: $('.cursor--characters'),
         sticky: $('.cursor--sticky'),
     },
-    iconName: '',
     position: { x: 0, y: 0 },
     scrollTop: window.pageYOffset || document.documentElement.scrollTop,
     duration: {
-        tick: 0.15,
+        show: '0.2',
+        hide: '0.1',
+        tick: 0.1,
     },
     size: {
         basic: '0.2rem',
