@@ -3,16 +3,12 @@ import $ from 'jquery';
 const options = {
     cursor: $('#cursor'),
     cursorIcon: $('#cursorIcon'),
-    eventTargets: {
-        hover: $('.cursor--hover'),
-        characters: $('.cursor--characters'),
-        sticky: $('.cursor--sticky'),
-    },
-    iconName: '',
+    eventsTarget: $('[data-cursor-events]'),
     position: { x: 0, y: 0 },
-    scrollTop: window.pageYOffset || document.documentElement.scrollTop,
     duration: {
-        tick: 0.15,
+        show: '0.2',
+        hide: '0.1',
+        tick: 0.1,
     },
     size: {
         basic: '0.2rem',

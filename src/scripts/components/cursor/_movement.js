@@ -5,69 +5,67 @@ import { TweenMax } from 'gsap';
 import options from './options';
 
 export default class Movement {
-    constructor({ cursor, scrollTop, position, duration: { tick: tickDuration } } = options) {
+    constructor({
+        cursor,
+        position,
+        duration: { show: showDuration, hide: hideDuration, tick: tickDuration },
+    } = options) {
         this.cursor = cursor;
-        this.scrollTop = scrollTop;
+        this.scrollTop = 0;
         this.position = position;
+        this.showDuration = showDuration;
+        this.hideDuration = hideDuration;
         this.tickDuration = tickDuration;
-        this.tickTweenDuration = 0;
         this.cursorHide = true;
     }
 
-    getRealMousePosition(e) {
-        this.position.x = e.pageX;
-        this.position.y = e.pageY - this.scrollTop;
+    getScrollTopSize() {
+        this.scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     }
 
-    moveAnimation(duration) {
-        TweenMax.to(this.cursor, duration, {
+    moveAnimation(e) {
+        this.position.x = e.pageX;
+        this.position.y = e.pageY - this.scrollTop;
+
+        TweenMax.to(this.cursor, this.cursorHide ? 0 : this.tickDuration, {
             x: this.position.x,
             y: this.position.y,
         });
     }
 
     showCursor() {
-        TweenMax.to(this.cursor, 0.1, {
+        TweenMax.to(this.cursor, this.showDuration, {
             alpha: 1,
-            onComplete: () => {
-                this.tickTweenDuration = this.tickDuration;
-            },
         });
 
         this.cursorHide = false;
     }
 
     hideCursor() {
-        TweenMax.set(this.cursor, { alpha: 0 });
+        TweenMax.to(this.cursor, this.hideDuration, { alpha: 0 });
 
-        this.tickTweenDuration = 0;
         this.cursorHide = true;
     }
 
     init() {
-        // Set ticker listener for change position of magic cursor
-        TweenMax.ticker.addEventListener('tick', () => {
-            this.moveAnimation(this.tickTweenDuration);
-        });
-
-        // If real cursor moving - change position of magic cursor
+        // If the real cursor moving - change position of the magic cursor
         document.addEventListener('mousemove', (e) => {
-            this.getRealMousePosition(e);
+            this.moveAnimation(e);
 
-            // Show magic cursor if hidden
+            // Show the magic cursor if it is hidden
             if (this.cursorHide) {
                 this.showCursor();
             }
         });
 
-        // If cursor enter document - show
-        document.addEventListener('mouseenter', () => {
-            this.showCursor();
-        });
-
-        // If cursor leave document - hide
+        // Hide the cursor if it is leave the document
         document.addEventListener('mouseleave', () => {
             this.hideCursor();
+        });
+
+        // Document scroll
+        document.addEventListener('scroll', () => {
+            this.getScrollTopSize();
         });
     }
 }

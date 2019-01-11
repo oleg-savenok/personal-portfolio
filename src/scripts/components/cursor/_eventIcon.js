@@ -3,10 +3,10 @@ import { TweenMax } from 'gsap';
 import options from './options';
 
 export default class EventIcon {
-    constructor({ cursor, cursorIcon, iconName, size: { icon: sizeIcon } } = options) {
+    constructor({ cursor, cursorIcon, size: { icon: sizeIcon } } = options) {
         this.cursor = cursor;
         this.cursorIcon = cursorIcon;
-        this.iconName = iconName;
+        this.iconName = '';
         this.sizeIcon = sizeIcon;
     }
 

@@ -17,25 +17,38 @@ import EventCharacters from './_eventCharacters';
 import EventSticky from './_eventSticky';
 
 export default class Cursor {
-    constructor({
-        eventTargets: { characters: eventCharactersTarget, hover: eventHoverTarget, sticky: eventStickyTarget },
-    } = options) {
-        // Events targets
-        this.eventCharactersTarget = eventCharactersTarget;
-        this.eventHoverTarget = eventHoverTarget;
-        this.eventStickyTarget = eventStickyTarget;
+    constructor() {
+        // Target
+        this.eventsTarget = options.eventsTarget;
 
         // Movement
         this.movement = new Movement();
 
         // States
         this.stateDefault = new StateDefault();
-        this.stateIcon = new StateIcon();
 
         // Events
-        this.eventCharacters = new EventCharacters(this.eventCharactersTarget);
+        this.eventCharacters = new EventCharacters(this.eventsTarget);
         this.eventSticky = new EventSticky();
         this.eventHover = new EventHover();
+    }
+
+    eventRouter(name, e) {
+        const dataset = e.target.dataset.cursorEvents.split(' ');
+
+        if (dataset.indexOf('hover') !== -1) {
+            if (name === 'mouseenter') this.eventHover.hover();
+            else if (name === 'mouseleave') this.eventHover.unhover();
+        }
+
+        if (dataset.indexOf('sticky') !== -1) {
+            if (name === 'mousemove') this.eventSticky.move(e);
+            else if (name === 'mouseleave') this.eventSticky.return(e);
+        }
+
+        if (dataset.indexOf('characters') !== -1) {
+            if (name === 'mouseenter') this.eventCharacters.animateLetters(e);
+        }
     }
 
     init() {
@@ -52,27 +65,16 @@ export default class Cursor {
 
         /* Set Listeners --------------------------------*/
 
-        // for characters event
-        this.eventCharactersTarget.on('mouseenter', (e) => {
-            this.eventCharacters.animateLetters(e);
-        });
-
         // for hover event
-        this.eventHoverTarget
-            .on('mouseenter', () => {
-                this.eventHover.hover();
+        this.eventsTarget
+            .on('mouseenter', (e) => {
+                this.eventRouter('mouseenter', e);
             })
-            .on('mouseleave', () => {
-                this.eventHover.unhover();
-            });
-
-        // for sticky event
-        this.eventStickyTarget
             .on('mousemove', (e) => {
-                this.eventSticky.move(e);
+                this.eventRouter('mousemove', e);
             })
             .on('mouseleave', (e) => {
-                this.eventSticky.return(e);
+                this.eventRouter('mouseleave', e);
             });
     }
 }
