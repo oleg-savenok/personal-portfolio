@@ -13,18 +13,18 @@ export default class EventSticky {
             targetParam,
             speed: { start: startSpeed, end: endSpeed },
         },
-        scrollTop,
     } = options) {
         this.degree = degree;
         this.positionDifference = positionDifference;
         this.targetParam = targetParam;
-        this.scrollTop = scrollTop;
+        this.scrollTop = 0;
         this.startSpeed = startSpeed;
         this.endSpeed = endSpeed;
     }
 
     move(e) {
         this.targetParam = e.target.getBoundingClientRect();
+        this.scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
         this.positionDifference = {
             x: e.pageX - this.targetParam.left, // position difference between cursor and target element

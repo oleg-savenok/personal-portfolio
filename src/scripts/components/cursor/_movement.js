@@ -7,17 +7,20 @@ import options from './options';
 export default class Movement {
     constructor({
         cursor,
-        scrollTop,
         position,
         duration: { show: showDuration, hide: hideDuration, tick: tickDuration },
     } = options) {
         this.cursor = cursor;
-        this.scrollTop = scrollTop;
+        this.scrollTop = 0;
         this.position = position;
         this.showDuration = showDuration;
         this.hideDuration = hideDuration;
         this.tickDuration = tickDuration;
         this.cursorHide = true;
+    }
+
+    getScrollTopSize() {
+        this.scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     }
 
     moveAnimation(e) {
@@ -58,6 +61,11 @@ export default class Movement {
         // Hide the cursor if it is leave the document
         document.addEventListener('mouseleave', () => {
             this.hideCursor();
+        });
+
+        // Document scroll
+        document.addEventListener('scroll', () => {
+            this.getScrollTopSize();
         });
     }
 }

@@ -5,7 +5,6 @@ const options = {
     cursorIcon: $('#cursorIcon'),
     eventsTarget: $('[data-cursor-events]'),
     position: { x: 0, y: 0 },
-    scrollTop: window.pageYOffset || document.documentElement.scrollTop,
     duration: {
         show: '0.2',
         hide: '0.1',
