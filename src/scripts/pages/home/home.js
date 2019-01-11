@@ -5,7 +5,7 @@ import EventIcon from '../../components/cursor/_eventIcon';
 import EventDrag from '../../components/cursor/_eventDrag';
 import StateDefault from '../../components/cursor/_stateDefault';
 
-import { Swiper } from 'swiper/dist/js/swiper.esm.js';
+import Swiper from 'swiper/dist/js/swiper';
 import 'swiper/dist/css/swiper.css';
 import swiperOptions from './swiperOptions';
 
@@ -22,14 +22,14 @@ export default class Home {
 
         // Selectors
         this.projects = '#projects';
-        this.swiperSelector = '#projectsSlider';
-        this.swiperItems = '.projects__slider__item';
-        this.swiperItemLink = '.projects__slider__item a';
+        this.projectsSwiper = '#projectsSwiper';
+        this.projectsItems = '.projects__swiper__item';
+        this.projectsItemLinks = '.projects__swiper__item a';
     }
 
     addHoverListeners() {
-        $(this.swiperSelector).on('mouseenter', this.swiperItemLink, (e) => {
-            TweenMax.to(this.swiperItemLink, 0.4, {
+        $(this.projectsSwiper).on('mouseenter', this.projectsItemLinks, (e) => {
+            TweenMax.to(this.projectsItemLinks, 0.4, {
                 alpha: 0.3,
             });
 
@@ -38,8 +38,8 @@ export default class Home {
             });
         });
 
-        $(this.swiperSelector).on('mouseleave', this.swiperItemLink, () => {
-            TweenMax.to(this.swiperItemLink, 0.5, {
+        $(this.projectsSwiper).on('mouseleave', this.projectsItemLinks, () => {
+            TweenMax.to(this.projectsItemLinks, 0.5, {
                 alpha: 1,
             });
         });
@@ -47,7 +47,7 @@ export default class Home {
 
     addSwiperListeners() {
         this.swiper.on('touchMove', () => {
-            TweenMax.to($(this.swiperItemLink), 0.5, {
+            TweenMax.to($(this.projectsItemLinks), 0.5, {
                 opacity: 1,
             });
             this.eventDrag.drag();
@@ -63,17 +63,17 @@ export default class Home {
     }
 
     addIconListeners() {
-        $(this.projects).on('mouseover', '#projectsSlider', (e) => {
+        $(this.projects).on('mouseover', '#projectsSwiper', (e) => {
             this.eventIcon.start(e);
         });
 
-        $(this.projects).on('mouseout', '#projectsSlider', () => {
+        $(this.projects).on('mouseout', '#projectsSwiper', () => {
             this.stateDefault.start();
         });
     }
 
     clearListeners() {
-        $(this.swiperSelector)
+        $(this.projectsSwiper)
             .off('mouseenter')
             .off('mouseleave')
             .off('mouseover')
@@ -81,14 +81,14 @@ export default class Home {
     }
 
     initSwiper() {
-        this.swiperSelector = '#projectsSlider';
+        this.projectsSwiper = '#projectsSwiper';
 
         setTimeout(() => {
-            $(this.swiperItems).each(function() {
+            $(this.projectsItems).each(function() {
                 $(this).css('width', $(this).css('width'));
             });
 
-            this.swiper = new Swiper($(this.swiperSelector), this.swiperOptions);
+            this.swiper = new Swiper($(this.projectsSwiper), this.swiperOptions);
 
             this.addSwiperListeners();
             this.addHoverListeners();

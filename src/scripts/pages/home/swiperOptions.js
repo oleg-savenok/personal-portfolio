@@ -1,12 +1,18 @@
 const swiperOptions = {
     containerModifierClass: 'projects__container-',
-    wrapperClass: 'projects__slider',
-    slideClass: 'projects__slider__item',
+    wrapperClass: 'projects__swiper',
+    slideClass: 'projects__swiper__item',
+    slideActiveClass: 'item--active',
+    slideVisibleClass: 'item--visible',
+    slideDuplicateClass: 'duplicate',
+    slideDuplicateActiveClass: 'duplicate--active',
+    slidePrevClass: 'item--prev',
+    slideNextClass: 'item--next',
+    slideDuplicatePrevClass: 'duplicate--prev',
+    slideDuplicateNextClass: 'duplicate--next',
     spaceBetween: window.innerWidth / 6,
     slidesPerView: 'auto',
     loop: true,
-    loopedSlides: 5,
-    //freeMode: true,
     pagination: false,
     keyboard: {
         enabled: true,
@@ -15,7 +21,7 @@ const swiperOptions = {
     centeredSlides: true,
     mousewheel: true,
     mousewheelControl: true,
-    speed: 1000,
+    speed: 800,
 };
 
 export default swiperOptions;
