@@ -50,21 +50,21 @@
 
         <header id="header" class="header" style="opacity: 0;">
             <h1 class="header__logo">
-                <a class="cursor--hover cursor--characters cursor--sticky" data-router-link="index" href="/">o.sa.</a>
+                <a data-router-link="index" data-cursor-events="hover characters sticky"  href="/">o.sa.</a>
             </h1>
 
             <nav class="header__nav">
                 <ul class="header__nav__list">
                     <li class="header__nav__list__item">
                         <a
-                            class="cursor--sticky cursor--characters cursor--hover"
+                            data-cursor-events="hover characters sticky"
                             data-router-link="about"
                             href="/about">about</a>
                     </li>
 
                     <li class="header__nav__list__item">
                         <a
-                            class="cursor--sticky cursor--characters cursor--hover"
+                            data-cursor-events="hover characters sticky"
                             data-router-link="contact"
                             href="/contact">contact</a>
                     </li>
@@ -100,18 +100,13 @@
                 </div>
             </div>
 
-            <div class="projects__controls">
-                <div id="projectsControlsPrev" class="cursor-icon-arrow_back projects__controls__prev"></div>
-                <div id="projectsControlsNext" class="cursor-icon-arrow_forward projects__controls__next"></div>
-            </div>
-
         </div>
 
         <!-- Footer --------------------------------------------------------------------------------------------------->
 
         <footer id="footer" class="footer" style="opacity: 0;">
             <div id="footerEventButton" class="footer__event-button">
-                <p class="footer__event-button__item cursor--hover">drag or scroll to discover</p>
+                <p class="footer__event-button__item" data-cursor-events="hover">drag or scroll to discover</p>
             </div>
         </footer>
 

@@ -26,13 +26,18 @@ export default class EventCharacters {
 
     // Split of word into characters
     init() {
-        this.targets.each(function() {
-            let text = $(this).text();
-            for (let i = 0; i < text.length; i++) {
-                if (i === 0) {
-                    $(this).html('');
+        const targets = this.targets;
+
+        targets.each((index) => {
+            if (targets[index].dataset.cursorEvents.indexOf('characters') !== -1) {
+                const text = targets[index].innerHTML;
+
+                for (let i = 0; i < text.length; i++) {
+                    if (i === 0) {
+                        targets[index].innerHTML = '';
+                    }
+                    targets[index].innerHTML += `<span class="character">${text.charAt(i)}</span>`;
                 }
-                $(this).append(`<span class="character">${text.charAt(i)}</span>`);
             }
         });
     }

@@ -81,6 +81,6 @@ $cursor-size: 0.2rem;
 
 // States
 
-.cursor--sticky {
+[data-cursor-events] {
     display: block;
 }
