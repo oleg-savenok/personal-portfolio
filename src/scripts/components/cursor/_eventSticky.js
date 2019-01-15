@@ -7,6 +7,7 @@ import options from './options';
 
 export default class EventSticky {
     constructor({
+        cursorIcon,
         sticky: {
             degree,
             positionDifference,
@@ -14,12 +15,19 @@ export default class EventSticky {
             speed: { start: startSpeed, end: endSpeed },
         },
     } = options) {
+        this.cursorIcon = cursorIcon;
         this.degree = degree;
         this.positionDifference = positionDifference;
         this.targetParam = targetParam;
         this.scrollTop = 0;
         this.startSpeed = startSpeed;
         this.endSpeed = endSpeed;
+    }
+
+    hiddenIcon() {
+        TweenMax.to(this.cursorIcon, 0.1, {
+            alpha: 0,
+        });
     }
 
     move(e) {
@@ -38,6 +46,8 @@ export default class EventSticky {
                 this.degree,
             ease: Power2.easeOut,
         });
+
+        this.hiddenIcon();
     }
 
     return(e) {
