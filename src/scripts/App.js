@@ -39,7 +39,7 @@ export default class App {
         };
 
         // Router
-        this.router = new Router(this.pages);
+        this.router = new Router(this.pages, this.preloader);
 
         // Components
         this.consoleMessage = consoleMessage;
