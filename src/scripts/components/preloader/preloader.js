@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import { TweenMax, TimelineLite } from 'gsap';
 
+import EventLoader from '../cursor/_eventLoader';
+
 export default class Preloader {
     constructor() {
         this.targets = {
@@ -18,6 +20,8 @@ export default class Preloader {
 
         this.showHeader = null;
         this.showFooter = null;
+
+        this.eventLoader = new EventLoader();
     }
 
     defineTweens() {
@@ -57,10 +61,16 @@ export default class Preloader {
             TweenMax.set(footer, { bottom: -15 });
 
             new TimelineLite()
-                .add(this.progressShow)
+                .eventCallback('onStart', () => {
+                    this.eventLoader.start();
+                })
+                .add(this.progressShow, '+=0.25')
                 .add(this.progressHide)
                 .add(this.showFooter, '-=1')
-                .add(this.showHeader, '-=0.75');
+                .add(this.showHeader, '-=0.75')
+                .eventCallback('onComplete', () => {
+                    this.eventLoader.end();
+                });
         } else {
             TweenMax.set([header, footer, projects], {
                 clearProps: 'all',
@@ -70,9 +80,11 @@ export default class Preloader {
 
     show() {
         new TimelineLite().add(this.progressShow);
+        this.eventLoader.start();
     }
 
     hide() {
         new TimelineLite().add(this.progressHide);
+        this.eventLoader.end();
     }
 }
