@@ -1,18 +1,16 @@
-import $ from 'jquery';
 import { TweenMax } from 'gsap';
 
 export default class EventCharacters {
     constructor(targets) {
         this.targets = targets;
-        this.letters = '';
     }
 
     animateLetters(e) {
-        this.letters = Array.from(e.target.children);
+        const letters = Array.from(e.target.children);
 
-        TweenMax.set(this.letters, { alpha: 0 });
+        TweenMax.set(letters, { alpha: 0 });
         TweenMax.staggerTo(
-            this.letters,
+            letters,
             1.5,
             {
                 ease: Elastic.easeOut.config(1, 0.4),
@@ -24,19 +22,27 @@ export default class EventCharacters {
         );
     }
 
-    // Split of word into characters
     init() {
         const targets = this.targets;
 
         targets.each((index) => {
             if (targets[index].dataset.cursorEvents.indexOf('characters') !== -1) {
-                const text = targets[index].innerHTML;
+                // Get all text from link
+                const linkText = targets[index].innerHTML;
 
-                for (let i = 0; i < text.length; i++) {
-                    if (i === 0) {
-                        targets[index].innerHTML = '';
-                    }
-                    targets[index].innerHTML += `<span class="character">${text.charAt(i)}</span>`;
+                // Empty link
+                targets[index].innerHTML = null;
+
+                for (let i = 0; i < linkText.length; i++) {
+                    // Create span for adding character into link
+                    const char = document.createElement('span');
+
+                    // Add class name and content for span
+                    char.className = 'character';
+                    char.innerText = linkText.charAt(i);
+
+                    // Finally append single character into link
+                    targets[index].append(char);
                 }
             }
         });
