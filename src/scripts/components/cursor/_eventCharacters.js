@@ -28,7 +28,7 @@ export default class EventCharacters {
         targets.each((index) => {
             if (targets[index].dataset.cursorEvents.indexOf('characters') !== -1) {
                 // Get all text from link
-                const linkText = targets[index].innerHTML;
+                const linkText = targets[index].innerText;
 
                 // Empty link
                 targets[index].innerHTML = null;
