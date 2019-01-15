@@ -5,11 +5,11 @@ import $ from 'jquery';
 import Link from './link';
 
 export default class Router {
-    constructor(pages) {
+    constructor(pages, preloader) {
         this.linksTarget = $('[data-router-link]');
         this.pageName = $('body').attr('data-page-name');
 
-        this.link = new Link(pages);
+        this.link = new Link(pages, preloader);
     }
 
     pushDefaultState() {

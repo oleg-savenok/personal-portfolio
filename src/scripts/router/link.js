@@ -1,8 +1,9 @@
 import $ from 'jquery';
 
 export default class Link {
-    constructor(pages) {
+    constructor(pages, preloader) {
         this.pages = pages;
+        this.preloader = preloader;
         this.body = $('body');
         this.page = $('#page');
     }
@@ -12,21 +13,27 @@ export default class Link {
     }
 
     loadPage(link) {
+        this.preloader.show();
+
         $.ajax({
             url: `${link}.html`,
             success: (response) => {
-                // Loading page
-                this.page.html(
-                    $(response)
-                        .filter('#page')
-                        .html()
-                );
+                setTimeout(() => {
+                    // Loading page
+                    this.page.html(
+                        $(response)
+                            .filter('#page')
+                            .html()
+                    );
 
-                // Set page name for body
-                this.body.attr('data-page-name', link);
+                    // Set page name for body
+                    this.body.attr('data-page-name', link);
 
-                // Init loaded page
-                this.pages[link].render();
+                    // Init loaded page
+                    this.pages[link].render();
+                }, 2000);
+
+                setTimeout(() => this.preloader.hide(), 2500);
             },
         });
     }

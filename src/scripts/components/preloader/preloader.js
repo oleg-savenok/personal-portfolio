@@ -8,69 +8,71 @@ export default class Preloader {
             footer: $('#footer'),
             projects: $('#projects'),
             preloader: $('#preloader'),
+            progress: $('#preloader .preloader__progress'),
         };
 
         this.positions = {
             headerTop: this.targets.header.css('top'),
             footerBottom: this.targets.footer.css('bottom'),
         };
+
+        this.showHeader = null;
+        this.showFooter = null;
+    }
+
+    defineTweens() {
+        const { header, footer, preloader, progress } = this.targets;
+        const { headerTop, footerBottom } = this.positions;
+
+        this.progressShow = new TimelineLite()
+            .set(preloader, { pointerEvents: 'all' })
+            .set(progress, { clearProps: 'top', bottom: 0 })
+            .to(progress, 2, { height: '100%' });
+
+        this.progressHide = new TimelineLite()
+            .set(progress, { clearProps: 'bottom', top: 0, immediateRender: false })
+            .to(progress, 1, { height: 0, ease: Power3.easeOut })
+            .set(preloader, { pointerEvents: 'none' }, '-=0.75');
+
+        this.showHeader = TweenMax.to(header, 1, {
+            alpha: 1,
+            top: headerTop,
+            ease: Power2.easeOut,
+        });
+
+        this.showFooter = TweenMax.to(footer, 1, {
+            alpha: 1,
+            bottom: footerBottom,
+            ease: Power2.easeOut,
+        });
     }
 
     firstLoading(enable) {
-        const { header, footer, projects, preloader } = this.targets;
-        const { headerTop, footerBottom } = this.positions;
+        const { header, footer, projects } = this.targets;
+
+        this.defineTweens();
 
         if (enable) {
-            TweenMax.set(header, {
-                top: -15,
-            });
+            TweenMax.set(header, { top: -15 });
+            TweenMax.set(footer, { bottom: -15 });
 
-            TweenMax.set(footer, {
-                bottom: -15,
-            });
-
-            let tl = new TimelineLite();
-
-            tl.set(preloader, {
-                clearProps: 'top',
-                bottom: 0,
-            })
-                .to(preloader, 2, {
-                    height: '100%',
-                    delay: 1,
-                })
-                .set(preloader, {
-                    clearProps: 'bottom',
-                    top: 0,
-                })
-                .to(preloader, 1, {
-                    height: 0,
-                    ease: Power3.easeOut,
-                })
-                .to(
-                    footer,
-                    1,
-                    {
-                        alpha: 1,
-                        bottom: footerBottom,
-                        ease: Power2.easeOut,
-                    },
-                    '-=1'
-                )
-                .to(
-                    header,
-                    1,
-                    {
-                        alpha: 1,
-                        top: headerTop,
-                        ease: Power2.easeOut,
-                    },
-                    '=-0.75'
-                );
+            new TimelineLite()
+                .add(this.progressShow)
+                .add(this.progressHide)
+                .add(this.showFooter, '-=1')
+                .add(this.showHeader, '-=0.75');
         } else {
             TweenMax.set([header, footer, projects], {
                 clearProps: 'all',
             });
         }
+    }
+
+    show() {
+        new TimelineLite().add(this.progressShow);
+    }
+
+    hide() {
+        new TimelineLite().add(this.progressHide);
     }
 }
