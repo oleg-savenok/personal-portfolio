@@ -3,6 +3,7 @@ import $ from 'jquery';
 const options = {
     cursor: $('#cursor'),
     cursorIcon: $('#cursorIcon'),
+    cursorSpiner: $('.cursor__spiner'),
     eventsTarget: $('[data-cursor-events]'),
     position: { x: 0, y: 0 },
     duration: {

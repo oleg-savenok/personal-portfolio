@@ -44,6 +44,7 @@ export default class Cursor {
         if (dataset.indexOf('sticky') !== -1) {
             if (name === 'mousemove') this.eventSticky.move(e);
             else if (name === 'mouseleave') this.eventSticky.return(e);
+            else if (name === 'click') this.eventSticky.return(e);
         }
 
         if (dataset.indexOf('characters') !== -1) {
@@ -75,6 +76,9 @@ export default class Cursor {
             })
             .on('mouseleave', (e) => {
                 this.eventRouter('mouseleave', e);
+            })
+            .on('click', (e) => {
+                this.eventRouter('click', e);
             });
     }
 }
