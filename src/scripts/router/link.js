@@ -13,27 +13,29 @@ export default class Link {
     }
 
     loadPage(link) {
-        this.preloader.show();
+        const { pages, preloader, body, page } = this;
+
+        preloader.show();
 
         $.ajax({
             url: `${link}.html`,
             success: (response) => {
                 setTimeout(() => {
                     // Loading page
-                    this.page.html(
+                    page.html(
                         $(response)
                             .filter('#page')
                             .html()
                     );
 
                     // Set page name for body
-                    this.body.attr('data-page-name', link);
+                    body.attr('data-page-name', link);
 
                     // Init loaded page
-                    this.pages[link].render();
+                    pages[link].render();
                 }, 2000);
 
-                setTimeout(() => this.preloader.hide(), 2500);
+                setTimeout(() => preloader.hide(pages[link]), 2500);
             },
         });
     }

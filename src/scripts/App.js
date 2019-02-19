@@ -64,9 +64,6 @@ export default class App {
         // Set color theme
         this.setTheme();
 
-        // Init preloader for first page loading animation
-        this.preloader.firstLoading(true);
-
         // Init magic cursor if the device is not touch
         this.initCursor();
 

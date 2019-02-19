@@ -57,32 +57,30 @@ export default class Preloader {
         });
     }
 
-    firstLoading(enable) {
-        const { header, footer, projects } = this.targets;
+    firstLoading(page) {
+        const { header, footer } = this.targets;
+        this.showPageAnimation = page.showPageAnimation;
 
         this.defineTweens();
 
-        if (enable) {
-            TweenMax.set(header, { top: -15 });
-            TweenMax.set(footer, { bottom: -15 });
+        TweenMax.set(header, { top: -15 });
+        TweenMax.set(footer, { bottom: -15 });
 
-            new TimelineLite()
-                .add(this.progressShow, '+=0.25')
-                .add(this.progressHide)
-                .add(this.showFooter, '-=1')
-                .add(this.showHeader, '-=0.75');
-        } else {
-            TweenMax.set([header, footer, projects], {
-                clearProps: 'all',
-            });
-        }
+        new TimelineLite()
+            .add(this.progressShow, '+=0.25')
+            .add(this.progressHide)
+            .add(this.showFooter, '-=1')
+            .add(this.showHeader, '-=0.75')
+            .add(this.showPageAnimation, '-=1');
     }
 
     show() {
         new TimelineLite().add(this.progressShow);
     }
 
-    hide() {
-        new TimelineLite().add(this.progressHide);
+    hide(page) {
+        this.showPageAnimation = page.showPageAnimation;
+
+        new TimelineLite().add(this.progressHide).add(this.showPageAnimation, '-=0.75');
     }
 }
