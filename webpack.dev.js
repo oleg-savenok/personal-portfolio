@@ -1,7 +1,7 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const minifyOptions = false;
 
 module.exports = merge(common, {
     mode: 'development',
@@ -11,9 +11,4 @@ module.exports = merge(common, {
         contentBase: './public/',
         port: 8000,
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './public/index.html',
-        }),
-    ],
 });
