@@ -9,7 +9,10 @@ export default class Router {
         this.linksTarget = $('[data-router-link]');
         this.pageName = $('body').attr('data-page-name');
 
-        this.link = new Link(pages, preloader);
+        this.preloader = preloader;
+        this.pages = pages;
+
+        this.link = new Link(this.pages, this.preloader);
     }
 
     pushDefaultState() {
@@ -38,9 +41,16 @@ export default class Router {
         });
     }
 
+    firstLoading() {
+        const { preloader, pages, pageName } = this;
+
+        preloader.firstLoading(pages[pageName]);
+    }
+
     init() {
         this.pushDefaultState();
         this.initPopEvent();
         this.initLinksEvent();
+        this.firstLoading();
     }
 }
