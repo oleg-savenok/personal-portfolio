@@ -1,0 +1,17 @@
+header.header#header(style='opacity: 0;')
+	h1(style='display: none;') Oleg Savenok
+	h2.header__logo
+		a(data-router-link='index' data-cursor-events='hover characters sticky' href='/') o.sa.
+
+	.header__theme-btn
+		.header__theme-btn__dots
+			.header__theme-btn__dots__item
+			.header__theme-btn__dots__item
+		p.header__theme-btn__text light
+
+	nav.header__nav
+		ul.header__nav__list
+			li.header__nav__list__item
+				a(data-cursor-events='hover characters sticky' data-router-link='about' href='/about') about
+			li.header__nav__list__item
+				a(data-cursor-events='hover characters sticky' data-router-link='contact' href='/contact') contact

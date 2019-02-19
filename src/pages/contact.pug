@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+	head
+		title Oleg Savenok • Creative Developer & UI Designer
+
+		//-
+					Meta tags with common page information and
+					social media tags for share the page link
+		include components/common/meta-tags
+		include components/common/social-media
+
+	body(data-page-name='contact' style='overflow-x: hidden; background-color: #050505;')
+
+		// Header ------------------------------------------------------------------------------------------------------
+		include components/header
+
+		// Page --------------------------------------------------------------------------------------------------------
+		#page.page(style='overflow: hidden; text-align: center;')
+			h2 Contact page
+
+		// Footer ------------------------------------------------------------------------------------------------------
+		footer#footer.footer(style='opacity: 0;')
+			#footerEventButton.footer__event-button
+				p.footer__event-button__item(data-cursor-events='hover') drag or scroll to discover
+
+		.project-loading
+			#projectLoadingProgress.project-loading__percent
+
+		// Preloader ---------------------------------------------------------------------------------------------------
+		include components/preloader
+
+		// Cursor ------------------------------------------------------------------------------------------------------
+		include components/cursor
+
+
+		// External links ----------------------------------------------------------------------------------------------
+		include components/common/external-links
