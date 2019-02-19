@@ -27,6 +27,14 @@ export default class Home {
         this.projectsItemLinks = '.projects__swiper__item a';
     }
 
+    showPageAnimation() {
+        this.projects = '#projects';
+
+        return TweenMax.to(this.projects, 1, {
+            alpha: 1,
+        });
+    }
+
     addHoverListeners() {
         $(this.projectsSwiper).on('mouseenter', this.projectsItemLinks, (e) => {
             TweenMax.to(this.projectsItemLinks, 0.4, {
