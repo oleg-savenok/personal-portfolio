@@ -2,55 +2,58 @@
 import $ from 'jquery';
 
 // Components
-import Link from './link';
+import Loading from './_loading';
+import History from './_history';
 
 export default class Router {
     constructor(pages, preloader) {
-        this.linksTarget = $('[data-router-link]');
+        this.pages = pages;
+        this.preloader = preloader;
+        this.page = $('#page');
         this.pageName = $('body').attr('data-page-name');
 
         this.preloader = preloader;
         this.pages = pages;
 
-        this.link = new Link(this.pages, this.preloader);
+        this.history = new History(pages);
+        this.loading = new Loading(pages, preloader);
     }
 
-    pushDefaultState() {
-        const historyURL = this.pageName !== 'index' ? this.pageName : '/';
-
-        history.pushState(
-            {
-                link: this.pageName,
-            },
-            '',
-            historyURL
-        );
-    }
-
-    initPopEvent() {
-        window.onpopstate = (e) => {
-            this.link.popEvent(e.state.link);
-        };
-    }
-
-    initLinksEvent() {
-        this.linksTarget.click((e) => {
+    initLinksEventListener(currentPage) {
+        $('[data-router-link]').on('click', (e) => {
             e.preventDefault();
 
-            this.link.linkEvent(e.target.dataset.routerLink);
+            this.pageName = $('body').attr('data-page-name');
+            const link = e.target.dataset.routerLink;
+
+            if (this.pageName !== link) {
+                this.history.cleanUpTrash(currentPage);
+                console.log(e);
+                this.loading.loadPage(link);
+                this.history.pushState(link);
+            }
         });
     }
 
-    firstLoading() {
-        const { preloader, pages, pageName } = this;
+    initPopEventListener() {
+        window.onpopstate = (e) => {
+            this.history.cleanUpTrash(this.pageName);
+            this.loading.loadPage(e.state.link);
+        };
+    }
 
-        preloader.firstLoading(pages[pageName]);
+    initDefaultState(link) {
+        this.history.pushState(link);
     }
 
     init() {
-        this.pushDefaultState();
-        this.initPopEvent();
-        this.initLinksEvent();
-        this.firstLoading();
+        const { loading, preloader, pages, pageName } = this;
+
+        this.initDefaultState(pageName);
+        this.initLinksEventListener(pageName);
+        this.initPopEventListener();
+
+        preloader.firstLoading(pages[pageName]);
+        loading.initLoadingListener();
     }
 }
