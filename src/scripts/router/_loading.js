@@ -1,30 +1,37 @@
 import $ from 'jquery';
 
 export default class Loading {
-    constructor(pages, preloader) {
+    constructor(pages) {
+        // Pages array
         this.pages = pages;
-        this.preloader = preloader;
     }
 
     loadPage(link, history) {
         $.ajax({
             url: `${link}.html`,
-            success: (response) => {
-                // Loading page
+            success: (res) => {
+                // Loading page and replace
+                // content on current page
                 $('#page').html(
-                    $(response)
+                    $(res)
                         .filter('#page')
                         .html()
                 );
 
-                // Set page name for body
-                $('body').attr('data-page-name', link);
+                // Change route in address bar
+                history.pushState(link);
 
                 // Init loaded page
                 this.pages[link].render();
 
-                // Change route in address bar
-                history.pushState(link);
+                // Set page name for body
+                $('body').attr('data-page-name', link);
+            },
+            error: (res) => {
+                console.error(
+                    `Hmm, so weird, but the router confused, he's said: ${res.status} (${res.statusText})`,
+                    res
+                );
             },
         });
     }

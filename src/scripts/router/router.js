@@ -7,16 +7,16 @@ import History from './_history';
 
 export default class Router {
     constructor(pages, preloader) {
-        this.pages = pages;
-        this.preloader = preloader;
-        this.page = $('#page');
+        // Current page name
         this.pageName = $('body').attr('data-page-name');
-
-        this.preloader = preloader;
+        // Pages array
         this.pages = pages;
+        // Link to preloader module
+        this.preloader = preloader;
 
+        // Init router modules
         this.history = new History(pages);
-        this.loading = new Loading(pages, preloader);
+        this.loading = new Loading(pages);
     }
 
     initLinksEventListener(currentPage) {
@@ -37,14 +37,17 @@ export default class Router {
     }
 
     initPopEventListener() {
+        const { pageName, history, loading } = this;
+
         window.onpopstate = (e) => {
-            this.history.cleanUpTrash(this.pageName);
-            this.loading.loadPage(e.state.link);
+            history.cleanUpTrash(pageName);
+            loading.loadPage(e.state.link);
         };
     }
 
     initDefaultState(link) {
-        this.history.pushState(link);
+        const { history } = this;
+        history.pushState(link);
     }
 
     init() {
