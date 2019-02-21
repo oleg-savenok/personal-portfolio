@@ -20,17 +20,18 @@ export default class Router {
     }
 
     initLinksEventListener(currentPage) {
+        let { pageName } = this;
+        const { history, loading } = this;
+
         $('[data-router-link]').on('click', (e) => {
             e.preventDefault();
 
-            this.pageName = $('body').attr('data-page-name');
+            pageName = $('body').attr('data-page-name');
             const link = e.target.dataset.routerLink;
 
-            if (this.pageName !== link) {
-                this.history.cleanUpTrash(currentPage);
-                console.log(e);
-                this.loading.loadPage(link);
-                this.history.pushState(link);
+            if (pageName !== link) {
+                history.cleanUpTrash(currentPage);
+                loading.loadPage(link, history);
             }
         });
     }
@@ -47,13 +48,12 @@ export default class Router {
     }
 
     init() {
-        const { loading, preloader, pages, pageName } = this;
+        const { preloader, pages, pageName } = this;
 
         this.initDefaultState(pageName);
         this.initLinksEventListener(pageName);
         this.initPopEventListener();
 
         preloader.firstLoading(pages[pageName]);
-        loading.initLoadingListener();
     }
 }

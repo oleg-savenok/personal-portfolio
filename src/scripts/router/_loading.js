@@ -6,7 +6,7 @@ export default class Loading {
         this.preloader = preloader;
     }
 
-    loadPage(link) {
+    loadPage(link, history) {
         $.ajax({
             url: `${link}.html`,
             success: (response) => {
@@ -22,6 +22,9 @@ export default class Loading {
 
                 // Init loaded page
                 this.pages[link].render();
+
+                // Change route in address bar
+                history.pushState(link);
             },
         });
     }
