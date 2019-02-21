@@ -13,11 +13,6 @@ export default class Preloader {
             progress: $('#preloader .preloader__progress'),
         };
 
-        this.positions = {
-            headerTop: this.targets.header.css('top'),
-            footerBottom: this.targets.footer.css('bottom'),
-        };
-
         this.showHeader = null;
         this.showFooter = null;
 
@@ -26,7 +21,6 @@ export default class Preloader {
 
     defineTweens() {
         const { header, footer, preloader, progress } = this.targets;
-        const { headerTop, footerBottom } = this.positions;
 
         this.progressShow = new TimelineLite()
             .set(preloader, { pointerEvents: 'all' })
@@ -44,27 +38,50 @@ export default class Preloader {
                 this.eventLoader.end();
             });
 
-        this.showHeader = TweenMax.to(header, 1, {
-            alpha: 1,
-            top: headerTop,
-            ease: Power2.easeOut,
-        });
+        this.showHeader = new TimelineLite()
+            .from(header, 1, {
+                top: -15,
+                ease: Power2.easeOut,
+            })
+            .to(
+                header,
+                1,
+                {
+                    alpha: 1,
+                    ease: Power2.easeOut,
+                },
+                '0'
+            );
 
-        this.showFooter = TweenMax.to(footer, 1, {
-            alpha: 1,
-            bottom: footerBottom,
-            ease: Power2.easeOut,
-        });
+        this.showFooter = new TimelineLite()
+            .from(
+                footer,
+                1,
+                {
+                    bottom: -15,
+                    ease: Power2.easeOut,
+                },
+                '0'
+            )
+            .to(
+                footer,
+                1,
+                {
+                    alpha: 1,
+                    ease: Power2.easeOut,
+                },
+                '0'
+            );
     }
 
     firstLoading(page) {
-        const { header, footer } = this.targets;
+        //const { header, footer } = this.targets;
         this.showPageAnimation = page.showPageAnimation;
 
         this.defineTweens();
 
-        TweenMax.set(header, { top: -15 });
-        TweenMax.set(footer, { bottom: -15 });
+        //TweenMax.set(header, { top: -15 });
+        //TweenMax.set(footer, { bottom: -15 });
 
         new TimelineLite()
             .add(this.progressShow, '+=0.25')
