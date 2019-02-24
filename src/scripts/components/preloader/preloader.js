@@ -13,11 +13,6 @@ export default class Preloader {
             progress: $('#preloader .preloader__progress'),
         };
 
-        this.positions = {
-            headerTop: this.targets.header.css('top'),
-            footerBottom: this.targets.footer.css('bottom'),
-        };
-
         this.showHeader = null;
         this.showFooter = null;
 
@@ -26,45 +21,71 @@ export default class Preloader {
 
     defineTweens() {
         const { header, footer, preloader, progress } = this.targets;
-        const { headerTop, footerBottom } = this.positions;
 
         this.progressShow = new TimelineLite()
             .set(preloader, { pointerEvents: 'all' })
-            .set(progress, { clearProps: 'top', bottom: 0 })
-            .to(progress, 2, { height: '100%' })
+            .set(progress, { clearProps: 'top', bottom: 0, transformOrigin: '0% 100%' })
+            .to(progress, 1.5, { height: '100%', ease: Power2.easeInOut }, 0)
+            .to(progress, 0.75, { skewY: '1.5deg', ease: Power2.easeInOut }, 0)
+            .to(progress, 0.75, { skewY: '0', ease: Power2.easeInOut }, 0.75)
             .eventCallback('onStart', () => {
                 this.eventLoader.start();
             });
 
         this.progressHide = new TimelineLite()
-            .set(progress, { clearProps: 'bottom', top: 0, immediateRender: false })
-            .to(progress, 1, { height: 0, ease: Power3.easeOut })
+            .set(progress, { clearProps: 'bottom', top: 0, transformOrigin: '100% 0%', immediateRender: false })
+            .to(progress, 1, { height: 0, ease: Power2.easeInOut })
+            .to(progress, 0.5, { skewY: '1.5deg', ease: Power2.easeInOut }, 0)
+            .to(progress, 0.5, { skewY: '0', ease: Power2.easeInOut }, 0.5)
             .set(preloader, { pointerEvents: 'none' }, '-=0.75')
             .eventCallback('onStart', () => {
                 this.eventLoader.end();
             });
 
-        this.showHeader = TweenMax.to(header, 1, {
-            alpha: 1,
-            top: headerTop,
-            ease: Power2.easeOut,
-        });
+        this.showHeader = new TimelineLite()
+            .from(header, 1, {
+                top: -15,
+                ease: Power2.easeOut,
+            })
+            .to(
+                header,
+                1,
+                {
+                    alpha: 1,
+                    ease: Power2.easeOut,
+                },
+                '0'
+            );
 
-        this.showFooter = TweenMax.to(footer, 1, {
-            alpha: 1,
-            bottom: footerBottom,
-            ease: Power2.easeOut,
-        });
+        this.showFooter = new TimelineLite()
+            .from(
+                footer,
+                1,
+                {
+                    bottom: -15,
+                    ease: Power2.easeOut,
+                },
+                '0'
+            )
+            .to(
+                footer,
+                1,
+                {
+                    alpha: 1,
+                    ease: Power2.easeOut,
+                },
+                '0'
+            );
     }
 
     firstLoading(page) {
-        const { header, footer } = this.targets;
+        //const { header, footer } = this.targets;
         this.showPageAnimation = page.showPageAnimation;
 
         this.defineTweens();
 
-        TweenMax.set(header, { top: -15 });
-        TweenMax.set(footer, { bottom: -15 });
+        //TweenMax.set(header, { top: -15 });
+        //TweenMax.set(footer, { bottom: -15 });
 
         new TimelineLite()
             .add(this.progressShow, '+=0.25')
