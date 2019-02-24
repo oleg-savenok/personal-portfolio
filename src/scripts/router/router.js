@@ -2,55 +2,61 @@
 import $ from 'jquery';
 
 // Components
-import Link from './link';
+import Loading from './_loading';
+import History from './_history';
 
 export default class Router {
     constructor(pages, preloader) {
-        this.linksTarget = $('[data-router-link]');
+        // Current page name
         this.pageName = $('body').attr('data-page-name');
-
-        this.preloader = preloader;
+        // Pages array
         this.pages = pages;
+        // Link to preloader module
+        this.preloader = preloader;
 
-        this.link = new Link(this.pages, this.preloader);
+        // Init router modules
+        this.history = new History(pages);
+        this.loading = new Loading(pages);
     }
 
-    pushDefaultState() {
-        const historyURL = this.pageName !== 'index' ? this.pageName : '/';
+    initLinksEventListener(currentPage) {
+        let { pageName } = this;
+        const { history, loading } = this;
 
-        history.pushState(
-            {
-                link: this.pageName,
-            },
-            '',
-            historyURL
-        );
-    }
-
-    initPopEvent() {
-        window.onpopstate = (e) => {
-            this.link.popEvent(e.state.link);
-        };
-    }
-
-    initLinksEvent() {
-        this.linksTarget.click((e) => {
+        $('[data-router-link]').on('click', (e) => {
             e.preventDefault();
 
-            this.link.linkEvent(e.target.dataset.routerLink);
+            pageName = $('body').attr('data-page-name');
+            const link = e.target.dataset.routerLink;
+
+            if (pageName !== link) {
+                history.cleanUpTrash(currentPage);
+                loading.loadPage(link, history);
+            }
         });
     }
 
-    firstLoading() {
-        const { preloader, pages, pageName } = this;
+    initPopEventListener() {
+        const { pageName, history, loading } = this;
 
-        preloader.firstLoading(pages[pageName]);
+        window.onpopstate = (e) => {
+            history.cleanUpTrash(pageName);
+            loading.loadPage(e.state.link);
+        };
+    }
+
+    initDefaultState(link) {
+        const { history } = this;
+        history.pushState(link);
     }
 
     init() {
-        this.pushDefaultState();
-        this.initPopEvent();
-        this.initLinksEvent();
-        this.firstLoading();
+        const { preloader, pages, pageName } = this;
+
+        this.initDefaultState(pageName);
+        this.initLinksEventListener(pageName);
+        this.initPopEventListener();
+
+        preloader.firstLoading(pages[pageName]);
     }
 }
