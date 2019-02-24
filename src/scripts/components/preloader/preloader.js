@@ -79,20 +79,14 @@ export default class Preloader {
     }
 
     firstLoading(page) {
-        //const { header, footer } = this.targets;
-        this.showPageAnimation = page.showPageAnimation;
-
         this.defineTweens();
-
-        //TweenMax.set(header, { top: -15 });
-        //TweenMax.set(footer, { bottom: -15 });
 
         new TimelineLite()
             .add(this.progressShow, '+=0.25')
             .add(this.progressHide)
             .add(this.showFooter, '-=1')
             .add(this.showHeader, '-=0.75')
-            .add(this.showPageAnimation, '-=1');
+            .add(page.showPageAnimation, '-=0.75');
     }
 
     show() {
