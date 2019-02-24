@@ -24,15 +24,19 @@ export default class Preloader {
 
         this.progressShow = new TimelineLite()
             .set(preloader, { pointerEvents: 'all' })
-            .set(progress, { clearProps: 'top', bottom: 0 })
-            .to(progress, 2, { height: '100%' })
+            .set(progress, { clearProps: 'top', bottom: 0, transformOrigin: '0% 100%' })
+            .to(progress, 1.5, { height: '100%', ease: Power2.easeInOut }, 0)
+            .to(progress, 0.75, { skewY: '1.5deg', ease: Power2.easeInOut }, 0)
+            .to(progress, 0.75, { skewY: '0', ease: Power2.easeInOut }, 0.75)
             .eventCallback('onStart', () => {
                 this.eventLoader.start();
             });
 
         this.progressHide = new TimelineLite()
-            .set(progress, { clearProps: 'bottom', top: 0, immediateRender: false })
-            .to(progress, 1, { height: 0, ease: Power3.easeOut })
+            .set(progress, { clearProps: 'bottom', top: 0, transformOrigin: '100% 0%', immediateRender: false })
+            .to(progress, 1, { height: 0, ease: Power2.easeInOut })
+            .to(progress, 0.5, { skewY: '1.5deg', ease: Power2.easeInOut }, 0)
+            .to(progress, 0.5, { skewY: '0', ease: Power2.easeInOut }, 0.5)
             .set(preloader, { pointerEvents: 'none' }, '-=0.75')
             .eventCallback('onStart', () => {
                 this.eventLoader.end();
