@@ -1,5 +1,7 @@
 import { TweenMax } from 'gsap';
 
+import splitToCharacters from '../../functions/splitToCharacters';
+
 export default class EventCharacters {
     constructor(targets) {
         this.targets = targets;
@@ -23,27 +25,9 @@ export default class EventCharacters {
     }
 
     init() {
-        const targets = this.targets;
-
-        targets.each((index) => {
-            if (targets[index].dataset.cursorEvents.indexOf('characters') !== -1) {
-                // Get all text from link
-                const linkText = targets[index].innerText;
-
-                // Empty link
-                targets[index].innerHTML = null;
-
-                for (let i = 0; i < linkText.length; i++) {
-                    // Create span for adding character into link
-                    const char = document.createElement('span');
-
-                    // Add class name and content for span
-                    char.className = 'character';
-                    char.innerText = linkText.charAt(i);
-
-                    // Finally append single character into link
-                    targets[index].append(char);
-                }
+        this.targets.each((index, item) => {
+            if (item.dataset.cursorEvents.indexOf('characters') !== -1) {
+                splitToCharacters(item);
             }
         });
     }

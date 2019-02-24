@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { TweenMax } from 'gsap';
+import { TweenMax, TimelineMax } from 'gsap';
 
 import EventIcon from '../../components/cursor/_eventIcon';
 import EventDrag from '../../components/cursor/_eventDrag';
@@ -8,6 +8,8 @@ import StateDefault from '../../components/cursor/_stateDefault';
 import Swiper from 'swiper/dist/js/swiper';
 import 'swiper/dist/css/swiper.css';
 import swiperOptions from './swiperOptions';
+
+import splitToCharacters from '../../functions/splitToCharacters';
 
 export default class Home {
     constructor() {
@@ -25,14 +27,6 @@ export default class Home {
         this.projectsSwiper = '#projectsSwiper';
         this.projectsItems = '.projects__swiper__item';
         this.projectsItemLinks = '.projects__swiper__item a';
-    }
-
-    showPageAnimation() {
-        this.projects = '#projects';
-
-        return TweenMax.to(this.projects, 1, {
-            alpha: 1,
-        });
     }
 
     addHoverListeners() {
@@ -88,6 +82,55 @@ export default class Home {
             .off('mouseout');
     }
 
+    splitToCharacters() {
+        $(this.projectsItems).each((index, item) => {
+            const param = item.getBoundingClientRect();
+            const leftSide = param.left;
+            const rightSide = param.right;
+
+            if ((leftSide > 0 && leftSide < window.innerWidth) || (rightSide > 0 && rightSide < window.innerWidth)) {
+                $(item).addClass('is-characters');
+                splitToCharacters($(item)[0].children[0]);
+            }
+        });
+    }
+
+    showPageAnimation() {
+        this.projects = '#projects';
+        const targets = '.is-characters';
+        let letterIndex = 0;
+
+        const animation = new TimelineMax();
+
+        $(targets).each((index, item) => {
+            const letters = Array.from($(item)[0].children[0].children);
+
+            TweenMax.set(letters, {
+                alpha: 0,
+            });
+
+            $(letters).each((index, item) => {
+                animation.add(
+                    TweenMax.to(item, 1.5, {
+                        ease: Elastic.easeOut.config(1, 0.4),
+                        startAt: { y: '40%' },
+                        y: '0%',
+                        alpha: 1,
+                    }),
+                    letterIndex * 0.02
+                );
+
+                letterIndex++;
+            });
+        });
+
+        TweenMax.set(this.projects, {
+            alpha: 1,
+        });
+
+        return animation;
+    }
+
     initSwiper() {
         this.projectsSwiper = '#projectsSwiper';
 
@@ -101,6 +144,7 @@ export default class Home {
             this.addSwiperListeners();
             this.addHoverListeners();
             this.addIconListeners();
+            this.splitToCharacters();
         }, 100);
     }
 

@@ -25,9 +25,6 @@
         width: 100%;
         position: relative;
         z-index: 1;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         transition-property: transform, -webkit-transform;
         box-sizing: content-box;
@@ -56,27 +53,5 @@
         overflow: hidden;
         height: 66%;
         width: 66%;
-
-        canvas {
-            position: absolute;
-            @include align(c, c);
-        }
-    }
-
-    &__controls {
-        &__prev,
-        &__next {
-            position: absolute;
-            @include col-outside-container(height, 60);
-            @include col-outside-container(width, 16.66);
-        }
-
-        &__prev {
-            @include align(l, c);
-        }
-
-        &__next {
-            @include align(r, c);
-        }
     }
 }
