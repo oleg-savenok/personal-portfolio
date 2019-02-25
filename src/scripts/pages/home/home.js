@@ -111,13 +111,13 @@ export default class Home {
 
             $(letters).each((index, item) => {
                 animation.add(
-                    TweenMax.to(item, 1.5, {
-                        ease: Elastic.easeOut.config(1, 0.4),
-                        startAt: { y: '40%' },
-                        y: '0%',
+                    TweenMax.to(item, 1, {
                         alpha: 1,
+                        y: '0%',
+                        startAt: { y: '60%' },
+                        ease: Power3.easeOut,
                     }),
-                    letterIndex * 0.02
+                    letterIndex * 0.015
                 );
 
                 letterIndex++;
