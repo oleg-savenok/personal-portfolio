@@ -18,11 +18,11 @@ const options = {
         drag: '0.4rem',
     },
     sticky: {
-        degree: (window.innerWidth + window.innerHeight) / 2 / 20, // degree of stickiness
+        degree: (window.innerWidth + window.innerHeight) / 2 / 50, // degree of stickiness
         targetParam: null,
         positionDifference: null,
         speed: {
-            start: 3,
+            start: 0.5,
             end: 0.6,
         },
     },
