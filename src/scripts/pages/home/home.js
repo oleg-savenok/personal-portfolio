@@ -55,6 +55,18 @@ export default class Home {
 
         this.swiper.on('touchEnd', (e) => {
             this.cursor.callEvent().drag.undrag(e);
+
+            if ($(e.target).hasClass('projects__swiper__item__link')) {
+                this.cursor.callEvent().icon.start(e);
+
+                TweenMax.to(this.projectsItemLinks, 0.4, {
+                    alpha: 0.3,
+                });
+
+                TweenMax.to(e.target, 0.4, {
+                    alpha: 1,
+                });
+            }
         });
     }
 
