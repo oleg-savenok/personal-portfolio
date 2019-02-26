@@ -1,10 +1,6 @@
 import $ from 'jquery';
 import { TweenMax, TimelineMax } from 'gsap';
 
-import EventIcon from '../../components/cursor/_eventIcon';
-import EventDrag from '../../components/cursor/_eventDrag';
-import StateDefault from '../../components/cursor/_stateDefault';
-
 import Swiper from 'swiper/dist/js/swiper';
 import 'swiper/dist/css/swiper.css';
 import swiperOptions from './swiperOptions';
@@ -14,9 +10,7 @@ import splitToCharacters from '../../functions/splitToCharacters';
 export default class Home {
     constructor() {
         // Cursor
-        this.eventIcon = new EventIcon();
-        this.eventDrag = new EventDrag();
-        this.stateDefault = new StateDefault();
+        this.cursor = null;
 
         // Swiper
         this.swiper = null;
@@ -52,25 +46,25 @@ export default class Home {
             TweenMax.to($(this.projectsItemLinks), 0.5, {
                 opacity: 1,
             });
-            this.eventDrag.drag();
+            this.cursor.callEvent().drag.drag();
         });
 
         this.swiper.on('touchStart', () => {
-            this.eventDrag.drag();
+            this.cursor.callEvent().drag.drag();
         });
 
         this.swiper.on('touchEnd', (e) => {
-            this.eventDrag.undrag();
+            this.cursor.callEvent().drag.undrag(e);
         });
     }
 
     addIconListeners() {
         $(this.projects).on('mouseover', '#projectsSwiper', (e) => {
-            this.eventIcon.start(e);
+            this.cursor.callEvent().icon.start(e);
         });
 
         $(this.projects).on('mouseout', '#projectsSwiper', () => {
-            this.stateDefault.start();
+            this.cursor.callState().default.start();
         });
     }
 
@@ -141,9 +135,12 @@ export default class Home {
 
             this.swiper = new Swiper($(this.projectsSwiper), this.swiperOptions);
 
-            this.addSwiperListeners();
-            this.addHoverListeners();
-            this.addIconListeners();
+            if (this.cursor) {
+                this.addSwiperListeners();
+                this.addHoverListeners();
+                this.addIconListeners();
+            }
+
             this.splitToCharacters();
         }, 100);
     }
@@ -153,7 +150,8 @@ export default class Home {
         this.clearListeners();
     }
 
-    render() {
+    render(cursor) {
         this.initSwiper();
+        this.cursor = cursor;
     }
 }
