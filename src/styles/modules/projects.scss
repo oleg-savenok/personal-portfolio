@@ -4,6 +4,12 @@
     height: 100vh;
     width: 100%;
 
+    .container-full {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     .swiper-slide {
         width: auto;
     }
@@ -39,10 +45,17 @@
             font-size: 0.83rem;
             font-weight: 600;
             user-select: none;
+            pointer-events: none;
 
             a {
                 white-space: nowrap;
                 user-select: none;
+            }
+
+            &.item--active,
+            &.item--prev,
+            &.item--next {
+                pointer-events: auto;
             }
         }
     }
