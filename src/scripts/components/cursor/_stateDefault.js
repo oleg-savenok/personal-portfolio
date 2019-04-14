@@ -20,7 +20,6 @@ export default class StateDefault {
     setMix() {
         TweenMax.set(this.cursor, {
             mixBlendMode: 'difference',
-            backgroundColor: '#fff',
         });
     }
 

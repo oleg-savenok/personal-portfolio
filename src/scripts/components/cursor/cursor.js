@@ -9,12 +9,13 @@ import Movement from './_movement';
 
 // State modules
 import StateDefault from './_stateDefault';
-import StateIcon from './_eventIcon';
 
 // Events modules
 import EventHover from './_eventHover';
 import EventCharacters from './_eventCharacters';
-import EventSticky from './_eventSticky';
+import EventDrag from './_eventDrag';
+import EventIcon from './_eventIcon';
+import EventLoader from './_eventLoader';
 
 export default class Cursor {
     constructor() {
@@ -25,30 +26,42 @@ export default class Cursor {
         this.movement = new Movement();
 
         // States
-        this.stateDefault = new StateDefault();
+        this.states = {
+            default: new StateDefault(),
+        };
 
         // Events
-        this.eventCharacters = new EventCharacters(this.eventsTarget);
-        this.eventSticky = new EventSticky();
-        this.eventHover = new EventHover();
+        this.events = {
+            characters: new EventCharacters(this.eventsTarget),
+            loader: new EventLoader(),
+            hover: new EventHover(),
+            drag: new EventDrag(),
+            icon: new EventIcon(),
+        };
+    }
+
+    callEvent() {
+        return this.events;
+    }
+
+    callState() {
+        return this.states;
     }
 
     eventRouter(name, e) {
         const dataset = e.target.dataset.cursorEvents.split(' ');
 
         if (dataset.indexOf('hover') !== -1) {
-            if (name === 'mouseenter') this.eventHover.hover();
-            else if (name === 'mouseleave') this.eventHover.unhover();
-        }
-
-        if (dataset.indexOf('sticky') !== -1) {
-            if (name === 'mousemove') this.eventSticky.move(e);
-            else if (name === 'mouseleave') this.eventSticky.return(e);
-            else if (name === 'click') this.eventSticky.return(e);
+            if (name === 'mouseenter') this.events.hover.hover();
+            else if (name === 'mouseleave') this.events.hover.unhover();
         }
 
         if (dataset.indexOf('characters') !== -1) {
-            if (name === 'mouseenter') this.eventCharacters.animateLetters(e);
+            if (name === 'mouseenter') this.events.characters.animateLetters(e);
+        }
+
+        if (name === '') {
+            console.log(e);
         }
     }
 
@@ -56,13 +69,13 @@ export default class Cursor {
         /* Init -----------------------------------------*/
 
         // default cursor
-        this.stateDefault.init();
+        this.states.default.init();
 
         // movement
         this.movement.init();
 
         // splitting links to single characters
-        this.eventCharacters.init();
+        this.events.characters.init();
 
         /* Set Listeners --------------------------------*/
 

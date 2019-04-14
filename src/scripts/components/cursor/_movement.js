@@ -10,12 +10,15 @@ export default class Movement {
         position,
         duration: { show: showDuration, hide: hideDuration, tick: tickDuration },
     } = options) {
+        // Options
         this.cursor = cursor;
         this.scrollTop = 0;
         this.position = position;
         this.showDuration = showDuration;
         this.hideDuration = hideDuration;
         this.tickDuration = tickDuration;
+
+        // Toggles
         this.cursorHide = true;
     }
 
@@ -33,18 +36,18 @@ export default class Movement {
         });
     }
 
+    hideCursor() {
+        TweenMax.to(this.cursor, this.hideDuration, { alpha: 0 });
+
+        this.cursorHide = true;
+    }
+
     showCursor() {
         TweenMax.to(this.cursor, this.showDuration, {
             alpha: 1,
         });
 
         this.cursorHide = false;
-    }
-
-    hideCursor() {
-        TweenMax.to(this.cursor, this.hideDuration, { alpha: 0 });
-
-        this.cursorHide = true;
     }
 
     init() {

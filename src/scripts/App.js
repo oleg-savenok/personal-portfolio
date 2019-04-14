@@ -23,13 +23,12 @@ import '../styles/main.scss';
 export default class App {
     constructor(options) {
         this.options = options;
-        this.touch = 'ontouchstart' in document.documentElement;
+
+        // Cursor
+        this.cursor = null;
 
         // Preloader
         this.preloader = new Preloader();
-
-        // Cursor
-        this.cursor = new Cursor();
 
         // Pages
         this.pages = {
@@ -55,7 +54,8 @@ export default class App {
     }
 
     initCursor() {
-        if (!this.touch) {
+        if (!('ontouchstart' in document.documentElement)) {
+            this.cursor = new Cursor();
             this.cursor.init();
         }
     }
@@ -67,6 +67,9 @@ export default class App {
         // Init magic cursor if the device is not touch
         this.initCursor();
 
+        // Init preloader
+        this.preloader.init(this.cursor);
+
         // Init change page title when changing tabs
         this.visibilityTab();
 
@@ -77,7 +80,7 @@ export default class App {
         this.consoleMessage();
 
         // Init page
-        this.pages[this.pageName].render();
+        this.pages[this.pageName].render(this.cursor);
 
         // Init router
         this.router.init();

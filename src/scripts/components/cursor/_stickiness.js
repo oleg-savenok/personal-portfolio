@@ -5,20 +5,20 @@ import CustomEase from '../../assets/CustomEase';
 // Options
 import options from './options';
 
-export default class EventSticky {
+export default class Stickiness {
     constructor({
+        cursor,
         cursorIcon,
         sticky: {
             degree,
-            positionDifference,
-            targetParam,
             speed: { start: startSpeed, end: endSpeed },
         },
     } = options) {
+        this.cursor = cursor;
         this.cursorIcon = cursorIcon;
         this.degree = degree;
-        this.positionDifference = positionDifference;
-        this.targetParam = targetParam;
+        this.positionDifference = null;
+        this.targetParam = null;
         this.scrollTop = 0;
         this.startSpeed = startSpeed;
         this.endSpeed = endSpeed;

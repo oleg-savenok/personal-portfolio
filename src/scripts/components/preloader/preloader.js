@@ -1,8 +1,6 @@
 import $ from 'jquery';
 import { TweenMax, TimelineLite } from 'gsap';
 
-import EventLoader from '../cursor/_eventLoader';
-
 export default class Preloader {
     constructor() {
         this.targets = {
@@ -13,10 +11,10 @@ export default class Preloader {
             progress: $('#preloader .preloader__progress'),
         };
 
+        this.cursor = null;
+
         this.showHeader = null;
         this.showFooter = null;
-
-        this.eventLoader = new EventLoader();
     }
 
     defineTweens() {
@@ -30,7 +28,7 @@ export default class Preloader {
             .to(progress, 0.75, { skewY: '0', ease: Power2.easeInOut }, 0.75)
             .eventCallback('onStart', () => {
                 $(progress).css('transformOrigin', 'left bottom');
-                this.eventLoader.start();
+                this.cursor ? this.cursor.callEvent().loader.start() : false;
             });
 
         this.progressHide = new TimelineLite()
@@ -41,7 +39,7 @@ export default class Preloader {
             .set(preloader, { pointerEvents: 'none' }, '-=0.75')
             .eventCallback('onStart', () => {
                 $(progress).css('transformOrigin', 'right top');
-                this.eventLoader.end();
+                this.cursor ? this.cursor.callEvent().loader.end() : false;
             });
 
         this.showHeader = new TimelineLite()
@@ -99,5 +97,9 @@ export default class Preloader {
         this.showPageAnimation = page.showPageAnimation;
 
         new TimelineLite().add(this.progressHide).add(this.showPageAnimation, '-=0.75');
+    }
+
+    init(cursor) {
+        this.cursor = cursor;
     }
 }
