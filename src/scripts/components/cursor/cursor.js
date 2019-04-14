@@ -13,7 +13,6 @@ import StateDefault from './_stateDefault';
 // Events modules
 import EventHover from './_eventHover';
 import EventCharacters from './_eventCharacters';
-import EventSticky from './_eventSticky';
 import EventDrag from './_eventDrag';
 import EventIcon from './_eventIcon';
 import EventLoader from './_eventLoader';
@@ -35,7 +34,6 @@ export default class Cursor {
         this.events = {
             characters: new EventCharacters(this.eventsTarget),
             loader: new EventLoader(),
-            sticky: new EventSticky(),
             hover: new EventHover(),
             drag: new EventDrag(),
             icon: new EventIcon(),
@@ -56,12 +54,6 @@ export default class Cursor {
         if (dataset.indexOf('hover') !== -1) {
             if (name === 'mouseenter') this.events.hover.hover();
             else if (name === 'mouseleave') this.events.hover.unhover();
-        }
-
-        if (dataset.indexOf('sticky') !== -1) {
-            if (name === 'mousemove') this.events.sticky.move(e);
-            else if (name === 'mouseleave') this.events.sticky.return(e);
-            else if (name === 'click') this.events.sticky.return(e);
         }
 
         if (dataset.indexOf('characters') !== -1) {
