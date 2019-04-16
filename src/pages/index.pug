@@ -3,10 +3,10 @@ html(lang='en')
 	head
 		title Oleg Savenok • Creative Developer & UI Designer
 
-		//-
-			Meta tags with common page information and
-			social media tags with sharing information
+		// Meta tags with common page information ----------------------------------------------------------------------
 		include components/common/meta-tags
+
+		// Social media tags with sharing information ------------------------------------------------------------------
 		include components/common/social-media
 
 
@@ -44,10 +44,9 @@ html(lang='en')
 
 					.projects__cover#cover(data-img='./assets/images/alfa-bank.jpg')
 
+
 		// Footer ------------------------------------------------------------------------------------------------------
-		footer.footer#footer(style='opacity: 0;')
-			.footer__event-button#footerEventButton
-				p.footer__event-button__item(data-cursor-events='hover') drag or scroll to discover
+		include components/footer
 
 		.project-loading
 			#projectLoadingProgress.project-loading__percent

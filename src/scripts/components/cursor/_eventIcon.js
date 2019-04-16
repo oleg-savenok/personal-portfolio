@@ -28,7 +28,6 @@ export default class EventIcon {
     setMix() {
         TweenMax.set(this.cursor, {
             mixBlendMode: 'normal',
-            //backgroundColor: '#101010',
         });
     }
 

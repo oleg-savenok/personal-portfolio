@@ -29,9 +29,7 @@
                 padding-left: 0.5rem;
                 margin-top: -0.1rem;
                 list-style: none;
-                font-size: 0.28rem;
-                line-height: 0.5rem;
-                font-weight: 600;
+                @extend .text-btn;
 
                 a {
                     display: block;
