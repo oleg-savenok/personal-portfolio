@@ -7,6 +7,38 @@
     @include indentation(right);
     @include indentation(bottom);
 
+    &__block {
+        &--left,
+        &--center,
+        &--right {
+            position: absolute;
+            bottom: 0;
+        }
+
+        &--left {
+            left: 0;
+        }
+        &--right {
+            right: 0;
+        }
+        &--center {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        &__item {
+            @extend .text-btn;
+            padding: 0;
+            margin: 0;
+            float: left;
+
+            &--social {
+                @extend .footer__block__item;
+                margin-right: 0.33rem;
+            }
+        }
+    }
+
     &__event-button {
         overflow: hidden;
         position: absolute;
@@ -18,9 +50,6 @@
             margin: 0;
             padding: 0;
             text-align: center;
-            font-size: 0.28rem;
-            line-height: 0.42rem;
-            font-weight: 600;
         }
     }
 }
