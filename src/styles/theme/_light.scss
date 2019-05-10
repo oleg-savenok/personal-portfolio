@@ -1,0 +1,38 @@
+// Light Theme
+
+@import 'colours';
+
+.App.theme--light {
+    color: $black;
+    background-color: $white;
+
+    ::selection {
+        background-color: rgba($black, 0.1);
+    }
+
+    .preloader__progress {
+        background-color: $black;
+    }
+
+    .cursor {
+        background-color: $black;
+
+        &__icon,
+        &__icon--drag {
+            color: $white;
+        }
+
+        &__spiner {
+            border-bottom-color: $white;
+        }
+    }
+
+    .header,
+    .footer {
+        color: $black;
+    }
+
+    .project-loading__percent {
+        background-color: $black;
+    }
+}

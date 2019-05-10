@@ -1,0 +1,21 @@
+// Common file for base styles
+
+// Normalize.css
+@import 'normalize';
+
+// Variables
+@import './variables';
+
+// Mixins
+@import 'mixins/media';
+@import 'mixins/responsive';
+@import 'mixins/indentation';
+@import 'mixins/align';
+
+// Fonts
+@import 'fonts';
+
+// Remove cursor
+* {
+    //cursor: none;
+}
