@@ -2,16 +2,19 @@
     <div class="app theme--dark">
         <Header />
         <router-view />
+	    <Footer />
     </div>
 </template>
 
 <script>
     // @ is an alias to /src
     import Header from '@/components/Header/Header';
+    import Footer from '@/components/Footer/Footer';
 
     export default {
 	    components: {
-            Header
+            Header,
+		    Footer
         }
     };
 </script>
