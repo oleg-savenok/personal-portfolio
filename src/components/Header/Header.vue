@@ -1,18 +1,25 @@
 <template>
     <header class="header">
         <h1 class="header__title">Oleg Savenok</h1>
-	    <h2 class="header__logo">o.sa.</h2>
+	    <h2 class="header__logo">
+		    <router-link to="/">o.sa.</router-link>
+	    </h2>
 	    
 	    <nav class="header__nav">
-		    <router-link class="header__nav__item" to="/about">about</router-link>
+		    <ul class="header__nav__list">
+			    <li class="header__nav__list__item">
+				    <router-link to="/about">about</router-link>
+			    </li>
+		    </ul>
 	    </nav>
     </header>
 </template>
 
 <script>
 	export default {
-	    name: 'HeaderApp',
+	    name: 'Header',
 	};
 </script>
 
 <!-- Styles -->
+<style lang="scss" src="./Header.scss"></style>

@@ -1,11 +1,20 @@
 <template>
-    <div class="App theme--dark">
-        <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
-        </div>
+    <div class="app theme--dark">
+        <Header />
         <router-view />
     </div>
 </template>
 
+<script>
+    // @ is an alias to /src
+    import Header from '@/components/Header/Header';
+
+    export default {
+	    components: {
+            Header
+        }
+    };
+</script>
+
+<!-- Styles -->
 <style lang="scss" src="./App.scss"></style>
