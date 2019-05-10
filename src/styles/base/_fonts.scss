@@ -1,14 +1,11 @@
 // Fonts setting
 
 html {
-	@include responsive(font-size, 34px, 42px, 46px, 56px, 48px, 56px, 72px);
-}
-
-.App {
-    font-family: 'Wavehaus', sans-serif;
-    font-weight: 500;
+	font-family: 'Wavehaus', sans-serif;
+	font-weight: 500;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	@include responsive(font-size, 34px, 42px, 46px, 56px, 48px, 56px, 72px);
 }
 
 h1 {
@@ -33,11 +30,4 @@ p,
 a,
 li {
     font-size: 0.33rem;
-}
-
-.text-btn {
-    user-select: none;
-    font-size: 0.28rem;
-    line-height: 0.5rem;
-    font-weight: 600;
 }
