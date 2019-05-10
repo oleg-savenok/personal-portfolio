@@ -1,5 +1,11 @@
 <template>
-	<div class="Home">
-		<h1>Home page</h1>
+	<div class="page">
+		<h3>Home page</h3>
 	</div>
 </template>
+
+<style>
+	.page {
+		text-align: center;
+	}
+</style>
