@@ -1,3 +1,7 @@
+// Import
+@import "./media";
+@import "../variables";
+
 // Indentation mixin
 
 @mixin indentation($value) {
