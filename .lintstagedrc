@@ -1,3 +1,0 @@
-{
-  "*.{js,scss}": ["prettier --config ./.prettierrc --write './**/*.{js,scss}'", "git add"]
-}
