@@ -6,16 +6,18 @@
 // Variables
 @import './variables';
 
-// Mixins
-@import 'mixins/media';
-@import 'mixins/responsive';
-@import 'mixins/indentation';
-@import 'mixins/align';
-
 // Fonts
 @import 'fonts';
 
 // Remove cursor
 * {
     //cursor: none;
+}
+
+a {
+	color: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	text-decoration: none;
+	user-select: none;
 }

@@ -1,3 +1,6 @@
+// Import
+@import "./media";
+
 // Responsive mixin
 
 @mixin responsive($value, $small-mobile, $mobile, $tablet, $laptop, $desktop, $large-desktop, $full-hd) {
