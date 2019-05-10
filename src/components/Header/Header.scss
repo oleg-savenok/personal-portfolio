@@ -1,6 +1,9 @@
 // Mixins
 @import "../../styles/base/mixins/indentation";
 
+// Layout
+@import "../../styles/layout/text-btn";
+
 // Header styles
 
 .header {
@@ -37,10 +40,7 @@
 				padding-left: 0.5rem;
 				margin-top: -0.1rem;
 				list-style: none;
-				user-select: none;
-				font-size: 0.28rem;
-				line-height: 0.5rem;
-				font-weight: 600;
+				@extend .text-btn;
 				
 				a {
 					display: block;
