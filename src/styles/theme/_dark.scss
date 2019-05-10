@@ -1,0 +1,38 @@
+// Dark Theme
+
+@import 'variables';
+
+.App.theme--dark {
+    color: $white;
+    background-color: $black;
+
+    ::selection {
+        background-color: rgba($white, 0.1);
+    }
+
+    .preloader__progress {
+        background-color: $black-accent;
+    }
+
+    .cursor {
+        background-color: $white;
+
+        &__icon,
+        &__icon--drag {
+            color: $black;
+        }
+
+        &__spiner {
+            border-bottom-color: #fff;
+        }
+    }
+
+    .header,
+    .footer {
+        color: $white;
+    }
+
+    .project-loading__percent {
+        background-color: $white;
+    }
+}
