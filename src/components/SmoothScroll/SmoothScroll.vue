@@ -15,8 +15,11 @@
 	    name: 'SmoothScroll',
 		mounted: function() {
             let target = document.getElementsByClassName('smooth-scroll')[0];
+            let isTouch = ('ontouchstart' in document.documentElement);
             
-            if (target) {
+            if (target && !isTouch) {
+                target.classList.add("is-initial");
+                
                 // Init smooth scroll
                 const scrollbar = Scrollbar.init(target, {
                     damping: 0.05,
