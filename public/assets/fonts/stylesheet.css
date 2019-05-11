@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'Wavehaus';
+    src: url('Wavehaus-28Thin.eot');
+    src: url('Wavehaus-28Thin.eot?#iefix') format('embedded-opentype'),
+        url('Wavehaus-28Thin.woff2') format('woff2'),
+        url('Wavehaus-28Thin.woff') format('woff'),
+        url('Wavehaus-28Thin.ttf') format('truetype'),
+        url('Wavehaus-28Thin.svg#Wavehaus-28Thin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: 'Wavehaus';
+	src: url('Wavehaus-42Light.eot');
+	src: url('Wavehaus-42Light.eot?#iefix') format('embedded-opentype'),
+	url('Wavehaus-42Light.woff2') format('woff2'),
+	url('Wavehaus-42Light.woff') format('woff'),
+	url('Wavehaus-42Light.ttf') format('truetype'),
+	url('Wavehaus-42Light.svg#Wavehaus-42Light') format('svg');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'Wavehaus';
+    src: url('Wavehaus-66Book.eot');
+    src: url('Wavehaus-66Book.eot?#iefix') format('embedded-opentype'),
+        url('Wavehaus-66Book.woff2') format('woff2'),
+        url('Wavehaus-66Book.woff') format('woff'),
+        url('Wavehaus-66Book.ttf') format('truetype'),
+        url('Wavehaus-66Book.svg#Wavehaus-66Book') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: 'Wavehaus';
+	src: url('Wavehaus-95SemiBold.eot');
+	src: url('Wavehaus-95SemiBold.eot?#iefix') format('embedded-opentype'),
+	url('Wavehaus-95SemiBold.woff2') format('woff2'),
+	url('Wavehaus-95SemiBold.woff') format('woff'),
+	url('Wavehaus-95SemiBold.ttf') format('truetype'),
+	url('Wavehaus-95SemiBold.svg#Wavehaus-95SemiBold') format('svg');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Wavehaus';
+	src: url('Wavehaus-128Bold.eot');
+	src: url('Wavehaus-128Bold.eot?#iefix') format('embedded-opentype'),
+	url('Wavehaus-128Bold.woff2') format('woff2'),
+	url('Wavehaus-128Bold.woff') format('woff'),
+	url('Wavehaus-128Bold.ttf') format('truetype'),
+	url('Wavehaus-128Bold.svg#Wavehaus-128Bold') format('svg');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'Wavehaus';
+    src: url('Wavehaus-158ExtraBold.eot');
+    src: url('Wavehaus-158ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('Wavehaus-158ExtraBold.woff2') format('woff2'),
+        url('Wavehaus-158ExtraBold.woff') format('woff'),
+        url('Wavehaus-158ExtraBold.ttf') format('truetype'),
+        url('Wavehaus-158ExtraBold.svg#Wavehaus-158ExtraBold') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
+
