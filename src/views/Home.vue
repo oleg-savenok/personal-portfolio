@@ -1,11 +1,16 @@
 <template>
-	<div class="page">
+	<Page>
 		<h3>Home page</h3>
-	</div>
+	</Page>
 </template>
 
-<style>
-	.page {
-		text-align: center;
-	}
-</style>
+<script>
+    import Page from '@/components/Page/Page';
+    
+    export default {
+        name: 'Home',
+        components: {
+            Page
+        }
+    }
+</script>

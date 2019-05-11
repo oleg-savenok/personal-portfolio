@@ -1,5 +1,5 @@
 <template>
-    <div class="page">
+    <Page>
 	    <SmoothScroll>
 		    <br>
 		    <br>
@@ -11,15 +11,17 @@
 		    <br>
 		    <br>
 	    </SmoothScroll>
-    </div>
+    </Page>
 </template>
 
 <script>
+	import Page from '@/components/Page/Page';
 	import SmoothScroll from '@/components/SmoothScroll/SmoothScroll';
 	
 	export default {
 	    name: 'About',
 		components: {
+	        Page,
 	        SmoothScroll
         }
 	}
