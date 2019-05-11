@@ -1,0 +1,23 @@
+// Smooth scroll styles
+
+.smooth-scroll {
+	width: 100vw;
+	height: 100vh;
+	
+	.scrollbar-track-y {
+		position: fixed;
+		background-color: rgba(0, 0, 0, 0);
+		width: 6px;
+		
+		.scrollbar-thumb-y {
+			background-color: rgba(0, 0, 0, 0.5);
+			border-radius: 0;
+			transition: height 0.5s;
+		}
+	}
+	
+	.scrollbar-track-x {
+		display: none !important;
+		opacity: 0 !important;
+	}
+}
