@@ -12,15 +12,20 @@
 		</div>
 		
 		<div class="footer__block--right">
-			<router-link class="footer__block__item" to="/contact">say hi</router-link>
+			<RoutesLink class="footer__block__item" link="/contact" text="say hi" />
 		</div>
 		
 	</footer>
 </template>
 
 <script>
+    import RoutesLink from '@/components/RoutesLink/RoutesLink';
+    
     export default {
         name: 'Footer',
+	    components: {
+            RoutesLink
+	    }
     };
 </script>
 

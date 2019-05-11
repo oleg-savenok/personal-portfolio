@@ -12,6 +12,9 @@
 	@include indentation(left);
 	@include indentation(right);
 	@include indentation(top);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	
 	&__title {
 		display: none;
@@ -29,22 +32,17 @@
 	}
 	
 	&__nav {
-		float: right;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		
-		&__list {
-			margin: 0;
-			padding: 0;
+		&__item {
+			@extend .text-btn;
+			padding-left: 0.5rem;
+			list-style: none;
 			
-			&__item {
-				float: left;
-				padding-left: 0.5rem;
-				margin-top: -0.1rem;
-				list-style: none;
-				@extend .text-btn;
-				
-				a {
-					display: block;
-				}
+			a {
+				display: block;
 			}
 		}
 	}
