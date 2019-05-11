@@ -6,18 +6,19 @@
 	    </h2>
 	    
 	    <nav class="header__nav">
-		    <ul class="header__nav__list">
-			    <li class="header__nav__list__item">
-				    <router-link to="/about">about</router-link>
-			    </li>
-		    </ul>
+		    <RoutesLink class="header__nav__item" link="/about" text="about" />
 	    </nav>
     </header>
 </template>
 
 <script>
+    import RoutesLink from '@/components/RoutesLink/RoutesLink';
+	
 	export default {
 	    name: 'Header',
+		components: {
+            RoutesLink
+		}
 	};
 </script>
 

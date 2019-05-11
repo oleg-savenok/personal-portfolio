@@ -1,0 +1,47 @@
+// Mixins
+@import "../../styles/base/mixins/indentation";
+
+// Layout
+@import "../../styles/layout/text-btn";
+
+// Variables
+$link-height: .28rem;
+
+// Routes link styles
+
+.router-link {
+	@extend .text-btn;
+	height: $link-height;
+	overflow: hidden;
+	
+	a {
+		display: block;
+		text-align: right;
+		height: $link-height;
+		line-height: $link-height;
+		transition: all .25s;
+		
+		&:first-child {
+			opacity: 1;
+		}
+		
+		&:last-child {
+			color: #f44336 !important;
+			opacity: 0;
+		}
+	}
+}
+
+// Open state
+
+.router-link {
+	a {
+		&:first-child.is-open-exact {
+			margin-top: -$link-height;
+			opacity: 0
+		}
+		&:last-child {
+			opacity: 1
+		}
+	}
+}
