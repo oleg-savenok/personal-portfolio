@@ -2,7 +2,8 @@ node_modules
 public/*.rar
 public/*.zip
 public/*.html
-public/scripts
+public/*.js
+public/*.js.gz
 public/styles/*.css
 package-lock.json
 .vscode

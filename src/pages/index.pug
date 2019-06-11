@@ -1,0 +1,62 @@
+doctype html
+html(lang='en')
+	head
+		title Oleg Savenok • Creative Developer & UI Designer
+
+		// Meta tags with common page information ----------------------------------------------------------------------
+		include components/common/meta-tags
+
+		// Social media tags with sharing information ------------------------------------------------------------------
+		include components/common/social-media
+
+
+	body(data-page-name='index' style='overflow-x: hidden; background-color: #1a1b1d;')
+
+		// Header ------------------------------------------------------------------------------------------------------
+		include components/header
+
+		// Page --------------------------------------------------------------------------------------------------------
+		.page#page(style='overflow: hidden; text-align: center;')
+
+			// Projects swiper
+			.projects#projects(style='opacity: 0;')
+				.container-full
+					.projects__container#projectsSwiper(data-icon='unfold_more')
+						.projects__swiper
+
+							.projects__swiper__item
+								a.projects__swiper__item__link(href='#' data-icon='search') Design & Acoustics
+
+							.projects__swiper__item
+								a.projects__swiper__item__link(href='#' data-icon='search') Recital
+
+							.projects__swiper__item
+								a.projects__swiper__item__link(href='#' data-icon='search') Alfa Bank Concept
+
+							.projects__swiper__item
+								a.projects__swiper__item__link(href='#' data-icon='search') Uberex
+
+							.projects__swiper__item
+								a.projects__swiper__item__link(href='#' data-icon='search') Construction Quiz
+
+							.projects__swiper__item
+								a.projects__swiper__item__link(href='#' data-icon='search') Module
+
+					.projects__cover#cover(data-img='./assets/images/alfa-bank.jpg')
+
+
+		// Footer ------------------------------------------------------------------------------------------------------
+		include components/footer
+
+		.project-loading
+			#projectLoadingProgress.project-loading__percent
+
+		// Preloader ---------------------------------------------------------------------------------------------------
+		include components/preloader
+
+		// Cursor ------------------------------------------------------------------------------------------------------
+		include components/cursor
+
+
+		// External links ----------------------------------------------------------------------------------------------
+		include components/common/external-links

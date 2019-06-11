@@ -1,20 +1,42 @@
 // Light Theme
 
-@import "./variables";
+@import './variables';
 
-html, body {
-	color: $black;
-	background-color: $white;
-}
+body.theme--light {
+    color: $black;
+    background-color: $white;
 
-.preloader {
-	background-color: $white;
-}
+    ::selection {
+        background-color: rgba($black, 0.1);
+    }
 
-.cursor__icon {
-	color: $white;
-}
+    #page {
+        background-color: $white;
+    }
 
-.header, footer {
-	color: $white;
+    .preloader__progress {
+        background-color: $black;
+    }
+
+    .cursor {
+        background-color: $black;
+
+        &__icon,
+        &__icon--drag {
+            color: $white;
+        }
+
+        &__spiner {
+            border-bottom-color: $white;
+        }
+    }
+
+    .header,
+    .footer {
+        color: $black;
+    }
+
+    .project-loading__percent {
+        background-color: $black;
+    }
 }

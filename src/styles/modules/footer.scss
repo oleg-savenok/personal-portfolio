@@ -1,42 +1,55 @@
 // Footer styles
 
 .footer {
-	position: fixed;
-	z-index: 50000;
-	@include indentation(left);
-	@include indentation(right);
-	@include indentation(bottom);
-	mix-blend-mode: difference;
-	
-	&__event-button {
-		overflow: hidden;
-		position: absolute;
-		@include align(c,b);
-		font-size: .28rem;
-		line-height: .42rem;
-		font-weight: 300;
-		height: .42rem;
-		
-		a {
-			position: relative;
-			display: block;
-			text-align: center;
-			transition: all .7s ease;
-			
-			&:nth-child(2) {
-				margin-top: .5rem;
-			}
-		}
-		
-		&.is-active-explore {
-			a:nth-child(1) {
-				margin-top: -.92rem;
-			}
-			
-			a:nth-child(2) {
-				transform: rotateY(10deg);
-				transform-style: preserve-3d;
-			}
-		}
-	}
+    position: fixed;
+    z-index: 50000;
+    @include indentation(left);
+    @include indentation(right);
+    @include indentation(bottom);
+
+    &__block {
+        &--left,
+        &--center,
+        &--right {
+            position: absolute;
+            bottom: 0;
+        }
+
+        &--left {
+            left: 0;
+        }
+        &--right {
+            right: 0;
+        }
+        &--center {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        &__item {
+            @extend .text-btn;
+            padding: 0;
+            margin: 0;
+            float: left;
+
+            &--social {
+                @extend .footer__block__item;
+                margin-right: 0.33rem;
+            }
+        }
+    }
+
+    &__event-button {
+        overflow: hidden;
+        position: absolute;
+        @include align(c, b);
+        height: 0.42rem;
+
+        &__item {
+            display: block;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+    }
 }

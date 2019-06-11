@@ -1,55 +1,57 @@
 {
-  "name": "redi-agency",
-  "title": "",
-  "author": "Redi agency",
-  "url": "http://redi.agency",
-  "version": "0.25.11",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "scripts": {
-    "dev": "gulp watch",
-    "build": "gulp build"
-  },
-  "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "presets": [
-            "es2015",
-            "stage-3"
-          ]
-        }
-      ]
-    ]
-  },
-  "devDependencies": {
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-3": "^6.0.0",
-    "babelify": "^7.3.0",
-    "browser-sync": "^2.11.1",
-    "gsap": "^2.0.2",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^6.0.0",
-    "gulp-browserify": "^0.5.1",
-    "gulp-cssnano": "^2.1.3",
-    "gulp-jade": "^1.1.0",
-    "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.1",
-    "gulp-sourcemaps": "^1.12.1",
-    "gulp-uglify": "^3.0.1",
-    "node-sass": "^4.7.2"
-  },
-  "dependencies": {
-    "fullpage.js": "^2.9.7",
-    "jquery": "^3.3.1",
-    "pixi.js": "^4.8.3",
-    "slick-carousel": "^1.8.1",
-    "swiper": "^4.4.1",
-    "tilt.js": "^1.2.1",
-    "typed.js": "^2.0.9"
-  }
+    "name": "oleg-savenok-portfolio",
+    "title": "",
+    "author": "Oleg Savenok",
+    "url": "http://redi.agency",
+    "version": "1.0.0",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --open --config webpack.dev.js",
+        "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js"
+    },
+    "devDependencies": {
+        "autoprefixer": "^9.4.3",
+        "babel-core": "^6.26.0",
+        "babel-loader": "^7.1.2",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-stage-3": "^6.0.0",
+        "compression-webpack-plugin": "^2.0.0",
+        "cross-env": "^5.2.0",
+        "css-loader": "^2.0.1",
+        "cssnano": "^4.1.10",
+        "gsap": "^2.0.2",
+        "html-loader": "^0.5.5",
+        "html-webpack-plugin": "^3.2.0",
+        "html-webpack-pug-plugin": "^0.3.0",
+        "husky": "^1.2.1",
+        "lint-staged": "^8.1.0",
+        "node-sass": "^4.7.2",
+        "postcss": "^7.0.6",
+        "postcss-loader": "^3.0.0",
+        "prettier": "^1.15.3",
+        "pug-html-loader": "^1.1.5",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
+        "terser-webpack-plugin": "^1.2.0",
+        "uglifyjs-webpack-plugin": "^2.1.0",
+        "webpack": "^4.27.1",
+        "webpack-cli": "^3.1.2",
+        "webpack-dev-server": "^3.1.11",
+        "webpack-merge": "^4.1.5",
+        "webpack-stream": "^5.2.1"
+    },
+    "dependencies": {
+        "fullpage.js": "^2.9.7",
+        "jquery": "^3.3.1",
+        "pixi.js": "^4.8.3",
+        "slick-carousel": "^1.8.1",
+        "swiper": "^4.4.0",
+        "tilt.js": "^1.2.1",
+        "typed.js": "^2.0.9"
+    }
 }

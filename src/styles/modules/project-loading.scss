@@ -1,0 +1,13 @@
+.project-loading {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0.1rem;
+
+    &__percent {
+        height: 100%;
+        width: 0;
+    }
+}
